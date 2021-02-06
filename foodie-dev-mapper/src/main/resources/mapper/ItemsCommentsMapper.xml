@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.ItemsCommentsMapper">
+
+    <select id="getItemsCommentsById" resultType="com.zy.entity.ItemsComments">
+        select
+                id as id,
+                user_id as userId,
+                item_id as itemId,
+                item_name as itemName,
+                item_spec_id as itemSpecId,
+                sepc_name as sepcName,
+                comment_level as commentLevel,
+                content as content,
+                created_time as createdTime,
+                updated_time as updatedTime
+        from items_comments
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getItemsCommentsListByMap" resultType="com.zy.entity.ItemsComments" parameterType="java.util.Map">
+        select
+                id as id,
+                user_id as userId,
+                item_id as itemId,
+                item_name as itemName,
+                item_spec_id as itemSpecId,
+                sepc_name as sepcName,
+                comment_level as commentLevel,
+                content as content,
+                created_time as createdTime,
+                updated_time as updatedTime
+        from items_comments
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="userId != null and userId!=''">
+                    and user_id=#{userId}
+                </if>
+                <if test="itemId != null and itemId!=''">
+                    and item_id=#{itemId}
+                </if>
+                <if test="itemName != null and itemName!=''">
+                    and item_name=#{itemName}
+                </if>
+                <if test="itemSpecId != null and itemSpecId!=''">
+                    and item_spec_id=#{itemSpecId}
+                </if>
+                <if test="sepcName != null and sepcName!=''">
+                    and sepc_name=#{sepcName}
+                </if>
+                <if test="commentLevel != null and commentLevel!=''">
+                    and comment_level=#{commentLevel}
+                </if>
+                <if test="content != null and content!=''">
+                    and content=#{content}
+                </if>
+                <if test="createdTime != null and createdTime!=''">
+                    and created_time=#{createdTime}
+                </if>
+                <if test="updatedTime != null and updatedTime!=''">
+                    and updated_time=#{updatedTime}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getItemsCommentsCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from items_comments
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="userId != null and userId!=''">
+                    and user_id=#{userId}
+                </if>
+                <if test="itemId != null and itemId!=''">
+                    and item_id=#{itemId}
+                </if>
+                <if test="itemName != null and itemName!=''">
+                    and item_name=#{itemName}
+                </if>
+                <if test="itemSpecId != null and itemSpecId!=''">
+                    and item_spec_id=#{itemSpecId}
+                </if>
+                <if test="sepcName != null and sepcName!=''">
+                    and sepc_name=#{sepcName}
+                </if>
+                <if test="commentLevel != null and commentLevel!=''">
+                    and comment_level=#{commentLevel}
+                </if>
+                <if test="content != null and content!=''">
+                    and content=#{content}
+                </if>
+                <if test="createdTime != null and createdTime!=''">
+                    and created_time=#{createdTime}
+                </if>
+                <if test="updatedTime != null and updatedTime!=''">
+                    and updated_time=#{updatedTime}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertItemsComments" parameterType="com.zy.entity.ItemsComments">
+        insert into items_comments(
+                        user_id,
+                        item_id,
+                        item_name,
+                        item_spec_id,
+                        sepc_name,
+                        comment_level,
+                        content,
+                        created_time,
+                        updated_time)
+        values(
+                     #{userId},
+                     #{itemId},
+                     #{itemName},
+                     #{itemSpecId},
+                     #{sepcName},
+                     #{commentLevel},
+                     #{content},
+                     #{createdTime},
+                    #{updatedTime})
+    </insert>
+
+    <update id="updateItemsComments" parameterType="com.zy.entity.ItemsComments">
+        update items_comments
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="userId != null and userId!=''">
+                            user_id=#{userId},
+                        </if>
+                        <if test="itemId != null and itemId!=''">
+                            item_id=#{itemId},
+                        </if>
+                        <if test="itemName != null and itemName!=''">
+                            item_name=#{itemName},
+                        </if>
+                        <if test="itemSpecId != null and itemSpecId!=''">
+                            item_spec_id=#{itemSpecId},
+                        </if>
+                        <if test="sepcName != null and sepcName!=''">
+                            sepc_name=#{sepcName},
+                        </if>
+                        <if test="commentLevel != null and commentLevel!=''">
+                            comment_level=#{commentLevel},
+                        </if>
+                        <if test="content != null and content!=''">
+                            content=#{content},
+                        </if>
+                        <if test="createdTime != null and createdTime!=''">
+                            created_time=#{createdTime},
+                        </if>
+                        <if test="updatedTime != null and updatedTime!=''">
+                            updated_time=#{updatedTime}
+                        </if>
+        </trim>
+    </update>
+</mapper>

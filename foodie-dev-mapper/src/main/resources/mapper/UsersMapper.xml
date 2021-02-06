@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.UsersMapper">
+
+    <select id="getUsersById" resultType="com.zy.entity.Users">
+        select
+        id as id,
+        username as username,
+        password as password,
+        nickname as nickname,
+        realname as realname,
+        face as face,
+        mobile as mobile,
+        email as email,
+        sex as sex,
+        birthday as birthday,
+        created_time as createdTime,
+        updated_time as updatedTime
+        from users
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getUsersListByMap" resultType="com.zy.entity.Users" parameterType="java.util.Map">
+        select
+        id as id,
+        username as username,
+        password as password,
+        nickname as nickname,
+        realname as realname,
+        face as face,
+        mobile as mobile,
+        email as email,
+        sex as sex,
+        birthday as birthday,
+        created_time as createdTime,
+        updated_time as updatedTime
+        from users
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="username != null and username!=''">
+                and username=#{username}
+            </if>
+            <if test="password != null and password!=''">
+                and password=#{password}
+            </if>
+            <if test="nickname != null and nickname!=''">
+                and nickname=#{nickname}
+            </if>
+            <if test="realname != null and realname!=''">
+                and realname=#{realname}
+            </if>
+            <if test="face != null and face!=''">
+                and face=#{face}
+            </if>
+            <if test="mobile != null and mobile!=''">
+                and mobile=#{mobile}
+            </if>
+            <if test="email != null and email!=''">
+                and email=#{email}
+            </if>
+            <if test="sex != null and sex!=''">
+                and sex=#{sex}
+            </if>
+            <if test="birthday != null and birthday!=''">
+                and birthday=#{birthday}
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                and created_time=#{createdTime}
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                and updated_time=#{updatedTime}
+            </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getUsersCountByMap" resultType="Integer" parameterType="java.util.Map">
+        select count(*) from users
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="username != null and username!=''">
+                and username=#{username}
+            </if>
+            <if test="password != null and password!=''">
+                and password=#{password}
+            </if>
+            <if test="nickname != null and nickname!=''">
+                and nickname=#{nickname}
+            </if>
+            <if test="realname != null and realname!=''">
+                and realname=#{realname}
+            </if>
+            <if test="face != null and face!=''">
+                and face=#{face}
+            </if>
+            <if test="mobile != null and mobile!=''">
+                and mobile=#{mobile}
+            </if>
+            <if test="email != null and email!=''">
+                and email=#{email}
+            </if>
+            <if test="sex != null and sex!=''">
+                and sex=#{sex}
+            </if>
+            <if test="birthday != null and birthday!=''">
+                and birthday=#{birthday}
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                and created_time=#{createdTime}
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                and updated_time=#{updatedTime}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="insertUsers" parameterType="com.zy.entity.Users">
+        insert into users(
+        id,
+                        username,
+                        password,
+                        nickname,
+                        realname,
+                        face,
+                        mobile,
+                        email,
+                        sex,
+                        birthday,
+                        created_time,
+                        updated_time)
+        values(
+                     #{id},
+                     #{username},
+                     #{password},
+                     #{nickname},
+                     #{realname},
+                     #{face},
+                     #{mobile},
+                     #{email},
+                     #{sex},
+                     #{birthday},
+                     #{createdTime},
+                    #{updatedTime})
+    </insert>
+
+    <update id="updateUsers" parameterType="com.zy.entity.Users">
+        update users
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+            <if test="username != null and username!=''">
+                username=#{username},
+            </if>
+            <if test="password != null and password!=''">
+                password=#{password},
+            </if>
+            <if test="nickname != null and nickname!=''">
+                nickname=#{nickname},
+            </if>
+            <if test="realname != null and realname!=''">
+                realname=#{realname},
+            </if>
+            <if test="face != null and face!=''">
+                face=#{face},
+            </if>
+            <if test="mobile != null and mobile!=''">
+                mobile=#{mobile},
+            </if>
+            <if test="email != null and email!=''">
+                email=#{email},
+            </if>
+            <if test="sex != null and sex!=''">
+                sex=#{sex},
+            </if>
+            <if test="birthday != null and birthday!=''">
+                birthday=#{birthday},
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                created_time=#{createdTime},
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                updated_time=#{updatedTime}
+            </if>
+        </trim>
+    </update>
+</mapper>

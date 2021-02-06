@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.ItemsMapper">
+
+    <select id="getItemsById" resultType="com.zy.entity.Items">
+        select
+                id as id,
+                item_name as itemName,
+                cat_id as catId,
+                root_cat_id as rootCatId,
+                sell_counts as sellCounts,
+                on_off_status as onOffStatus,
+                content as content,
+                created_time as createdTime,
+                updated_time as updatedTime
+        from items
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getItemsListByMap" resultType="com.zy.entity.Items" parameterType="java.util.Map">
+        select
+                id as id,
+                item_name as itemName,
+                cat_id as catId,
+                root_cat_id as rootCatId,
+                sell_counts as sellCounts,
+                on_off_status as onOffStatus,
+                content as content,
+                created_time as createdTime,
+                updated_time as updatedTime
+        from items
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="itemName != null and itemName!=''">
+                    and item_name=#{itemName}
+                </if>
+                <if test="catId != null and catId!=''">
+                    and cat_id=#{catId}
+                </if>
+                <if test="rootCatId != null and rootCatId!=''">
+                    and root_cat_id=#{rootCatId}
+                </if>
+                <if test="sellCounts != null and sellCounts!=''">
+                    and sell_counts=#{sellCounts}
+                </if>
+                <if test="onOffStatus != null and onOffStatus!=''">
+                    and on_off_status=#{onOffStatus}
+                </if>
+                <if test="content != null and content!=''">
+                    and content=#{content}
+                </if>
+                <if test="createdTime != null and createdTime!=''">
+                    and created_time=#{createdTime}
+                </if>
+                <if test="updatedTime != null and updatedTime!=''">
+                    and updated_time=#{updatedTime}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getItemsCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from items
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="itemName != null and itemName!=''">
+                    and item_name=#{itemName}
+                </if>
+                <if test="catId != null and catId!=''">
+                    and cat_id=#{catId}
+                </if>
+                <if test="rootCatId != null and rootCatId!=''">
+                    and root_cat_id=#{rootCatId}
+                </if>
+                <if test="sellCounts != null and sellCounts!=''">
+                    and sell_counts=#{sellCounts}
+                </if>
+                <if test="onOffStatus != null and onOffStatus!=''">
+                    and on_off_status=#{onOffStatus}
+                </if>
+                <if test="content != null and content!=''">
+                    and content=#{content}
+                </if>
+                <if test="createdTime != null and createdTime!=''">
+                    and created_time=#{createdTime}
+                </if>
+                <if test="updatedTime != null and updatedTime!=''">
+                    and updated_time=#{updatedTime}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertItems" parameterType="com.zy.entity.Items">
+        insert into items(
+                        item_name,
+                        cat_id,
+                        root_cat_id,
+                        sell_counts,
+                        on_off_status,
+                        content,
+                        created_time,
+                        updated_time)
+        values(
+                     #{itemName},
+                     #{catId},
+                     #{rootCatId},
+                     #{sellCounts},
+                     #{onOffStatus},
+                     #{content},
+                     #{createdTime},
+                    #{updatedTime})
+    </insert>
+
+    <update id="updateItems" parameterType="com.zy.entity.Items">
+        update items
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="itemName != null and itemName!=''">
+                            item_name=#{itemName},
+                        </if>
+                        <if test="catId != null and catId!=''">
+                            cat_id=#{catId},
+                        </if>
+                        <if test="rootCatId != null and rootCatId!=''">
+                            root_cat_id=#{rootCatId},
+                        </if>
+                        <if test="sellCounts != null and sellCounts!=''">
+                            sell_counts=#{sellCounts},
+                        </if>
+                        <if test="onOffStatus != null and onOffStatus!=''">
+                            on_off_status=#{onOffStatus},
+                        </if>
+                        <if test="content != null and content!=''">
+                            content=#{content},
+                        </if>
+                        <if test="createdTime != null and createdTime!=''">
+                            created_time=#{createdTime},
+                        </if>
+                        <if test="updatedTime != null and updatedTime!=''">
+                            updated_time=#{updatedTime}
+                        </if>
+        </trim>
+    </update>
+</mapper>

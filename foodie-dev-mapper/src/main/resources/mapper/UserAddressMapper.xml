@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.UserAddressMapper">
+
+    <select id="getUserAddressById" resultType="com.zy.entity.UserAddress">
+        select
+                id as id,
+                user_id as userId,
+                receiver as receiver,
+                mobile as mobile,
+                province as province,
+                city as city,
+                district as district,
+                detail as detail,
+                extand as extand,
+                is_default as isDefault,
+                created_time as createdTime,
+                updated_time as updatedTime
+        from user_address
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getUserAddressListByMap" resultType="com.zy.entity.UserAddress" parameterType="java.util.Map">
+        select
+                id as id,
+                user_id as userId,
+                receiver as receiver,
+                mobile as mobile,
+                province as province,
+                city as city,
+                district as district,
+                detail as detail,
+                extand as extand,
+                is_default as isDefault,
+                created_time as createdTime,
+                updated_time as updatedTime
+        from user_address
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="userId != null and userId!=''">
+                    and user_id=#{userId}
+                </if>
+                <if test="receiver != null and receiver!=''">
+                    and receiver=#{receiver}
+                </if>
+                <if test="mobile != null and mobile!=''">
+                    and mobile=#{mobile}
+                </if>
+                <if test="province != null and province!=''">
+                    and province=#{province}
+                </if>
+                <if test="city != null and city!=''">
+                    and city=#{city}
+                </if>
+                <if test="district != null and district!=''">
+                    and district=#{district}
+                </if>
+                <if test="detail != null and detail!=''">
+                    and detail=#{detail}
+                </if>
+                <if test="extand != null and extand!=''">
+                    and extand=#{extand}
+                </if>
+                <if test="isDefault != null and isDefault!=''">
+                    and is_default=#{isDefault}
+                </if>
+                <if test="createdTime != null and createdTime!=''">
+                    and created_time=#{createdTime}
+                </if>
+                <if test="updatedTime != null and updatedTime!=''">
+                    and updated_time=#{updatedTime}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getUserAddressCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from user_address
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="userId != null and userId!=''">
+                    and user_id=#{userId}
+                </if>
+                <if test="receiver != null and receiver!=''">
+                    and receiver=#{receiver}
+                </if>
+                <if test="mobile != null and mobile!=''">
+                    and mobile=#{mobile}
+                </if>
+                <if test="province != null and province!=''">
+                    and province=#{province}
+                </if>
+                <if test="city != null and city!=''">
+                    and city=#{city}
+                </if>
+                <if test="district != null and district!=''">
+                    and district=#{district}
+                </if>
+                <if test="detail != null and detail!=''">
+                    and detail=#{detail}
+                </if>
+                <if test="extand != null and extand!=''">
+                    and extand=#{extand}
+                </if>
+                <if test="isDefault != null and isDefault!=''">
+                    and is_default=#{isDefault}
+                </if>
+                <if test="createdTime != null and createdTime!=''">
+                    and created_time=#{createdTime}
+                </if>
+                <if test="updatedTime != null and updatedTime!=''">
+                    and updated_time=#{updatedTime}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertUserAddress" parameterType="com.zy.entity.UserAddress">
+        insert into user_address(
+                        user_id,
+                        receiver,
+                        mobile,
+                        province,
+                        city,
+                        district,
+                        detail,
+                        extand,
+                        is_default,
+                        created_time,
+                        updated_time)
+        values(
+                     #{userId},
+                     #{receiver},
+                     #{mobile},
+                     #{province},
+                     #{city},
+                     #{district},
+                     #{detail},
+                     #{extand},
+                     #{isDefault},
+                     #{createdTime},
+                    #{updatedTime})
+    </insert>
+
+    <update id="updateUserAddress" parameterType="com.zy.entity.UserAddress">
+        update user_address
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="userId != null and userId!=''">
+                            user_id=#{userId},
+                        </if>
+                        <if test="receiver != null and receiver!=''">
+                            receiver=#{receiver},
+                        </if>
+                        <if test="mobile != null and mobile!=''">
+                            mobile=#{mobile},
+                        </if>
+                        <if test="province != null and province!=''">
+                            province=#{province},
+                        </if>
+                        <if test="city != null and city!=''">
+                            city=#{city},
+                        </if>
+                        <if test="district != null and district!=''">
+                            district=#{district},
+                        </if>
+                        <if test="detail != null and detail!=''">
+                            detail=#{detail},
+                        </if>
+                        <if test="extand != null and extand!=''">
+                            extand=#{extand},
+                        </if>
+                        <if test="isDefault != null and isDefault!=''">
+                            is_default=#{isDefault},
+                        </if>
+                        <if test="createdTime != null and createdTime!=''">
+                            created_time=#{createdTime},
+                        </if>
+                        <if test="updatedTime != null and updatedTime!=''">
+                            updated_time=#{updatedTime}
+                        </if>
+        </trim>
+    </update>
+</mapper>

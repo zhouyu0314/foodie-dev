@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.OrdersMapper">
+
+    <select id="getOrdersById" resultType="com.zy.entity.Orders">
+        select
+                id as id,
+                user_id as userId,
+                receiver_name as receiverName,
+                receiver_mobile as receiverMobile,
+                receiver_address as receiverAddress,
+                total_amount as totalAmount,
+                real_pay_amount as realPayAmount,
+                post_amount as postAmount,
+                pay_method as payMethod,
+                left_msg as leftMsg,
+                extand as extand,
+                is_comment as isComment,
+                is_delete as isDelete,
+                created_time as createdTime,
+                updated_time as updatedTime
+        from orders
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getOrdersListByMap" resultType="com.zy.entity.Orders" parameterType="java.util.Map">
+        select
+                id as id,
+                user_id as userId,
+                receiver_name as receiverName,
+                receiver_mobile as receiverMobile,
+                receiver_address as receiverAddress,
+                total_amount as totalAmount,
+                real_pay_amount as realPayAmount,
+                post_amount as postAmount,
+                pay_method as payMethod,
+                left_msg as leftMsg,
+                extand as extand,
+                is_comment as isComment,
+                is_delete as isDelete,
+                created_time as createdTime,
+                updated_time as updatedTime
+        from orders
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="userId != null and userId!=''">
+                    and user_id=#{userId}
+                </if>
+                <if test="receiverName != null and receiverName!=''">
+                    and receiver_name=#{receiverName}
+                </if>
+                <if test="receiverMobile != null and receiverMobile!=''">
+                    and receiver_mobile=#{receiverMobile}
+                </if>
+                <if test="receiverAddress != null and receiverAddress!=''">
+                    and receiver_address=#{receiverAddress}
+                </if>
+                <if test="totalAmount != null and totalAmount!=''">
+                    and total_amount=#{totalAmount}
+                </if>
+                <if test="realPayAmount != null and realPayAmount!=''">
+                    and real_pay_amount=#{realPayAmount}
+                </if>
+                <if test="postAmount != null and postAmount!=''">
+                    and post_amount=#{postAmount}
+                </if>
+                <if test="payMethod != null and payMethod!=''">
+                    and pay_method=#{payMethod}
+                </if>
+                <if test="leftMsg != null and leftMsg!=''">
+                    and left_msg=#{leftMsg}
+                </if>
+                <if test="extand != null and extand!=''">
+                    and extand=#{extand}
+                </if>
+                <if test="isComment != null and isComment!=''">
+                    and is_comment=#{isComment}
+                </if>
+                <if test="isDelete != null and isDelete!=''">
+                    and is_delete=#{isDelete}
+                </if>
+                <if test="createdTime != null and createdTime!=''">
+                    and created_time=#{createdTime}
+                </if>
+                <if test="updatedTime != null and updatedTime!=''">
+                    and updated_time=#{updatedTime}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getOrdersCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from orders
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="userId != null and userId!=''">
+                    and user_id=#{userId}
+                </if>
+                <if test="receiverName != null and receiverName!=''">
+                    and receiver_name=#{receiverName}
+                </if>
+                <if test="receiverMobile != null and receiverMobile!=''">
+                    and receiver_mobile=#{receiverMobile}
+                </if>
+                <if test="receiverAddress != null and receiverAddress!=''">
+                    and receiver_address=#{receiverAddress}
+                </if>
+                <if test="totalAmount != null and totalAmount!=''">
+                    and total_amount=#{totalAmount}
+                </if>
+                <if test="realPayAmount != null and realPayAmount!=''">
+                    and real_pay_amount=#{realPayAmount}
+                </if>
+                <if test="postAmount != null and postAmount!=''">
+                    and post_amount=#{postAmount}
+                </if>
+                <if test="payMethod != null and payMethod!=''">
+                    and pay_method=#{payMethod}
+                </if>
+                <if test="leftMsg != null and leftMsg!=''">
+                    and left_msg=#{leftMsg}
+                </if>
+                <if test="extand != null and extand!=''">
+                    and extand=#{extand}
+                </if>
+                <if test="isComment != null and isComment!=''">
+                    and is_comment=#{isComment}
+                </if>
+                <if test="isDelete != null and isDelete!=''">
+                    and is_delete=#{isDelete}
+                </if>
+                <if test="createdTime != null and createdTime!=''">
+                    and created_time=#{createdTime}
+                </if>
+                <if test="updatedTime != null and updatedTime!=''">
+                    and updated_time=#{updatedTime}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertOrders" parameterType="com.zy.entity.Orders">
+        insert into orders(
+                        user_id,
+                        receiver_name,
+                        receiver_mobile,
+                        receiver_address,
+                        total_amount,
+                        real_pay_amount,
+                        post_amount,
+                        pay_method,
+                        left_msg,
+                        extand,
+                        is_comment,
+                        is_delete,
+                        created_time,
+                        updated_time)
+        values(
+                     #{userId},
+                     #{receiverName},
+                     #{receiverMobile},
+                     #{receiverAddress},
+                     #{totalAmount},
+                     #{realPayAmount},
+                     #{postAmount},
+                     #{payMethod},
+                     #{leftMsg},
+                     #{extand},
+                     #{isComment},
+                     #{isDelete},
+                     #{createdTime},
+                    #{updatedTime})
+    </insert>
+
+    <update id="updateOrders" parameterType="com.zy.entity.Orders">
+        update orders
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="userId != null and userId!=''">
+                            user_id=#{userId},
+                        </if>
+                        <if test="receiverName != null and receiverName!=''">
+                            receiver_name=#{receiverName},
+                        </if>
+                        <if test="receiverMobile != null and receiverMobile!=''">
+                            receiver_mobile=#{receiverMobile},
+                        </if>
+                        <if test="receiverAddress != null and receiverAddress!=''">
+                            receiver_address=#{receiverAddress},
+                        </if>
+                        <if test="totalAmount != null and totalAmount!=''">
+                            total_amount=#{totalAmount},
+                        </if>
+                        <if test="realPayAmount != null and realPayAmount!=''">
+                            real_pay_amount=#{realPayAmount},
+                        </if>
+                        <if test="postAmount != null and postAmount!=''">
+                            post_amount=#{postAmount},
+                        </if>
+                        <if test="payMethod != null and payMethod!=''">
+                            pay_method=#{payMethod},
+                        </if>
+                        <if test="leftMsg != null and leftMsg!=''">
+                            left_msg=#{leftMsg},
+                        </if>
+                        <if test="extand != null and extand!=''">
+                            extand=#{extand},
+                        </if>
+                        <if test="isComment != null and isComment!=''">
+                            is_comment=#{isComment},
+                        </if>
+                        <if test="isDelete != null and isDelete!=''">
+                            is_delete=#{isDelete},
+                        </if>
+                        <if test="createdTime != null and createdTime!=''">
+                            created_time=#{createdTime},
+                        </if>
+                        <if test="updatedTime != null and updatedTime!=''">
+                            updated_time=#{updatedTime}
+                        </if>
+        </trim>
+    </update>
+</mapper>

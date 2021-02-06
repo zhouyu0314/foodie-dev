@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.ItemsImgMapper">
+
+    <select id="getItemsImgById" resultType="com.zy.entity.ItemsImg">
+        select
+                id as id,
+                item_id as itemId,
+                url as url,
+                sort as sort,
+                is_main as isMain,
+                created_time as createdTime,
+                updated_time as updatedTime
+        from items_img
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getItemsImgListByMap" resultType="com.zy.entity.ItemsImg" parameterType="java.util.Map">
+        select
+                id as id,
+                item_id as itemId,
+                url as url,
+                sort as sort,
+                is_main as isMain,
+                created_time as createdTime,
+                updated_time as updatedTime
+        from items_img
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="itemId != null and itemId!=''">
+                    and item_id=#{itemId}
+                </if>
+                <if test="url != null and url!=''">
+                    and url=#{url}
+                </if>
+                <if test="sort != null and sort!=''">
+                    and sort=#{sort}
+                </if>
+                <if test="isMain != null and isMain!=''">
+                    and is_main=#{isMain}
+                </if>
+                <if test="createdTime != null and createdTime!=''">
+                    and created_time=#{createdTime}
+                </if>
+                <if test="updatedTime != null and updatedTime!=''">
+                    and updated_time=#{updatedTime}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getItemsImgCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from items_img
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="itemId != null and itemId!=''">
+                    and item_id=#{itemId}
+                </if>
+                <if test="url != null and url!=''">
+                    and url=#{url}
+                </if>
+                <if test="sort != null and sort!=''">
+                    and sort=#{sort}
+                </if>
+                <if test="isMain != null and isMain!=''">
+                    and is_main=#{isMain}
+                </if>
+                <if test="createdTime != null and createdTime!=''">
+                    and created_time=#{createdTime}
+                </if>
+                <if test="updatedTime != null and updatedTime!=''">
+                    and updated_time=#{updatedTime}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertItemsImg" parameterType="com.zy.entity.ItemsImg">
+        insert into items_img(
+                        item_id,
+                        url,
+                        sort,
+                        is_main,
+                        created_time,
+                        updated_time)
+        values(
+                     #{itemId},
+                     #{url},
+                     #{sort},
+                     #{isMain},
+                     #{createdTime},
+                    #{updatedTime})
+    </insert>
+
+    <update id="updateItemsImg" parameterType="com.zy.entity.ItemsImg">
+        update items_img
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="itemId != null and itemId!=''">
+                            item_id=#{itemId},
+                        </if>
+                        <if test="url != null and url!=''">
+                            url=#{url},
+                        </if>
+                        <if test="sort != null and sort!=''">
+                            sort=#{sort},
+                        </if>
+                        <if test="isMain != null and isMain!=''">
+                            is_main=#{isMain},
+                        </if>
+                        <if test="createdTime != null and createdTime!=''">
+                            created_time=#{createdTime},
+                        </if>
+                        <if test="updatedTime != null and updatedTime!=''">
+                            updated_time=#{updatedTime}
+                        </if>
+        </trim>
+    </update>
+</mapper>

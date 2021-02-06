@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.OrderItemsMapper">
+
+    <select id="getOrderItemsById" resultType="com.zy.entity.OrderItems">
+        select
+                id as id,
+                order_id as orderId,
+                item_id as itemId,
+                item_img as itemImg,
+                item_name as itemName,
+                item_spec_id as itemSpecId,
+                item_spec_name as itemSpecName,
+                price as price,
+                buy_counts as buyCounts
+        from order_items
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getOrderItemsListByMap" resultType="com.zy.entity.OrderItems" parameterType="java.util.Map">
+        select
+                id as id,
+                order_id as orderId,
+                item_id as itemId,
+                item_img as itemImg,
+                item_name as itemName,
+                item_spec_id as itemSpecId,
+                item_spec_name as itemSpecName,
+                price as price,
+                buy_counts as buyCounts
+        from order_items
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="orderId != null and orderId!=''">
+                    and order_id=#{orderId}
+                </if>
+                <if test="itemId != null and itemId!=''">
+                    and item_id=#{itemId}
+                </if>
+                <if test="itemImg != null and itemImg!=''">
+                    and item_img=#{itemImg}
+                </if>
+                <if test="itemName != null and itemName!=''">
+                    and item_name=#{itemName}
+                </if>
+                <if test="itemSpecId != null and itemSpecId!=''">
+                    and item_spec_id=#{itemSpecId}
+                </if>
+                <if test="itemSpecName != null and itemSpecName!=''">
+                    and item_spec_name=#{itemSpecName}
+                </if>
+                <if test="price != null and price!=''">
+                    and price=#{price}
+                </if>
+                <if test="buyCounts != null and buyCounts!=''">
+                    and buy_counts=#{buyCounts}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getOrderItemsCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from order_items
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="orderId != null and orderId!=''">
+                    and order_id=#{orderId}
+                </if>
+                <if test="itemId != null and itemId!=''">
+                    and item_id=#{itemId}
+                </if>
+                <if test="itemImg != null and itemImg!=''">
+                    and item_img=#{itemImg}
+                </if>
+                <if test="itemName != null and itemName!=''">
+                    and item_name=#{itemName}
+                </if>
+                <if test="itemSpecId != null and itemSpecId!=''">
+                    and item_spec_id=#{itemSpecId}
+                </if>
+                <if test="itemSpecName != null and itemSpecName!=''">
+                    and item_spec_name=#{itemSpecName}
+                </if>
+                <if test="price != null and price!=''">
+                    and price=#{price}
+                </if>
+                <if test="buyCounts != null and buyCounts!=''">
+                    and buy_counts=#{buyCounts}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertOrderItems" parameterType="com.zy.entity.OrderItems">
+        insert into order_items(
+                        order_id,
+                        item_id,
+                        item_img,
+                        item_name,
+                        item_spec_id,
+                        item_spec_name,
+                        price,
+                        buy_counts)
+        values(
+                     #{orderId},
+                     #{itemId},
+                     #{itemImg},
+                     #{itemName},
+                     #{itemSpecId},
+                     #{itemSpecName},
+                     #{price},
+                    #{buyCounts})
+    </insert>
+
+    <update id="updateOrderItems" parameterType="com.zy.entity.OrderItems">
+        update order_items
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="orderId != null and orderId!=''">
+                            order_id=#{orderId},
+                        </if>
+                        <if test="itemId != null and itemId!=''">
+                            item_id=#{itemId},
+                        </if>
+                        <if test="itemImg != null and itemImg!=''">
+                            item_img=#{itemImg},
+                        </if>
+                        <if test="itemName != null and itemName!=''">
+                            item_name=#{itemName},
+                        </if>
+                        <if test="itemSpecId != null and itemSpecId!=''">
+                            item_spec_id=#{itemSpecId},
+                        </if>
+                        <if test="itemSpecName != null and itemSpecName!=''">
+                            item_spec_name=#{itemSpecName},
+                        </if>
+                        <if test="price != null and price!=''">
+                            price=#{price},
+                        </if>
+                        <if test="buyCounts != null and buyCounts!=''">
+                            buy_counts=#{buyCounts}
+                        </if>
+        </trim>
+    </update>
+</mapper>

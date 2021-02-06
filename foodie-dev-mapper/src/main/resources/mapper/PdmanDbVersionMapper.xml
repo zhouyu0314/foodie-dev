@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.PdmanDbVersionMapper">
+
+    <select id="getPdmanDbVersionById" resultType="com.zy.entity.PdmanDbVersion">
+        select
+                DB_VERSION as DBVERSION,
+                VERSION_DESC as VERSIONDESC,
+                CREATED_TIME as CREATEDTIME
+        from pdman_db_version
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getPdmanDbVersionListByMap" resultType="com.zy.entity.PdmanDbVersion" parameterType="java.util.Map">
+        select
+                DB_VERSION as DBVERSION,
+                VERSION_DESC as VERSIONDESC,
+                CREATED_TIME as CREATEDTIME
+        from pdman_db_version
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="DBVERSION != null and DBVERSION!=''">
+                    and DB_VERSION=#{DBVERSION}
+                </if>
+                <if test="VERSIONDESC != null and VERSIONDESC!=''">
+                    and VERSION_DESC=#{VERSIONDESC}
+                </if>
+                <if test="CREATEDTIME != null and CREATEDTIME!=''">
+                    and CREATED_TIME=#{CREATEDTIME}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getPdmanDbVersionCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from pdman_db_version
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="DBVERSION != null and DBVERSION!=''">
+                    and DB_VERSION=#{DBVERSION}
+                </if>
+                <if test="VERSIONDESC != null and VERSIONDESC!=''">
+                    and VERSION_DESC=#{VERSIONDESC}
+                </if>
+                <if test="CREATEDTIME != null and CREATEDTIME!=''">
+                    and CREATED_TIME=#{CREATEDTIME}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertPdmanDbVersion" parameterType="com.zy.entity.PdmanDbVersion">
+        insert into pdman_db_version(
+                        DB_VERSION,
+                        VERSION_DESC,
+                        CREATED_TIME)
+        values(
+                     #{DBVERSION},
+                     #{VERSIONDESC},
+                    #{CREATEDTIME})
+    </insert>
+
+    <update id="updatePdmanDbVersion" parameterType="com.zy.entity.PdmanDbVersion">
+        update pdman_db_version
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="DBVERSION != null and DBVERSION!=''">
+                            DB_VERSION=#{DBVERSION},
+                        </if>
+                        <if test="VERSIONDESC != null and VERSIONDESC!=''">
+                            VERSION_DESC=#{VERSIONDESC},
+                        </if>
+                        <if test="CREATEDTIME != null and CREATEDTIME!=''">
+                            CREATED_TIME=#{CREATEDTIME}
+                        </if>
+        </trim>
+    </update>
+</mapper>
