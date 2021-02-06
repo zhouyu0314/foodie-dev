@@ -1,5 +1,8 @@
 package com.zy.enums;
 
+/**
+ * 性别枚举
+ */
 public enum Sex {
     MALE(1, "男"),
     FEMALE(2, "女"),

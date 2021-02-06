@@ -8,6 +8,8 @@ import com.zy.service.UsersService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/passport")
 public class PassportController {
+    private static final Logger LOGGER =  LoggerFactory.getLogger(PassportController.class);
     @Autowired
     private UsersService usersService;
 
@@ -48,7 +51,7 @@ public class PassportController {
 
     @ApiOperation(value = "用户注册", notes = "入参Map 其中String username;password;confirmPassword必传", httpMethod = "POST")
     @PostMapping("/regist")
-    public IMOOCJSONResult register(@RequestBody Map<String, Object> param,HttpServletRequest request,HttpServletResponse response) {
+    public IMOOCJSONResult register(@RequestBody Map<String, Object> param, HttpServletRequest request, HttpServletResponse response) {
 
         try {
             if (StringUtils.isEmpty(param.get("username")) || StringUtils.isEmpty(param.get("password")) || StringUtils.isEmpty(param.get("confirmPassword"))) {
@@ -68,7 +71,7 @@ public class PassportController {
             }
 
             Users result = usersService.register(username, password);
-            CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(result),true);//是否加密
+            CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密
             return IMOOCJSONResult.ok();
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,7 +92,7 @@ public class PassportController {
             String username = param.get("username").toString();
             String password = param.get("password").toString();
             Users result = usersService.login(username, password);
-            CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(result),true);//是否加密
+            CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密
 
             return IMOOCJSONResult.ok(result);
         } catch (Exception e) {
@@ -99,4 +102,11 @@ public class PassportController {
 
     }
 
+    @ApiOperation(value = "用户退出登录", notes = "用户退出登录", httpMethod = "POST")
+    @PostMapping("/logout")
+    public IMOOCJSONResult logout(@RequestParam String userId, HttpServletRequest request,
+                                  HttpServletResponse response) {
+        CookieUtils.deleteCookie(request, response, "user");
+        return IMOOCJSONResult.ok();
+    }
 }

@@ -55,6 +55,7 @@ public class UsersServiceImpl implements UsersService {
         return user;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Users login(String username, String pwd) throws Exception {
         List<Users> users = this.findUserByUsername(username);
