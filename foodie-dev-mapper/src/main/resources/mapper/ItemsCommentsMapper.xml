@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.mapper.ItemsCommentsMapper">
 
-    <select id="getItemsCommentsById" resultType="com.zy.entity.ItemsComments">
+    <select id="getItemsCommentsById" resultType="com.zy.pojo.ItemsComments">
         select
                 id as id,
                 user_id as userId,
@@ -24,7 +24,7 @@
         </trim>
     </select>
 
-    <select id="getItemsCommentsListByMap" resultType="com.zy.entity.ItemsComments" parameterType="java.util.Map">
+    <select id="getItemsCommentsListByMap" resultType="com.zy.pojo.ItemsComments" parameterType="java.util.Map">
         select
                 id as id,
                 user_id as userId,
@@ -110,7 +110,7 @@
         </trim>
     </select>
 
-    <insert id="insertItemsComments" parameterType="com.zy.entity.ItemsComments">
+    <insert id="insertItemsComments" parameterType="com.zy.pojo.ItemsComments">
         insert into items_comments(
                         user_id,
                         item_id,
@@ -133,7 +133,7 @@
                     #{updatedTime})
     </insert>
 
-    <update id="updateItemsComments" parameterType="com.zy.entity.ItemsComments">
+    <update id="updateItemsComments" parameterType="com.zy.pojo.ItemsComments">
         update items_comments
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                         <if test="userId != null and userId!=''">

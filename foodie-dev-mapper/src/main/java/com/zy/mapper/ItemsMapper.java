@@ -1,14 +1,15 @@
 package com.zy.mapper;
-import com.zy.entity.Items;
+import com.zy.pojo.Items;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
-import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ItemsMapper {
 
-	public Items getItemsById(@Param(value = "id") Long id)throws Exception;
+	public Items getItemsById(@Param(value = "id") String id)throws Exception;
 
 	public List<Items>	getItemsListByMap(Map<String, Object> param)throws Exception;
 

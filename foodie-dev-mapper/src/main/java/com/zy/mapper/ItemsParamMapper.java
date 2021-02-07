@@ -1,9 +1,10 @@
 package com.zy.mapper;
-import com.zy.entity.ItemsParam;
+import com.zy.pojo.ItemsParam;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
-import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ItemsParamMapper {

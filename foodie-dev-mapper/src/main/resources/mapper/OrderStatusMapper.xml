@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.mapper.OrderStatusMapper">
 
-    <select id="getOrderStatusById" resultType="com.zy.entity.OrderStatus">
+    <select id="getOrderStatusById" resultType="com.zy.pojo.OrderStatus">
         select
                 order_id as orderId,
                 order_status as orderStatus,
@@ -22,7 +22,7 @@
         </trim>
     </select>
 
-    <select id="getOrderStatusListByMap" resultType="com.zy.entity.OrderStatus" parameterType="java.util.Map">
+    <select id="getOrderStatusListByMap" resultType="com.zy.pojo.OrderStatus" parameterType="java.util.Map">
         select
                 order_id as orderId,
                 order_status as orderStatus,
@@ -94,7 +94,7 @@
         </trim>
     </select>
 
-    <insert id="insertOrderStatus" parameterType="com.zy.entity.OrderStatus">
+    <insert id="insertOrderStatus" parameterType="com.zy.pojo.OrderStatus">
         insert into order_status(
                         order_id,
                         order_status,
@@ -115,7 +115,7 @@
                     #{commentTime})
     </insert>
 
-    <update id="updateOrderStatus" parameterType="com.zy.entity.OrderStatus">
+    <update id="updateOrderStatus" parameterType="com.zy.pojo.OrderStatus">
         update order_status
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                         <if test="orderId != null and orderId!=''">

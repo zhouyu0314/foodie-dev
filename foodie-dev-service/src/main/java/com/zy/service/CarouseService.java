@@ -1,6 +1,6 @@
 package com.zy.service;
 
-import com.zy.entity.Carousel;
+import com.zy.pojo.Carousel;
 
 import java.util.List;
 

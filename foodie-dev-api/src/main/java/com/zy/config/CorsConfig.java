@@ -27,7 +27,6 @@ public class CorsConfig {
         corsConfiguration.addAllowedHeader("*");
 
         //2.为url添加映射路径
-
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",corsConfiguration);
 

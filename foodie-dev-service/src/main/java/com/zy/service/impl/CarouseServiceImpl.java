@@ -1,6 +1,6 @@
 package com.zy.service.impl;
 
-import com.zy.entity.Carousel;
+import com.zy.pojo.Carousel;
 import com.zy.mapper.CarouselMapper;
 import com.zy.service.CarouseService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.mapper.PdmanDbVersionMapper">
 
-    <select id="getPdmanDbVersionById" resultType="com.zy.entity.PdmanDbVersion">
+    <select id="getPdmanDbVersionById" resultType="com.zy.pojo.PdmanDbVersion">
         select
                 DB_VERSION as DBVERSION,
                 VERSION_DESC as VERSIONDESC,
@@ -17,7 +17,7 @@
         </trim>
     </select>
 
-    <select id="getPdmanDbVersionListByMap" resultType="com.zy.entity.PdmanDbVersion" parameterType="java.util.Map">
+    <select id="getPdmanDbVersionListByMap" resultType="com.zy.pojo.PdmanDbVersion" parameterType="java.util.Map">
         select
                 DB_VERSION as DBVERSION,
                 VERSION_DESC as VERSIONDESC,
@@ -54,7 +54,7 @@
         </trim>
     </select>
 
-    <insert id="insertPdmanDbVersion" parameterType="com.zy.entity.PdmanDbVersion">
+    <insert id="insertPdmanDbVersion" parameterType="com.zy.pojo.PdmanDbVersion">
         insert into pdman_db_version(
                         DB_VERSION,
                         VERSION_DESC,
@@ -65,7 +65,7 @@
                     #{CREATEDTIME})
     </insert>
 
-    <update id="updatePdmanDbVersion" parameterType="com.zy.entity.PdmanDbVersion">
+    <update id="updatePdmanDbVersion" parameterType="com.zy.pojo.PdmanDbVersion">
         update pdman_db_version
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                         <if test="DBVERSION != null and DBVERSION!=''">

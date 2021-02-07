@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.mapper.ItemsImgMapper">
 
-    <select id="getItemsImgById" resultType="com.zy.entity.ItemsImg">
+    <select id="getItemsImgById" resultType="com.zy.pojo.ItemsImg">
         select
                 id as id,
                 item_id as itemId,
@@ -21,7 +21,7 @@
         </trim>
     </select>
 
-    <select id="getItemsImgListByMap" resultType="com.zy.entity.ItemsImg" parameterType="java.util.Map">
+    <select id="getItemsImgListByMap" resultType="com.zy.pojo.ItemsImg" parameterType="java.util.Map">
         select
                 id as id,
                 item_id as itemId,
@@ -86,7 +86,7 @@
         </trim>
     </select>
 
-    <insert id="insertItemsImg" parameterType="com.zy.entity.ItemsImg">
+    <insert id="insertItemsImg" parameterType="com.zy.pojo.ItemsImg">
         insert into items_img(
                         item_id,
                         url,
@@ -103,7 +103,7 @@
                     #{updatedTime})
     </insert>
 
-    <update id="updateItemsImg" parameterType="com.zy.entity.ItemsImg">
+    <update id="updateItemsImg" parameterType="com.zy.pojo.ItemsImg">
         update items_img
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                         <if test="itemId != null and itemId!=''">

@@ -1,22 +1,22 @@
 package com.zy.controller;
 
-import com.zy.config.CookieUtils;
-import com.zy.config.IMOOCJSONResult;
-import com.zy.config.JsonUtils;
-import com.zy.entity.Users;
+import com.zy.pojo.Users;
+import com.zy.pojo.bo.UserBO;
 import com.zy.service.UsersService;
+import com.zy.utils.CookieUtils;
+import com.zy.utils.IMOOCJSONResult;
+import com.zy.utils.JsonUtils;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 @Api(value = "注册登录", tags = {"用于注册登录的相关接口"})
 @RestController
@@ -27,9 +27,10 @@ public class PassportController {
     private UsersService usersService;
 
     @ApiOperation(value = "查询用户名是否存在", notes = "存在返回true；不存在返回false", httpMethod = "GET")
-    @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String", paramType = "query")
     @GetMapping("/usernameIsExist")
-    public IMOOCJSONResult usernameIsExist(@RequestParam String username) {
+    public IMOOCJSONResult usernameIsExist(
+            @ApiParam(name="username",value = "用户名",required = true)
+            @RequestParam String username) {
         //判断用户名是否为空
         if (StringUtils.isEmpty(username)) {
             return IMOOCJSONResult.errorMsg("用户名不可谓空！");
@@ -49,18 +50,21 @@ public class PassportController {
     }
 
 
-    @ApiOperation(value = "用户注册", notes = "入参Map 其中String username;password;confirmPassword必传", httpMethod = "POST")
+    @ApiOperation(value = "用户注册", notes = "用户注册", httpMethod = "POST")
     @PostMapping("/regist")
-    public IMOOCJSONResult register(@RequestBody Map<String, Object> param, HttpServletRequest request, HttpServletResponse response) {
+    public IMOOCJSONResult register(@RequestBody UserBO userBO, HttpServletRequest request, HttpServletResponse response) {
 
         try {
-            if (StringUtils.isEmpty(param.get("username")) || StringUtils.isEmpty(param.get("password")) || StringUtils.isEmpty(param.get("confirmPassword"))) {
-                return IMOOCJSONResult.errorMsg("缺少参数！");
+            String username = userBO.getUsername();
+            String password = userBO.getPassword();
+            String confirmPwd = userBO.getConfirmPassword();
 
+            // 0. 判断用户名和密码必须不为空
+            if (StringUtils.isBlank(username) ||
+                    StringUtils.isBlank(password) ||
+                    StringUtils.isBlank(confirmPwd)) {
+                return IMOOCJSONResult.errorMsg("用户名或密码不能为空");
             }
-            String username = param.get("username").toString();
-            String password = param.get("password").toString();
-            String confirmPwd = param.get("confirmPassword").toString();
 
             if (usersService.usernameIsExist(username)) {
                 return IMOOCJSONResult.errorMsg("用户名已经存在！");
@@ -80,17 +84,18 @@ public class PassportController {
 
     }
 
-    @ApiOperation(value = "用户登录", notes = "入参Map 其中String username;password必传", httpMethod = "POST")
+    @ApiOperation(value = "用户登录", notes = "用户登录", httpMethod = "POST")
     @PostMapping("/login")
-    public IMOOCJSONResult login(@RequestBody Map<String, Object> param, HttpServletRequest request,
+    public IMOOCJSONResult login(@RequestBody UserBO userBO, HttpServletRequest request,
                                  HttpServletResponse response) {
-        //判断用户名密码是否为空
-        if (StringUtils.isEmpty(param.get("username")) || StringUtils.isEmpty(param.get("password"))) {
-            return IMOOCJSONResult.errorMsg("账户或者密码不可为空");
-        }
         try {
-            String username = param.get("username").toString();
-            String password = param.get("password").toString();
+            String username = userBO.getUsername();
+            String password = userBO.getPassword();
+            //判断用户名密码是否为空
+            if (StringUtils.isBlank(username) ||
+                    StringUtils.isBlank(password)) {
+                return IMOOCJSONResult.errorMsg("用户名或密码不能为空");
+            }
             Users result = usersService.login(username, password);
             CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密
 

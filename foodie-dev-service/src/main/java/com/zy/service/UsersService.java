@@ -1,6 +1,6 @@
 package com.zy.service;
 
-import com.zy.entity.Users;
+import com.zy.pojo.Users;
 
 public interface UsersService {
     /**

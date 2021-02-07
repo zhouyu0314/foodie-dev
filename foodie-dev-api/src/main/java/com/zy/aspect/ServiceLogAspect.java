@@ -1,7 +1,5 @@
 package com.zy.aspect;
 
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,26 +31,26 @@ public class ServiceLogAspect {
      * @return
      * @throws Throwable
      */
-    @Around("execution(* com.zy.service.impl..*.*(..))")
-    public Object recordTimeLog(ProceedingJoinPoint joinPoint) throws Throwable {
-        LOGGER.info("===== 开始执行 {}.{} =====",
-                joinPoint.getTarget().getClass(),//类名
-                joinPoint.getSignature().getName());//方法名
-
-        //开始时间
-        long begin = System.currentTimeMillis();
-        //执行目标service
-        Object result = joinPoint.proceed();
-        //结束时间
-        long end = System.currentTimeMillis();
-        long takeTime = end - begin;
-        if (takeTime > 3000) {
-            LOGGER.error("===== 执行结束，耗时：{} 毫秒 =====", takeTime);
-        } else if (takeTime > 2000) {
-            LOGGER.warn("===== 执行结束，耗时：{} 毫秒 =====", takeTime);
-        } else {
-            LOGGER.info("===== 执行结束，耗时：{} 毫秒 =====", takeTime);
-        }
-        return result;//结果返回出去
-    }
+//    @Around("execution(* com.zy.service.impl..*.*(..))")
+//    public Object recordTimeLog(ProceedingJoinPoint joinPoint) throws Throwable {
+//        LOGGER.info("===== 开始执行 {}.{} =====",
+//                joinPoint.getTarget().getClass(),//类名
+//                joinPoint.getSignature().getName());//方法名
+//
+//        //开始时间
+//        long begin = System.currentTimeMillis();
+//        //执行目标service
+//        Object result = joinPoint.proceed();
+//        //结束时间
+//        long end = System.currentTimeMillis();
+//        long takeTime = end - begin;
+//        if (takeTime > 3000) {
+//            LOGGER.error("===== 执行结束，耗时：{} 毫秒 =====", takeTime);
+//        } else if (takeTime > 2000) {
+//            LOGGER.warn("===== 执行结束，耗时：{} 毫秒 =====", takeTime);
+//        } else {
+//            LOGGER.info("===== 执行结束，耗时：{} 毫秒 =====", takeTime);
+//        }
+//        return result;//结果返回出去
+//    }
 }

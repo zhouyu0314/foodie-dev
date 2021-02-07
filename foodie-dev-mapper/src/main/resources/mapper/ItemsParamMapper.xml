@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.mapper.ItemsParamMapper">
 
-    <select id="getItemsParamById" resultType="com.zy.entity.ItemsParam">
+    <select id="getItemsParamById" resultType="com.zy.pojo.ItemsParam">
         select
                 id as id,
                 item_id as itemId,
@@ -27,7 +27,7 @@
         </trim>
     </select>
 
-    <select id="getItemsParamListByMap" resultType="com.zy.entity.ItemsParam" parameterType="java.util.Map">
+    <select id="getItemsParamListByMap" resultType="com.zy.pojo.ItemsParam" parameterType="java.util.Map">
         select
                 id as id,
                 item_id as itemId,
@@ -134,7 +134,7 @@
         </trim>
     </select>
 
-    <insert id="insertItemsParam" parameterType="com.zy.entity.ItemsParam">
+    <insert id="insertItemsParam" parameterType="com.zy.pojo.ItemsParam">
         insert into items_param(
                         item_id,
                         produc_place,
@@ -163,7 +163,7 @@
                     #{updatedTime})
     </insert>
 
-    <update id="updateItemsParam" parameterType="com.zy.entity.ItemsParam">
+    <update id="updateItemsParam" parameterType="com.zy.pojo.ItemsParam">
         update items_param
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                         <if test="itemId != null and itemId!=''">

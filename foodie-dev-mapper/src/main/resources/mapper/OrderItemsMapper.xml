@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.mapper.OrderItemsMapper">
 
-    <select id="getOrderItemsById" resultType="com.zy.entity.OrderItems">
+    <select id="getOrderItemsById" resultType="com.zy.pojo.OrderItems">
         select
                 id as id,
                 order_id as orderId,
@@ -23,7 +23,7 @@
         </trim>
     </select>
 
-    <select id="getOrderItemsListByMap" resultType="com.zy.entity.OrderItems" parameterType="java.util.Map">
+    <select id="getOrderItemsListByMap" resultType="com.zy.pojo.OrderItems" parameterType="java.util.Map">
         select
                 id as id,
                 order_id as orderId,
@@ -102,7 +102,7 @@
         </trim>
     </select>
 
-    <insert id="insertOrderItems" parameterType="com.zy.entity.OrderItems">
+    <insert id="insertOrderItems" parameterType="com.zy.pojo.OrderItems">
         insert into order_items(
                         order_id,
                         item_id,
@@ -123,7 +123,7 @@
                     #{buyCounts})
     </insert>
 
-    <update id="updateOrderItems" parameterType="com.zy.entity.OrderItems">
+    <update id="updateOrderItems" parameterType="com.zy.pojo.OrderItems">
         update order_items
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                         <if test="orderId != null and orderId!=''">

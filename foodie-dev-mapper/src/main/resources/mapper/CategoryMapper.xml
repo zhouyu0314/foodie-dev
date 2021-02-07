@@ -4,16 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.mapper.CategoryMapper">
 
-    <select id="getCategoryById" resultType="com.zy.entity.Category">
+    <select id="getCategoryById" resultType="com.zy.pojo.Category">
         select
-                id as id,
-                name as name,
-                type as type,
-                father_id as fatherId,
-                logo as logo,
-                slogan as slogan,
-                cat_image as catImage,
-                bg_color as bgColor
+        id as id,
+        name as name,
+        type as type,
+        father_id as fatherId,
+        logo as logo,
+        slogan as slogan,
+        cat_image as catImage,
+        bg_color as bgColor
         from category
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -22,79 +22,150 @@
         </trim>
     </select>
 
-    <select id="getCategoryListByMap" resultType="com.zy.entity.Category" parameterType="java.util.Map">
+    <select id="getCategoryListByMap" resultType="com.zy.pojo.Category" parameterType="java.util.Map">
         select
-                id as id,
-                name as name,
-                type as type,
-                father_id as fatherId,
-                logo as logo,
-                slogan as slogan,
-                cat_image as catImage,
-                bg_color as bgColor
+        id as id,
+        name as name,
+        type as type,
+        father_id as fatherId,
+        logo as logo,
+        slogan as slogan,
+        cat_image as catImage,
+        bg_color as bgColor
         from category
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="id != null and id!=''">
-                    and id=#{id}
-                </if>
-                <if test="name != null and name!=''">
-                    and name=#{name}
-                </if>
-                <if test="type != null and type!=''">
-                    and type=#{type}
-                </if>
-                <if test="fatherId != null and fatherId!=''">
-                    and father_id=#{fatherId}
-                </if>
-                <if test="logo != null and logo!=''">
-                    and logo=#{logo}
-                </if>
-                <if test="slogan != null and slogan!=''">
-                    and slogan=#{slogan}
-                </if>
-                <if test="catImage != null and catImage!=''">
-                    and cat_image=#{catImage}
-                </if>
-                <if test="bgColor != null and bgColor!=''">
-                    and bg_color=#{bgColor}
-                </if>
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="name != null and name!=''">
+                and name=#{name}
+            </if>
+            <if test="type != null and type!=''">
+                and type=#{type}
+            </if>
+            <if test="fatherId != null and fatherId!=''">
+                and father_id=#{fatherId}
+            </if>
+            <if test="logo != null and logo!=''">
+                and logo=#{logo}
+            </if>
+            <if test="slogan != null and slogan!=''">
+                and slogan=#{slogan}
+            </if>
+            <if test="catImage != null and catImage!=''">
+                and cat_image=#{catImage}
+            </if>
+            <if test="bgColor != null and bgColor!=''">
+                and bg_color=#{bgColor}
+            </if>
         </trim>
         <if test="beginPos != null and pageSize != null ">
             limit #{beginPos},#{pageSize}
         </if>
     </select>
 
-    <select id="getCategoryCountByMap" resultType="Integer"  parameterType="java.util.Map">
+    <select id="getCategoryCountByMap" resultType="Integer" parameterType="java.util.Map">
         select count(*) from category
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="id != null and id!=''">
-                    and id=#{id}
-                </if>
-                <if test="name != null and name!=''">
-                    and name=#{name}
-                </if>
-                <if test="type != null and type!=''">
-                    and type=#{type}
-                </if>
-                <if test="fatherId != null and fatherId!=''">
-                    and father_id=#{fatherId}
-                </if>
-                <if test="logo != null and logo!=''">
-                    and logo=#{logo}
-                </if>
-                <if test="slogan != null and slogan!=''">
-                    and slogan=#{slogan}
-                </if>
-                <if test="catImage != null and catImage!=''">
-                    and cat_image=#{catImage}
-                </if>
-                <if test="bgColor != null and bgColor!=''">
-                    and bg_color=#{bgColor}
-                </if>
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="name != null and name!=''">
+                and name=#{name}
+            </if>
+            <if test="type != null and type!=''">
+                and type=#{type}
+            </if>
+            <if test="fatherId != null and fatherId!=''">
+                and father_id=#{fatherId}
+            </if>
+            <if test="logo != null and logo!=''">
+                and logo=#{logo}
+            </if>
+            <if test="slogan != null and slogan!=''">
+                and slogan=#{slogan}
+            </if>
+            <if test="catImage != null and catImage!=''">
+                and cat_image=#{catImage}
+            </if>
+            <if test="bgColor != null and bgColor!=''">
+                and bg_color=#{bgColor}
+            </if>
         </trim>
     </select>
 
-    <insert id="insertCategory" parameterType="com.zy.entity.Category">
+    <resultMap id="myCategoryVO" type="com.zy.pojo.vo.CategoryVO">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="type" column="type" />
+        <result property="fatherId" column="fatherId" />
+        <!--
+          collection 标签：用于定义关联的list集合类型的封装规则
+          property：对应三级分类的list属性名
+          ofType：集合的类型，三级分类的vo
+        -->
+        <collection property="subCatList" ofType="com.zy.pojo.vo.SubCategoryVO">
+            <id property="subId" column="subId" />
+            <result property="subName" column="subName" />
+            <result property="subType" column="subType" />
+            <result property="subFatherId" column="subFatherId" />
+        </collection>
+    </resultMap>
+    <select id="getSubCatList" resultMap="myCategoryVO" parameterType="java.lang.Integer">
+        SELECT
+            f.id AS id,
+            f.`name` AS `name`,
+            f.type AS type,
+            f.father_id AS fatherId,
+            c.id AS subId,
+            c.`name` AS subName,
+            c.type AS subType,
+            c.father_id AS subFatherId
+        FROM
+            category AS f
+            LEFT JOIN category AS c ON f.id = c.father_id
+        WHERE
+            f.father_id = #{rootCatId}
+    </select>
+
+    <resultMap id="myNewItemsVO" type="com.zy.pojo.vo.NewItemsVO">
+        <id property="rootCatId" column="rootCatId" />
+        <result property="rootCatName" column="rootCatName" />
+        <result property="slogan" column="slogan" />
+        <result property="catImage" column="catImage" />
+        <result property="bgColor" column="bgColor" />
+
+        <collection property="simpleItemList" ofType="com.zy.pojo.vo.SimpleItemVO">
+            <id property="itemId" column="itemId" />
+            <result property="itemName" column="itemName" />
+            <result property="itemUrl" column="itemUrl" />
+        </collection>
+    </resultMap>
+    <select id="getSixNewItemsLazy" resultMap="myNewItemsVO" parameterType="java.util.Map">
+        SELECT
+            f.id AS rootCatId,
+            f.`name` AS rootCatName,
+            f.slogan AS slogan,
+            f.cat_image AS catImage,
+            f.bg_color AS bgColor,
+            i.id AS itemId,
+            i.item_name AS itemName,
+            ii.url AS itemUrl,
+            i.created_time AS createdTime
+        FROM
+            category AS f
+            LEFT JOIN items AS i ON f.id = i.root_cat_id
+            LEFT JOIN items_img AS ii ON i.id = ii.item_id
+        WHERE
+            f.type = 1
+            AND i.root_cat_id = #{paramsMap.rootCatId}
+            AND ii.is_main = 1
+        ORDER BY
+            i.created_time DESC
+            LIMIT 0,6
+    </select>
+
+    <insert id="insertCategory" parameterType="com.zy.pojo.Category">
         insert into category(
                         name,
                         type,
@@ -113,30 +184,30 @@
                     #{bgColor})
     </insert>
 
-    <update id="updateCategory" parameterType="com.zy.entity.Category">
+    <update id="updateCategory" parameterType="com.zy.pojo.Category">
         update category
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                        <if test="name != null and name!=''">
-                            name=#{name},
-                        </if>
-                        <if test="type != null and type!=''">
-                            type=#{type},
-                        </if>
-                        <if test="fatherId != null and fatherId!=''">
-                            father_id=#{fatherId},
-                        </if>
-                        <if test="logo != null and logo!=''">
-                            logo=#{logo},
-                        </if>
-                        <if test="slogan != null and slogan!=''">
-                            slogan=#{slogan},
-                        </if>
-                        <if test="catImage != null and catImage!=''">
-                            cat_image=#{catImage},
-                        </if>
-                        <if test="bgColor != null and bgColor!=''">
-                            bg_color=#{bgColor}
-                        </if>
+            <if test="name != null and name!=''">
+                name=#{name},
+            </if>
+            <if test="type != null and type!=''">
+                type=#{type},
+            </if>
+            <if test="fatherId != null and fatherId!=''">
+                father_id=#{fatherId},
+            </if>
+            <if test="logo != null and logo!=''">
+                logo=#{logo},
+            </if>
+            <if test="slogan != null and slogan!=''">
+                slogan=#{slogan},
+            </if>
+            <if test="catImage != null and catImage!=''">
+                cat_image=#{catImage},
+            </if>
+            <if test="bgColor != null and bgColor!=''">
+                bg_color=#{bgColor}
+            </if>
         </trim>
     </update>
 </mapper>

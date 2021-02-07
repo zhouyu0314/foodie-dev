@@ -1,5 +1,5 @@
 package com.zy.mapper;
-import com.zy.entity.Orders;
+import com.zy.pojo.Orders;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;

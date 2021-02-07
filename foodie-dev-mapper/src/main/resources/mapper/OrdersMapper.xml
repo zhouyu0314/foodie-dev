@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zy.mapper.OrdersMapper">
 
-    <select id="getOrdersById" resultType="com.zy.entity.Orders">
+    <select id="getOrdersById" resultType="com.zy.pojo.Orders">
         select
                 id as id,
                 user_id as userId,
@@ -29,7 +29,7 @@
         </trim>
     </select>
 
-    <select id="getOrdersListByMap" resultType="com.zy.entity.Orders" parameterType="java.util.Map">
+    <select id="getOrdersListByMap" resultType="com.zy.pojo.Orders" parameterType="java.util.Map">
         select
                 id as id,
                 user_id as userId,
@@ -150,7 +150,7 @@
         </trim>
     </select>
 
-    <insert id="insertOrders" parameterType="com.zy.entity.Orders">
+    <insert id="insertOrders" parameterType="com.zy.pojo.Orders">
         insert into orders(
                         user_id,
                         receiver_name,
@@ -183,7 +183,7 @@
                     #{updatedTime})
     </insert>
 
-    <update id="updateOrders" parameterType="com.zy.entity.Orders">
+    <update id="updateOrders" parameterType="com.zy.pojo.Orders">
         update orders
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                         <if test="userId != null and userId!=''">
