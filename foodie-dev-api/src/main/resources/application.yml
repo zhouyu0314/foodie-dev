@@ -45,7 +45,12 @@ mybatis:
 #
 ############################################################
 # 通用 Mapper 配置
-mapper:
-  mappers: com.zy.my.mapper.MyMapper
-  not-empty: false  #在进行数据库操作的时候 判断表达式 username != null,是否追加 username != ''
-  identity: MYSQL
+#mapper:
+#  mappers: com.zy.my.mapper.MyMapper
+#  not-empty: false  #在进行数据库操作的时候 判断表达式 username != null,是否追加 username != ''
+#  identity: MYSQL
+
+# 分页插件配置
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true

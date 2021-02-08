@@ -6,16 +6,16 @@
 
     <select id="getItemsCommentsById" resultType="com.zy.pojo.ItemsComments">
         select
-                id as id,
-                user_id as userId,
-                item_id as itemId,
-                item_name as itemName,
-                item_spec_id as itemSpecId,
-                sepc_name as sepcName,
-                comment_level as commentLevel,
-                content as content,
-                created_time as createdTime,
-                updated_time as updatedTime
+        id as id,
+        user_id as userId,
+        item_id as itemId,
+        item_name as itemName,
+        item_spec_id as itemSpecId,
+        sepc_name as sepcName,
+        comment_level as commentLevel,
+        content as content,
+        created_time as createdTime,
+        updated_time as updatedTime
         from items_comments
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -26,90 +26,145 @@
 
     <select id="getItemsCommentsListByMap" resultType="com.zy.pojo.ItemsComments" parameterType="java.util.Map">
         select
-                id as id,
-                user_id as userId,
-                item_id as itemId,
-                item_name as itemName,
-                item_spec_id as itemSpecId,
-                sepc_name as sepcName,
-                comment_level as commentLevel,
-                content as content,
-                created_time as createdTime,
-                updated_time as updatedTime
+        id as id,
+        user_id as userId,
+        item_id as itemId,
+        item_name as itemName,
+        item_spec_id as itemSpecId,
+        sepc_name as sepcName,
+        comment_level as commentLevel,
+        content as content,
+        created_time as createdTime,
+        updated_time as updatedTime
         from items_comments
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="id != null and id!=''">
-                    and id=#{id}
-                </if>
-                <if test="userId != null and userId!=''">
-                    and user_id=#{userId}
-                </if>
-                <if test="itemId != null and itemId!=''">
-                    and item_id=#{itemId}
-                </if>
-                <if test="itemName != null and itemName!=''">
-                    and item_name=#{itemName}
-                </if>
-                <if test="itemSpecId != null and itemSpecId!=''">
-                    and item_spec_id=#{itemSpecId}
-                </if>
-                <if test="sepcName != null and sepcName!=''">
-                    and sepc_name=#{sepcName}
-                </if>
-                <if test="commentLevel != null and commentLevel!=''">
-                    and comment_level=#{commentLevel}
-                </if>
-                <if test="content != null and content!=''">
-                    and content=#{content}
-                </if>
-                <if test="createdTime != null and createdTime!=''">
-                    and created_time=#{createdTime}
-                </if>
-                <if test="updatedTime != null and updatedTime!=''">
-                    and updated_time=#{updatedTime}
-                </if>
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="userId != null and userId!=''">
+                and user_id=#{userId}
+            </if>
+            <if test="itemId != null and itemId!=''">
+                and item_id=#{itemId}
+            </if>
+            <if test="itemName != null and itemName!=''">
+                and item_name=#{itemName}
+            </if>
+            <if test="itemSpecId != null and itemSpecId!=''">
+                and item_spec_id=#{itemSpecId}
+            </if>
+            <if test="sepcName != null and sepcName!=''">
+                and sepc_name=#{sepcName}
+            </if>
+            <if test="commentLevel != null and commentLevel!=''">
+                and comment_level=#{commentLevel}
+            </if>
+            <if test="content != null and content!=''">
+                and content=#{content}
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                and created_time=#{createdTime}
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                and updated_time=#{updatedTime}
+            </if>
         </trim>
         <if test="beginPos != null and pageSize != null ">
             limit #{beginPos},#{pageSize}
         </if>
     </select>
 
-    <select id="getItemsCommentsCountByMap" resultType="Integer"  parameterType="java.util.Map">
+    <select id="getItemsCommentsCountByMap" resultType="Integer" parameterType="java.util.Map">
         select count(*) from items_comments
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="id != null and id!=''">
-                    and id=#{id}
-                </if>
-                <if test="userId != null and userId!=''">
-                    and user_id=#{userId}
-                </if>
-                <if test="itemId != null and itemId!=''">
-                    and item_id=#{itemId}
-                </if>
-                <if test="itemName != null and itemName!=''">
-                    and item_name=#{itemName}
-                </if>
-                <if test="itemSpecId != null and itemSpecId!=''">
-                    and item_spec_id=#{itemSpecId}
-                </if>
-                <if test="sepcName != null and sepcName!=''">
-                    and sepc_name=#{sepcName}
-                </if>
-                <if test="commentLevel != null and commentLevel!=''">
-                    and comment_level=#{commentLevel}
-                </if>
-                <if test="content != null and content!=''">
-                    and content=#{content}
-                </if>
-                <if test="createdTime != null and createdTime!=''">
-                    and created_time=#{createdTime}
-                </if>
-                <if test="updatedTime != null and updatedTime!=''">
-                    and updated_time=#{updatedTime}
-                </if>
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="userId != null and userId!=''">
+                and user_id=#{userId}
+            </if>
+            <if test="itemId != null and itemId!=''">
+                and item_id=#{itemId}
+            </if>
+            <if test="itemName != null and itemName!=''">
+                and item_name=#{itemName}
+            </if>
+            <if test="itemSpecId != null and itemSpecId!=''">
+                and item_spec_id=#{itemSpecId}
+            </if>
+            <if test="sepcName != null and sepcName!=''">
+                and sepc_name=#{sepcName}
+            </if>
+            <if test="commentLevel != null and commentLevel!=''">
+                and comment_level=#{commentLevel}
+            </if>
+            <if test="content != null and content!=''">
+                and content=#{content}
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                and created_time=#{createdTime}
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                and updated_time=#{updatedTime}
+            </if>
         </trim>
     </select>
 
+
+    <select id="queryItemComments" resultType="com.zy.pojo.vo.ItemCommentVO" parameterType="java.util.Map">
+        SELECT
+        ic.comment_level as commentLevel ,
+        ic.content as content,
+        ic.sepc_name as sepcName,
+        ic.created_time as createdTime,
+        u.face as userFace,
+        u.nickname as nickname
+        FROM
+        items_comments AS ic
+        LEFT JOIN users AS u ON ic.user_id = u.id
+        WHERE
+        ic.item_id = #{itemId}
+        <if test="commentLevel != null and commentLevel!=''">
+            AND ic.comment_level = #{commentLevel}
+        </if>
+    </select>
+
+    <select id="searchItems" resultType="com.zy.pojo.vo.SearchItemsVO" parameterType="java.util.Map">
+        SELECT
+        i.id AS itemId,
+        i.item_name AS itemName,
+        i.sell_counts AS sellCounts,
+        ii.url AS imgUrl,
+        tempSpec.price_discount AS price
+        FROM
+        items AS i
+        LEFT JOIN items_img AS ii ON i.id = ii.item_id
+        LEFT JOIN ( SELECT item_id, min( price_discount ) AS price_discount FROM items_spec GROUP BY item_id ) AS
+        tempSpec ON i.id = tempSpec.item_id
+        WHERE
+        ii.is_main = 1
+        <if test="keyWords != null and keyWords!=''">
+            AND i.item_name like CONCAT('%',#{keyWords},'%')
+        </if>
+        ORDER BY
+        /*
+        k:默认排序 根据name
+        c:根据销量排序
+        p:根据价格排序
+        */
+        <choose>
+            <when test="sort == &quot;c&quot;">
+                i.sell_counts DESC
+            </when>
+
+            <when test="price == &quot;p&quot;">
+                tempSpec.price_discount ASC
+            </when>
+            <otherwise>
+                i.item_name ASC
+            </otherwise>
+        </choose>
+    </select>
     <insert id="insertItemsComments" parameterType="com.zy.pojo.ItemsComments">
         insert into items_comments(
                         user_id,
@@ -136,33 +191,33 @@
     <update id="updateItemsComments" parameterType="com.zy.pojo.ItemsComments">
         update items_comments
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                        <if test="userId != null and userId!=''">
-                            user_id=#{userId},
-                        </if>
-                        <if test="itemId != null and itemId!=''">
-                            item_id=#{itemId},
-                        </if>
-                        <if test="itemName != null and itemName!=''">
-                            item_name=#{itemName},
-                        </if>
-                        <if test="itemSpecId != null and itemSpecId!=''">
-                            item_spec_id=#{itemSpecId},
-                        </if>
-                        <if test="sepcName != null and sepcName!=''">
-                            sepc_name=#{sepcName},
-                        </if>
-                        <if test="commentLevel != null and commentLevel!=''">
-                            comment_level=#{commentLevel},
-                        </if>
-                        <if test="content != null and content!=''">
-                            content=#{content},
-                        </if>
-                        <if test="createdTime != null and createdTime!=''">
-                            created_time=#{createdTime},
-                        </if>
-                        <if test="updatedTime != null and updatedTime!=''">
-                            updated_time=#{updatedTime}
-                        </if>
+            <if test="userId != null and userId!=''">
+                user_id=#{userId},
+            </if>
+            <if test="itemId != null and itemId!=''">
+                item_id=#{itemId},
+            </if>
+            <if test="itemName != null and itemName!=''">
+                item_name=#{itemName},
+            </if>
+            <if test="itemSpecId != null and itemSpecId!=''">
+                item_spec_id=#{itemSpecId},
+            </if>
+            <if test="sepcName != null and sepcName!=''">
+                sepc_name=#{sepcName},
+            </if>
+            <if test="commentLevel != null and commentLevel!=''">
+                comment_level=#{commentLevel},
+            </if>
+            <if test="content != null and content!=''">
+                content=#{content},
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                created_time=#{createdTime},
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                updated_time=#{updatedTime}
+            </if>
         </trim>
     </update>
 </mapper>

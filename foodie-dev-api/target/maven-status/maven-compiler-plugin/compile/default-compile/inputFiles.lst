@@ -1,2 +1,8 @@
-E:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\HelloController.java
-E:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\Application.java
+E:\workspace\foodie-dev\foodie-dev-api\src\main\java\com\zy\Application.java
+E:\workspace\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\IndexController.java
+E:\workspace\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\HelloController.java
+E:\workspace\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\PassportController.java
+E:\workspace\foodie-dev\foodie-dev-api\src\main\java\com\zy\config\CorsConfig.java
+E:\workspace\foodie-dev\foodie-dev-api\src\main\java\com\zy\aspect\ServiceLogAspect.java
+E:\workspace\foodie-dev\foodie-dev-api\src\main\java\com\zy\config\Swagger2.java
+E:\workspace\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\ItemController.java

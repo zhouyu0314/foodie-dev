@@ -4,6 +4,8 @@ import com.zy.pojo.Items;
 import com.zy.pojo.ItemsImg;
 import com.zy.pojo.ItemsParam;
 import com.zy.pojo.ItemsSpec;
+import com.zy.pojo.vo.CommentLevelCountsVO;
+import com.zy.utils.PagedGridResult;
 
 import java.util.List;
 
@@ -43,4 +45,32 @@ public interface ItemService {
      * @throws Exception
      */
     List<ItemsParam> queryItemsParam(String itemId) throws Exception;
+
+    /**
+     * 根据商品id查询商品的评价等级数量
+     */
+    CommentLevelCountsVO queryCommentCounts(String itemId) throws Exception;
+
+    /**
+     * 根据商品id和评价等级查询商品评价（分页）
+     * @param itemId
+     * @param commentLevel
+     * @return
+     * @throws Exception
+     */
+    PagedGridResult queryPagedComments(String itemId, Integer commentLevel, Integer page, Integer pageSize) throws Exception;
+
+
+    /**
+     * 搜索商品列表
+     * @param keywords
+     * @param sort
+     * @param page
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
+    PagedGridResult searchItems(String keywords, String sort, Integer page, Integer pageSize) throws Exception;
+
+
 }

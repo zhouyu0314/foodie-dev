@@ -1,9 +1,12 @@
 package com.zy.mapper;
 import com.zy.pojo.ItemsComments;
+import com.zy.pojo.vo.ItemCommentVO;
+import com.zy.pojo.vo.SearchItemsVO;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
-import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ItemsCommentsMapper {
@@ -17,6 +20,10 @@ public interface ItemsCommentsMapper {
 	public Integer insertItemsComments(ItemsComments itemsComments)throws Exception;
 
 	public Integer updateItemsComments(ItemsComments itemsComments)throws Exception;
+
+	List<ItemCommentVO> queryItemComments(Map<String,Object> param)throws Exception;
+
+	List<SearchItemsVO> searchItems(Map<String,Object> param)throws Exception;
 
 
 }

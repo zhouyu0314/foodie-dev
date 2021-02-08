@@ -4,9 +4,11 @@ import com.zy.pojo.Items;
 import com.zy.pojo.ItemsImg;
 import com.zy.pojo.ItemsParam;
 import com.zy.pojo.ItemsSpec;
+import com.zy.pojo.vo.CommentLevelCountsVO;
 import com.zy.pojo.vo.ItemInfoVO;
 import com.zy.service.ItemService;
 import com.zy.utils.IMOOCJSONResult;
+import com.zy.utils.PagedGridResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -14,24 +16,21 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(value = "商品接口",tags = {"商品信息展示的相关接口"})
+@Api(value = "商品接口", tags = {"商品信息展示的相关接口"})
 @RestController
 @RequestMapping("items")
-public class ItemController {
-    private static final Logger LOGGER =  LoggerFactory.getLogger(ItemController.class);
+public class ItemController extends BaseController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ItemController.class);
     @Autowired
     private ItemService itemService;
 
     @ApiOperation(value = "查询商品详情", notes = "查询商品详情", httpMethod = "GET")
     @GetMapping("/info/{itemId}")
-    public IMOOCJSONResult info(@ApiParam(name="itemId",value = "商品id",required = true) @PathVariable String itemId) {
+    public IMOOCJSONResult info(@ApiParam(name = "itemId", value = "商品id", required = true) @PathVariable String itemId) {
         try {
             if (StringUtils.isBlank(itemId)) {
                 return IMOOCJSONResult.errorMsg("商品不存在！");
@@ -44,12 +43,53 @@ public class ItemController {
             itemInfoVO.setItem(item);
             itemInfoVO.setItemImgList(itemsImgList);
             itemInfoVO.setItemSpecList(itemsSpecList);
-            if (itemsParamList == null || itemsParamList.size()==0) {
+            if (itemsParamList == null || itemsParamList.size() == 0) {
                 itemInfoVO.setItemParams(null);
-            }else{
+            } else {
                 itemInfoVO.setItemParams(itemsParamList.get(0));
             }
             return IMOOCJSONResult.ok(itemInfoVO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            return IMOOCJSONResult.errorMsg("服务异常！");
+        }
+    }
+
+    @ApiOperation(value = "查询评价等级", notes = "查询评价等级", httpMethod = "GET")
+    @GetMapping("/commentLevel")
+    public IMOOCJSONResult commentLevel(@ApiParam(name = "itemId", value = "商品id", required = true) @RequestParam String itemId) {
+        try {
+            if (StringUtils.isBlank(itemId)) {
+                return IMOOCJSONResult.errorMsg("商品不存在！");
+            }
+            CommentLevelCountsVO commentLevelCountsVO = itemService.queryCommentCounts(itemId);
+            return IMOOCJSONResult.ok(commentLevelCountsVO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            return IMOOCJSONResult.errorMsg("服务异常！");
+        }
+    }
+
+    @ApiOperation(value = "查询商品评论", notes = "查询商品评论", httpMethod = "GET")
+    @GetMapping("/comments")
+    public IMOOCJSONResult comments(@ApiParam(name = "itemId", value = "商品id", required = true) @RequestParam String itemId,
+                                    @ApiParam(name = "level", value = "评价等级", required = false) @RequestParam Integer level,
+                                    @ApiParam(name = "page", value = "查询下一页的第几页", required = false, defaultValue = "1") @RequestParam Integer page,
+                                    @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false, defaultValue = "10") @RequestParam Integer pageSize) {
+        try {
+            if (StringUtils.isBlank(itemId)) {
+                return IMOOCJSONResult.errorMsg("商品不存在！");
+            }
+            if (page == null) {
+                page = 1;
+            }
+            if (pageSize == null) {
+                pageSize = COMMON_PAGE_SIZE;
+            }
+            PagedGridResult result = itemService.queryPagedComments(itemId, level, page, pageSize);
+            return IMOOCJSONResult.ok(result);
         } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
