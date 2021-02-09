@@ -128,6 +128,7 @@
 
     <insert id="insertUserAddress" parameterType="com.zy.pojo.UserAddress">
         insert into user_address(
+        id,
                         user_id,
                         receiver,
                         mobile,
@@ -140,6 +141,7 @@
                         created_time,
                         updated_time)
         values(
+                     #{id},
                      #{userId},
                      #{receiver},
                      #{mobile},
@@ -183,10 +185,10 @@
                         <if test="isDefault != null and isDefault!=''">
                             is_default=#{isDefault},
                         </if>
-                        <if test="createdTime != null and createdTime!=''">
+                        <if test="createdTime != null">
                             created_time=#{createdTime},
                         </if>
-                        <if test="updatedTime != null and updatedTime!=''">
+                        <if test="updatedTime != null">
                             updated_time=#{updatedTime}
                         </if>
         </trim>

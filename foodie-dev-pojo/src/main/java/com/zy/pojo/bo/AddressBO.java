@@ -1,20 +1,30 @@
 package com.zy.pojo.bo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
  * 用户新增或修改地址的BO
  */
+@ApiModel(value = "地址对象BO", description = "从客户端，由用户传入的数据封装在此entity中")
 public class AddressBO implements Serializable {
-
+    @ApiModelProperty(value = "地址id", name = "addressId", example = "190825CG3AA14Y3C", required = true)
     private String addressId;
-
+    @ApiModelProperty(value = "用户id", name = "userId", example = "190825CG3AA14Y3C", required = true)
     private String userId;
+    @ApiModelProperty(value = "收货人", name = "receiver", example = "jack", required = true)
     private String receiver;
+    @ApiModelProperty(value = "手机号", name = "mobile", example = "13333333333", required = true)
     private String mobile;
+    @ApiModelProperty(value = "省", name = "province", example = "北京", required = true)
     private String province;
+    @ApiModelProperty(value = "市", name = "city", example = "北京", required = true)
     private String city;
+    @ApiModelProperty(value = "区", name = "district", example = "东城区", required = true)
     private String district;
+    @ApiModelProperty(value = "详细地址", name = "detail", example = "XX小区xxx", required = true)
     private String detail;
 
     public String getAddressId() {

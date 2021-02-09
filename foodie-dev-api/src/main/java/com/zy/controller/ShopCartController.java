@@ -8,9 +8,6 @@ import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 @Api(value = "购物车接口", tags = {"购物车相关接口api"})
 @RestController
 @RequestMapping("/shopcart")
@@ -19,9 +16,7 @@ public class ShopCartController {
     @ApiOperation(value = "添加商品到购物车", notes = "添加商品到购物车", httpMethod = "POST")
     @PostMapping("/add")
     public IMOOCJSONResult add(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam String userId,
-                               @RequestBody ShopcartBO shopcartBO,
-                               HttpServletRequest request,
-                               HttpServletResponse response) {
+                               @RequestBody ShopcartBO shopcartBO) {
         if (StringUtils.isBlank(userId)) {
             return IMOOCJSONResult.errorMsg("");
         }

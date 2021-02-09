@@ -1,0 +1,64 @@
+package com.zy.service.impl;
+
+import com.zy.idworker.Sid;
+import com.zy.mapper.UserAddressMapper;
+import com.zy.pojo.UserAddress;
+import com.zy.pojo.bo.AddressBO;
+import com.zy.service.AddressService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class AddressServiceImpl implements AddressService {
+
+    @Autowired(required = false)
+    private UserAddressMapper userAddressMapper;
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<UserAddress> queryAll(String userId) throws Exception {
+        Map<String,Object> param = new HashMap<>();
+        param.put("userId",userId);
+        return userAddressMapper.getUserAddressListByMap(param);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void addNewUserAddress(AddressBO addressBO) throws Exception {
+        UserAddress userAddress = new UserAddress();
+        //此方法可以将相同的属性字段的值进行克隆
+        BeanUtils.copyProperties(addressBO,userAddress);
+        userAddress.setId(Sid.nextShort());
+        userAddress.setCreatedTime(new Date());
+        userAddress.setUpdatedTime(new Date());
+        /*
+        1.判断是否存在地址，没有则新增默认地址
+        2.入库
+         */
+        List<UserAddress> list = this.queryAll(addressBO.getUserId());
+        if (list == null || list.size()==0) {
+            userAddress.setIsDefault(1);
+        }
+        userAddress.setIsDefault(0);
+        userAddressMapper.insertUserAddress(userAddress);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void updateUserAddress(AddressBO addressBO) throws Exception {
+        UserAddress userAddress = new UserAddress();
+        //此方法可以将相同的属性字段的值进行克隆
+        BeanUtils.copyProperties(addressBO,userAddress);
+        userAddress.setId(addressBO.getAddressId());
+        userAddress.setUpdatedTime(new Date());
+        userAddressMapper.updateUserAddress(userAddress);
+    }
+}

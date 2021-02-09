@@ -32,7 +32,7 @@ public class PassportController {
             @ApiParam(name="username",value = "用户名",required = true)
             @RequestParam String username) {
         //判断用户名是否为空
-        if (StringUtils.isEmpty(username)) {
+        if (StringUtils.isBlank(username)) {
             return IMOOCJSONResult.errorMsg("用户名不可谓空！");
         }
 
