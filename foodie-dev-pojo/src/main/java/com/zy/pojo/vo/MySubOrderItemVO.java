@@ -1,9 +1,11 @@
 package com.zy.pojo.vo;
 
+import java.io.Serializable;
+
 /**
  * 用户中心，我的订单列表嵌套商品VO
  */
-public class MySubOrderItemVO {
+public class MySubOrderItemVO implements Serializable {
 
     private String itemId;
     private String itemImg;

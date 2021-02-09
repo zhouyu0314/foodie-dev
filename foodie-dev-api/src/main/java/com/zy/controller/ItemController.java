@@ -6,6 +6,7 @@ import com.zy.pojo.ItemsParam;
 import com.zy.pojo.ItemsSpec;
 import com.zy.pojo.vo.CommentLevelCountsVO;
 import com.zy.pojo.vo.ItemInfoVO;
+import com.zy.pojo.vo.ShopcartVO;
 import com.zy.service.ItemService;
 import com.zy.utils.IMOOCJSONResult;
 import com.zy.utils.PagedGridResult;
@@ -90,6 +91,78 @@ public class ItemController extends BaseController {
             }
             PagedGridResult result = itemService.queryPagedComments(itemId, level, page, pageSize);
             return IMOOCJSONResult.ok(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            return IMOOCJSONResult.errorMsg("服务异常！");
+        }
+    }
+
+
+    @ApiOperation(value = "搜索商品列表", notes = "搜索商品列表", httpMethod = "GET")
+    @GetMapping("/search")
+    public IMOOCJSONResult comments(@ApiParam(name = "keywords", value = "关键字", required = true) @RequestParam String keywords,
+                                    @ApiParam(name = "sort", value = "排序", required = false) @RequestParam String sort,
+                                    @ApiParam(name = "page", value = "查询下一页的第几页", required = false, defaultValue = "1") @RequestParam Integer page,
+                                    @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false, defaultValue = "20") @RequestParam Integer pageSize) {
+
+        try {
+            if (StringUtils.isBlank(keywords)) {
+                return IMOOCJSONResult.errorMsg("关键字不能为空！");
+            }
+            if (page == null) {
+                page = 1;
+            }
+            if (pageSize == null) {
+                pageSize = PAGE_SIZE;
+            }
+            PagedGridResult result = itemService.searchItems(keywords, sort, page, pageSize);
+            return IMOOCJSONResult.ok(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            return IMOOCJSONResult.errorMsg("服务异常！");
+        }
+
+
+    }
+
+    @ApiOperation(value = "根据分类id搜索商品列表", notes = "根据分类id搜索商品列表", httpMethod = "GET")
+    @GetMapping("/catItems")
+    public IMOOCJSONResult catItems(@ApiParam(name = "catId", value = "三级分类id", required = true) @RequestParam Integer catId,
+                                    @ApiParam(name = "sort", value = "排序", required = false) @RequestParam String sort,
+                                    @ApiParam(name = "page", value = "查询下一页的第几页", required = false, defaultValue = "1") @RequestParam Integer page,
+                                    @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = false, defaultValue = "20") @RequestParam Integer pageSize) {
+        try {
+            if (catId == null) {
+                return IMOOCJSONResult.errorMsg("关键字不能为空！");
+            }
+            if (page == null) {
+                page = 1;
+            }
+            if (pageSize == null) {
+                pageSize = PAGE_SIZE;
+            }
+            PagedGridResult result = itemService.searchItemsByThirdCat(catId, sort, page, pageSize);
+            return IMOOCJSONResult.ok(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            return IMOOCJSONResult.errorMsg("服务异常！");
+        }
+    }
+
+
+    //用于用户长时间未登录网站，刷新购物车中的数据（主要是商品价格），类似京东淘宝
+    @ApiOperation(value = "根据商品规格ids查找最新的商品数据", notes = "根据商品规格ids查找最新的商品数据", httpMethod = "GET")
+    @GetMapping("/refresh")
+    public IMOOCJSONResult refresh(@ApiParam(name = "itemSpecIds", value = "拼接的规格ids", required = true, example = "1001,1002,1003") @RequestParam String itemSpecIds) {
+        try {
+            if (StringUtils.isBlank(itemSpecIds)) {
+                return IMOOCJSONResult.ok();
+            }
+            List<ShopcartVO> list = itemService.queryItemsBySpecIds(itemSpecIds);
+            return IMOOCJSONResult.ok(list);
         } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());

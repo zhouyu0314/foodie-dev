@@ -6,15 +6,15 @@
 
     <select id="getItemsSpecById" resultType="com.zy.pojo.ItemsSpec">
         select
-                id as id,
-                item_id as itemId,
-                name as name,
-                stock as stock,
-                discounts as discounts,
-                price_discount as priceDiscount,
-                price_normal as priceNormal,
-                created_time as createdTime,
-                updated_time as updatedTime
+        id as id,
+        item_id as itemId,
+        name as name,
+        stock as stock,
+        discounts as discounts,
+        price_discount as priceDiscount,
+        price_normal as priceNormal,
+        created_time as createdTime,
+        updated_time as updatedTime
         from items_spec
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -25,81 +25,102 @@
 
     <select id="getItemsSpecListByMap" resultType="com.zy.pojo.ItemsSpec" parameterType="java.util.Map">
         select
-                id as id,
-                item_id as itemId,
-                name as name,
-                stock as stock,
-                discounts as discounts,
-                price_discount as priceDiscount,
-                price_normal as priceNormal,
-                created_time as createdTime,
-                updated_time as updatedTime
+        id as id,
+        item_id as itemId,
+        name as name,
+        stock as stock,
+        discounts as discounts,
+        price_discount as priceDiscount,
+        price_normal as priceNormal,
+        created_time as createdTime,
+        updated_time as updatedTime
         from items_spec
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="id != null and id!=''">
-                    and id=#{id}
-                </if>
-                <if test="itemId != null and itemId!=''">
-                    and item_id=#{itemId}
-                </if>
-                <if test="name != null and name!=''">
-                    and name=#{name}
-                </if>
-                <if test="stock != null and stock!=''">
-                    and stock=#{stock}
-                </if>
-                <if test="discounts != null and discounts!=''">
-                    and discounts=#{discounts}
-                </if>
-                <if test="priceDiscount != null and priceDiscount!=''">
-                    and price_discount=#{priceDiscount}
-                </if>
-                <if test="priceNormal != null and priceNormal!=''">
-                    and price_normal=#{priceNormal}
-                </if>
-                <if test="createdTime != null and createdTime!=''">
-                    and created_time=#{createdTime}
-                </if>
-                <if test="updatedTime != null and updatedTime!=''">
-                    and updated_time=#{updatedTime}
-                </if>
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="itemId != null and itemId!=''">
+                and item_id=#{itemId}
+            </if>
+            <if test="name != null and name!=''">
+                and name=#{name}
+            </if>
+            <if test="stock != null and stock!=''">
+                and stock=#{stock}
+            </if>
+            <if test="discounts != null and discounts!=''">
+                and discounts=#{discounts}
+            </if>
+            <if test="priceDiscount != null and priceDiscount!=''">
+                and price_discount=#{priceDiscount}
+            </if>
+            <if test="priceNormal != null and priceNormal!=''">
+                and price_normal=#{priceNormal}
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                and created_time=#{createdTime}
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                and updated_time=#{updatedTime}
+            </if>
         </trim>
         <if test="beginPos != null and pageSize != null ">
             limit #{beginPos},#{pageSize}
         </if>
     </select>
 
-    <select id="getItemsSpecCountByMap" resultType="Integer"  parameterType="java.util.Map">
+    <select id="getItemsSpecCountByMap" resultType="Integer" parameterType="java.util.Map">
         select count(*) from items_spec
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="id != null and id!=''">
-                    and id=#{id}
-                </if>
-                <if test="itemId != null and itemId!=''">
-                    and item_id=#{itemId}
-                </if>
-                <if test="name != null and name!=''">
-                    and name=#{name}
-                </if>
-                <if test="stock != null and stock!=''">
-                    and stock=#{stock}
-                </if>
-                <if test="discounts != null and discounts!=''">
-                    and discounts=#{discounts}
-                </if>
-                <if test="priceDiscount != null and priceDiscount!=''">
-                    and price_discount=#{priceDiscount}
-                </if>
-                <if test="priceNormal != null and priceNormal!=''">
-                    and price_normal=#{priceNormal}
-                </if>
-                <if test="createdTime != null and createdTime!=''">
-                    and created_time=#{createdTime}
-                </if>
-                <if test="updatedTime != null and updatedTime!=''">
-                    and updated_time=#{updatedTime}
-                </if>
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="itemId != null and itemId!=''">
+                and item_id=#{itemId}
+            </if>
+            <if test="name != null and name!=''">
+                and name=#{name}
+            </if>
+            <if test="stock != null and stock!=''">
+                and stock=#{stock}
+            </if>
+            <if test="discounts != null and discounts!=''">
+                and discounts=#{discounts}
+            </if>
+            <if test="priceDiscount != null and priceDiscount!=''">
+                and price_discount=#{priceDiscount}
+            </if>
+            <if test="priceNormal != null and priceNormal!=''">
+                and price_normal=#{priceNormal}
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                and created_time=#{createdTime}
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                and updated_time=#{updatedTime}
+            </if>
         </trim>
+    </select>
+
+    <select id="queryItemsBySpecIds" resultType="com.zy.pojo.vo.ShopcartVO" parameterType="java.util.List">
+        SELECT
+            t_items_spec.item_id as itemId,
+            t_items_spec.id as specId,
+            t_items_spec.`name` as specName,
+            t_items_spec.price_discount as priceDiscount,
+            t_items_spec.price_normal as priceNormal,
+            t_items_img.url as  itemImgUrl,
+             t_items.item_name as  itemName
+        FROM
+            items_spec  AS t_items_spec
+            LEFT JOIN items AS t_items ON t_items_spec.item_id = t_items.id
+        LEFT JOIN items_img AS t_items_img ON t_items_spec.item_id = t_items_img.item_id
+        WHERE
+            t_items_img.is_main = 1
+            AND t_items_spec.id IN
+            <foreach collection="paramsList" index="index" item="specId" open="(" close=")" separator=",">
+            #{specId}
+            </foreach>
     </select>
 
     <insert id="insertItemsSpec" parameterType="com.zy.pojo.ItemsSpec">
@@ -126,30 +147,30 @@
     <update id="updateItemsSpec" parameterType="com.zy.pojo.ItemsSpec">
         update items_spec
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                        <if test="itemId != null and itemId!=''">
-                            item_id=#{itemId},
-                        </if>
-                        <if test="name != null and name!=''">
-                            name=#{name},
-                        </if>
-                        <if test="stock != null and stock!=''">
-                            stock=#{stock},
-                        </if>
-                        <if test="discounts != null and discounts!=''">
-                            discounts=#{discounts},
-                        </if>
-                        <if test="priceDiscount != null and priceDiscount!=''">
-                            price_discount=#{priceDiscount},
-                        </if>
-                        <if test="priceNormal != null and priceNormal!=''">
-                            price_normal=#{priceNormal},
-                        </if>
-                        <if test="createdTime != null and createdTime!=''">
-                            created_time=#{createdTime},
-                        </if>
-                        <if test="updatedTime != null and updatedTime!=''">
-                            updated_time=#{updatedTime}
-                        </if>
+            <if test="itemId != null and itemId!=''">
+                item_id=#{itemId},
+            </if>
+            <if test="name != null and name!=''">
+                name=#{name},
+            </if>
+            <if test="stock != null and stock!=''">
+                stock=#{stock},
+            </if>
+            <if test="discounts != null and discounts!=''">
+                discounts=#{discounts},
+            </if>
+            <if test="priceDiscount != null and priceDiscount!=''">
+                price_discount=#{priceDiscount},
+            </if>
+            <if test="priceNormal != null and priceNormal!=''">
+                price_normal=#{priceNormal},
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                created_time=#{createdTime},
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                updated_time=#{updatedTime}
+            </if>
         </trim>
     </update>
 </mapper>

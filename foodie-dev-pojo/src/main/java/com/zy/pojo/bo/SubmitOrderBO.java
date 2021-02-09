@@ -1,9 +1,11 @@
 package com.zy.pojo.bo;
 
+import java.io.Serializable;
+
 /**
  * 用于创建订单的BO对象
  */
-public class SubmitOrderBO {
+public class SubmitOrderBO implements Serializable {
 
     private String userId;
     private String itemSpecIds;

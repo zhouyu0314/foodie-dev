@@ -1,12 +1,13 @@
 package com.zy.pojo.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * 用户中心，我的订单列表VO
  */
-public class MyOrdersVO {
+public class MyOrdersVO implements Serializable {
 
     private String orderId;
     private Date createdTime;

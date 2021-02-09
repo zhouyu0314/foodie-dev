@@ -1,11 +1,11 @@
 package com.zy.pojo.vo;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * 用于展示商品搜索列表结果的VO
  */
-public class SearchItemsVO {
+public class SearchItemsVO implements Serializable {
 
     private String itemId;
     private String itemName;

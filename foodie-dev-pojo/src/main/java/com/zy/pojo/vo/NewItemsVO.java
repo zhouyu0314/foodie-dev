@@ -1,11 +1,12 @@
 package com.zy.pojo.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 最新商品VO
  */
-public class NewItemsVO {
+public class NewItemsVO implements Serializable {
 
     private Integer rootCatId;
     private String rootCatName;

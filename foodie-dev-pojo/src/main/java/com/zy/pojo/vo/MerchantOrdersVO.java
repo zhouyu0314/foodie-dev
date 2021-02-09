@@ -1,6 +1,8 @@
 package com.zy.pojo.vo;
 
-public class MerchantOrdersVO {
+import java.io.Serializable;
+
+public class MerchantOrdersVO implements Serializable {
 
     private String merchantOrderId;         // 商户订单号
     private String merchantUserId;          // 商户方的发起用户的用户主键id

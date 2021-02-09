@@ -1,6 +1,8 @@
 package com.zy.pojo.vo;
 
-public class OrderVO {
+import java.io.Serializable;
+
+public class OrderVO implements Serializable {
 
     private String orderId;
     private MerchantOrdersVO merchantOrdersVO;

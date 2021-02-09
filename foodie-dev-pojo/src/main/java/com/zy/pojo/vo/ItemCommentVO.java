@@ -1,11 +1,12 @@
 package com.zy.pojo.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 用于展示商品评价的VO
  */
-public class ItemCommentVO {
+public class ItemCommentVO implements Serializable {
 
     private Integer commentLevel;
     private String content;

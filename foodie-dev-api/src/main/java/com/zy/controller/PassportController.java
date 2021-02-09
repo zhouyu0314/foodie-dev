@@ -98,7 +98,8 @@ public class PassportController {
             }
             Users result = usersService.login(username, password);
             CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密
-
+            // TODO: 2021/2/9 生成用户token，存入redis会话
+            // TODO: 2021/2/9 同步购物车数据
             return IMOOCJSONResult.ok(result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,6 +113,9 @@ public class PassportController {
     public IMOOCJSONResult logout(@RequestParam String userId, HttpServletRequest request,
                                   HttpServletResponse response) {
         CookieUtils.deleteCookie(request, response, "user");
+
+        // TODO: 2021/2/9  用户退出登录，需要清空购物车
+        // TODO: 2021/2/9  分布式会话中需要清除用户数据
         return IMOOCJSONResult.ok();
     }
 }

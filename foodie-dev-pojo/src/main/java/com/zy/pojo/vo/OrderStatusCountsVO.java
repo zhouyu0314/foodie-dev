@@ -1,9 +1,11 @@
 package com.zy.pojo.vo;
 
+import java.io.Serializable;
+
 /**
  * 订单状态概览数量VO 
  */
-public class OrderStatusCountsVO {
+public class OrderStatusCountsVO implements Serializable {
 
     private Integer waitPayCounts;
     private Integer waitDeliverCounts;

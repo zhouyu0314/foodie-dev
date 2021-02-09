@@ -6,12 +6,13 @@ import com.zy.pojo.ItemsImg;
 import com.zy.pojo.ItemsParam;
 import com.zy.pojo.ItemsSpec;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 商品详情VO
  */
-public class ItemInfoVO {
+public class ItemInfoVO implements Serializable {
 
     private Items item;
     private List<ItemsImg> itemImgList;

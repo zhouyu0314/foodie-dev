@@ -1,9 +1,11 @@
 package com.zy.pojo.vo;
 
+import java.io.Serializable;
+
 /**
  * 用于展示商品评价数量的vo
  */
-public class CommentLevelCountsVO {
+public class CommentLevelCountsVO implements Serializable {
 
     public Integer totalCounts;
     public Integer goodCounts;

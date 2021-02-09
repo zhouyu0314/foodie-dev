@@ -1,9 +1,11 @@
 package com.zy.pojo.vo;
 
+import java.io.Serializable;
+
 /**
  * 6个最新商品的简单数据类型
  */
-public class SimpleItemVO {
+public class SimpleItemVO implements Serializable {
 
     private String itemId;
     private String itemName;

@@ -1,9 +1,11 @@
 package com.zy.pojo.bo;
 
+import java.io.Serializable;
+
 /**
  * 用户新增或修改地址的BO
  */
-public class AddressBO {
+public class AddressBO implements Serializable {
 
     private String addressId;
 

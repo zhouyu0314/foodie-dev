@@ -1,8 +1,9 @@
 package com.zy.pojo.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MyCommentVO {
+public class MyCommentVO implements Serializable {
 
     private String commentId;
     private String content;

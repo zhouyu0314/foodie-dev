@@ -1,7 +1,6 @@
 package com.zy.mapper;
 import com.zy.pojo.ItemsComments;
 import com.zy.pojo.vo.ItemCommentVO;
-import com.zy.pojo.vo.SearchItemsVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,7 +22,6 @@ public interface ItemsCommentsMapper {
 
 	List<ItemCommentVO> queryItemComments(Map<String,Object> param)throws Exception;
 
-	List<SearchItemsVO> searchItems(Map<String,Object> param)throws Exception;
 
 
 }

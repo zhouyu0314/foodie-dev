@@ -11,6 +11,7 @@ import com.zy.pojo.ItemsSpec;
 import com.zy.pojo.vo.CommentLevelCountsVO;
 import com.zy.pojo.vo.ItemCommentVO;
 import com.zy.pojo.vo.SearchItemsVO;
+import com.zy.pojo.vo.ShopcartVO;
 import com.zy.service.ItemService;
 import com.zy.utils.DesensitizationUtil;
 import com.zy.utils.PagedGridResult;
@@ -19,9 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -97,9 +96,7 @@ public class ItemServiceImpl implements ItemService {
          */
         PageHelper.startPage(page, pageSize);
         List<ItemCommentVO> list = itemsCommentsMapper.queryItemComments(param);
-        for (ItemCommentVO itemCommentVO : list) {
-            itemCommentVO.setNickname(DesensitizationUtil.commonDisplay(itemCommentVO.getNickname()));
-        }
+        list.stream().forEach(node -> node.setNickname(DesensitizationUtil.commonDisplay(node.getNickname())));
         PagedGridResult pagedGridResult = this.setterPagedGrid(list, page);
         return pagedGridResult;
     }
@@ -110,9 +107,38 @@ public class ItemServiceImpl implements ItemService {
         Map<String, Object> param = new HashMap<>();
         param.put("keywords", keywords);
         param.put("sort", sort);
-        List<SearchItemsVO> list = itemsCommentsMapper.searchItems(param);
-        PagedGridResult pagedGridResult = this.setterPagedGrid(list, page);
-        return null;
+        /*
+         * page: 第几页
+         * pageSize: 每页显示条数
+         */
+        PageHelper.startPage(page, pageSize);
+        List<SearchItemsVO> list = itemsMapper.searchItems(param);
+        return this.setterPagedGrid(list, page);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult searchItemsByThirdCat(Integer catId, String sort, Integer page, Integer pageSize) throws Exception {
+        Map<String, Object> param = new HashMap<>();
+        param.put("catId", catId);
+        param.put("sort", sort);
+        /*
+         * page: 第几页
+         * pageSize: 每页显示条数
+         */
+        PageHelper.startPage(page, pageSize);
+        List<SearchItemsVO> list = itemsMapper.searchItemsByThirdCat(param);
+        return this.setterPagedGrid(list, page);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<ShopcartVO> queryItemsBySpecIds(String specIds) throws Exception {
+        String[] ids = specIds.split(",");
+        List<String> specIdsList = new ArrayList<>();
+        //ids里的元素全部加入到specIdsList
+        Collections.addAll(specIdsList,ids);
+        return itemsSpecMapper.queryItemsBySpecIds(specIdsList);
     }
 
 

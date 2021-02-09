@@ -1,6 +1,8 @@
 package com.zy.pojo.vo;
 
-public class SubCategoryVO {
+import java.io.Serializable;
+
+public class SubCategoryVO implements Serializable {
 
     private Integer subId;
     private String subName;

@@ -1,5 +1,7 @@
 package com.zy.mapper;
+
 import com.zy.pojo.Items;
+import com.zy.pojo.vo.SearchItemsVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,5 +21,8 @@ public interface ItemsMapper {
 
 	public Integer updateItems(Items items)throws Exception;
 
+	List<SearchItemsVO> searchItems(Map<String,Object> param)throws Exception;
+
+	List<SearchItemsVO> searchItemsByThirdCat(Map<String,Object> param)throws Exception;
 
 }

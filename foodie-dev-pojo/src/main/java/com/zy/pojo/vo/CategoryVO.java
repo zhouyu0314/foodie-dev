@@ -1,11 +1,12 @@
 package com.zy.pojo.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 二级分类VO
  */
-public class CategoryVO {
+public class CategoryVO implements Serializable {
 
     private Integer id;
     private String name;
