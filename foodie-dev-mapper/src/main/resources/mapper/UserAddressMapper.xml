@@ -78,6 +78,9 @@
                 <if test="updatedTime != null and updatedTime!=''">
                     and updated_time=#{updatedTime}
                 </if>
+            <if test="isDelete != null">
+                and is_delete=#{isDelete}
+            </if>
         </trim>
         <if test="beginPos != null and pageSize != null ">
             limit #{beginPos},#{pageSize}
@@ -139,7 +142,8 @@
                         extand,
                         is_default,
                         created_time,
-                        updated_time)
+                        updated_time,
+                        is_delete)
         values(
                      #{id},
                      #{userId},
@@ -152,7 +156,9 @@
                      #{extand},
                      #{isDefault},
                      #{createdTime},
-                    #{updatedTime})
+                    #{updatedTime},
+                    #{isDelete}
+                    )
     </insert>
 
     <update id="updateUserAddress" parameterType="com.zy.pojo.UserAddress">

@@ -27,6 +27,7 @@ public class AddressServiceImpl implements AddressService {
     public List<UserAddress> queryAll(String userId) throws Exception {
         Map<String,Object> param = new HashMap<>();
         param.put("userId",userId);
+        param.put("isDelete",0);
         return userAddressMapper.getUserAddressListByMap(param);
     }
 
@@ -39,6 +40,7 @@ public class AddressServiceImpl implements AddressService {
         userAddress.setId(Sid.nextShort());
         userAddress.setCreatedTime(new Date());
         userAddress.setUpdatedTime(new Date());
+        userAddress.setIsDefault(0);
         /*
         1.判断是否存在地址，没有则新增默认地址
         2.入库
@@ -59,6 +61,16 @@ public class AddressServiceImpl implements AddressService {
         BeanUtils.copyProperties(addressBO,userAddress);
         userAddress.setId(addressBO.getAddressId());
         userAddress.setUpdatedTime(new Date());
+        userAddressMapper.updateUserAddress(userAddress);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void deleteUserAddress(String userId, String addressId) throws Exception {
+        UserAddress userAddress = new UserAddress();
+        userAddress.setId(addressId);
+        userAddress.setUserId(userId);
+        userAddress.setIsDelete(1);
         userAddressMapper.updateUserAddress(userAddress);
     }
 }

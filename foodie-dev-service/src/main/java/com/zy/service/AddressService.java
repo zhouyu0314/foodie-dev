@@ -28,4 +28,13 @@ public interface AddressService {
      * @throws Exception
      */
     void updateUserAddress(AddressBO addressBO) throws Exception;
+
+
+    /**
+     * 根据userId和addressId删除用户地址信息
+     * @param userId
+     * @param addressId
+     * @throws Exception
+     */
+    void deleteUserAddress(String userId,String addressId) throws Exception;
 }

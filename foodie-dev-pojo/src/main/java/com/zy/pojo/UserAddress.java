@@ -29,7 +29,16 @@ public class UserAddress implements Serializable {
     private Date createdTime;
     //更新时间
     private Date updatedTime;
+    //是否默认地址 1:是  0:否
+    private Integer isDelete;
+
     //get set 方法
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
     public void setId (String  id){
         this.id=id;
     }
