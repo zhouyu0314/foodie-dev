@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ce57700-00bf-4fc1-a5f1-4ec7f3a97558" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-pojo/src/main/java/com/zy/pojo/bo/SubmitOrderBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-pojo/src/main/java/com/zy/pojo/bo/SubmitOrderBO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/foodie-dev-common/src/main/java/com/zy/enums/PayMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/OrderController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +47,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/foodie-dev-common/src/main/java/com/zy/enums" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -60,11 +60,11 @@
       <recent name="com.zy.zy.mymapper" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\workspace\foodie-dev\foodie-dev-common\src\main\java\com\zy\enums" />
       <recent name="E:\workspace\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller" />
       <recent name="C:\project\java\foodie-dev\foodie-dev-pojo\src\main\java\com\zy\pojo" />
       <recent name="C:\project\java\foodie-dev\foodie-dev-api\src\test\java" />
       <recent name="C:\project\java\foodie-dev\foodie-dev-common\src\main\java" />
-      <recent name="C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\utils" />
     </key>
   </component>
   <component name="RestServicesNavigator">
@@ -194,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612926888991</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="订单 1">
+      <created>1612936343133</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1612936343133</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +227,7 @@
     <MESSAGE value="使用yesOrNo 枚举" />
     <MESSAGE value="asd" />
     <MESSAGE value="修改默认地址" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改默认地址" />
+    <MESSAGE value="订单 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="订单 1" />
   </component>
 </project>

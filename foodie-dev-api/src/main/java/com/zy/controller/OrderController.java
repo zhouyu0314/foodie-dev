@@ -1,5 +1,6 @@
 package com.zy.controller;
 
+import com.zy.enums.PayMethod;
 import com.zy.pojo.bo.SubmitOrderBO;
 import com.zy.utils.IMOOCJSONResult;
 import io.swagger.annotations.Api;
@@ -25,6 +26,12 @@ public class OrderController {
             //1.创建订单
             //2.创建订单以后，一处购物车中已结算（已提交）的商品
             //3.向支付中心发送当前订单，用于保存支付中心的订单数据
+
+            if (submitOrderBO.getPayMethod() != PayMethod.WEIXIN.type
+                    && submitOrderBO.getPayMethod() != PayMethod.ALIPAY.type ) {
+                return IMOOCJSONResult.errorMsg("支付方式不支持！");
+            }
+            System.out.println(submitOrderBO);
             return IMOOCJSONResult.ok();
         } catch (Exception e) {
             e.printStackTrace();
