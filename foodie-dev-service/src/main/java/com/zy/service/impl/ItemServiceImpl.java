@@ -55,7 +55,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<ItemsSpec> queryItemApecList(String itemId) throws Exception {
+    public List<ItemsSpec> queryItemSpecList(String itemId) throws Exception {
         Map<String, Object> param = new HashMap<>();
         param.put("itemId", itemId);
         return itemsSpecMapper.getItemsSpecListByMap(param);
@@ -137,8 +137,40 @@ public class ItemServiceImpl implements ItemService {
         String[] ids = specIds.split(",");
         List<String> specIdsList = new ArrayList<>();
         //ids里的元素全部加入到specIdsList
-        Collections.addAll(specIdsList,ids);
+        Collections.addAll(specIdsList, ids);
         return itemsSpecMapper.queryItemsBySpecIds(specIdsList);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void updateItemsSpecStock(String specId, Integer buyCount) throws Exception {
+        // synchronized 不推荐使用，集群下无用，性能低下
+        // 锁数据库: 不推荐，导致数据库性能低下
+        // 分布式锁 zookeeper redis
+
+        // lockUtil.getLock(); -- 加锁
+
+        // 1. 查询库存
+//        int stock = 10;
+
+        // 2. 判断库存，是否能够减少到0以下
+//        if (stock - buyCounts < 0) {
+        // 提示用户库存不够
+//            10 - 3 -3 - 5 = -1
+//        }
+
+        // lockUtil.unLock(); -- 解锁
+        Map<String, Object> param = new HashMap<>();
+        param.put("specId", specId);
+        param.put("buyCount", buyCount);
+        Integer result = itemsSpecMapper.updateItemsSpecStock(param);
+        /*
+        此处使用乐观锁，详见sql语句 传入正值是减少库存 ，如果传入负数是增加库存
+         */
+        if (result != 1) {
+            throw new RuntimeException("订单创建失败，原因：库存不足!");
+        }
+
     }
 
 

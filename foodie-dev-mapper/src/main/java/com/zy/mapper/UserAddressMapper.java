@@ -1,14 +1,15 @@
 package com.zy.mapper;
 import com.zy.pojo.UserAddress;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
-import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserAddressMapper {
 
-	public UserAddress getUserAddressById(@Param(value = "id") Long id)throws Exception;
+	public UserAddress getUserAddressById(@Param(value = "id") String id)throws Exception;
 
 	public List<UserAddress>	getUserAddressListByMap(Map<String, Object> param)throws Exception;
 

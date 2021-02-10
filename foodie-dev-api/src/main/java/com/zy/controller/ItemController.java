@@ -38,7 +38,7 @@ public class ItemController extends BaseController {
             }
             Items item = itemService.queryItemById(itemId);
             List<ItemsImg> itemsImgList = itemService.queryItemImgList(itemId);
-            List<ItemsSpec> itemsSpecList = itemService.queryItemApecList(itemId);
+            List<ItemsSpec> itemsSpecList = itemService.queryItemSpecList(itemId);
             List<ItemsParam> itemsParamList = itemService.queryItemsParam(itemId);
             ItemInfoVO itemInfoVO = new ItemInfoVO();
             itemInfoVO.setItem(item);

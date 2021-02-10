@@ -10,7 +10,7 @@ import java.util.Map;
 @Mapper
 public interface ItemsSpecMapper {
 
-	public ItemsSpec getItemsSpecById(@Param(value = "id") Long id)throws Exception;
+	public ItemsSpec getItemsSpecById(@Param(value = "id") String id)throws Exception;
 
 	public List<ItemsSpec>	getItemsSpecListByMap(Map<String, Object> param)throws Exception;
 
@@ -19,6 +19,8 @@ public interface ItemsSpecMapper {
 	public Integer insertItemsSpec(ItemsSpec itemsSpec)throws Exception;
 
 	public Integer updateItemsSpec(ItemsSpec itemsSpec)throws Exception;
+
+	public Integer updateItemsSpecStock(Map<String, Object> param)throws Exception;
 
 	List<ShopcartVO> queryItemsBySpecIds(@Param(value = "paramsList") List<String> params)throws Exception;
 

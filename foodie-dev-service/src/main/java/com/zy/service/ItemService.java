@@ -36,7 +36,8 @@ public interface ItemService {
      * @return
      * @throws Exception
      */
-    List<ItemsSpec> queryItemApecList(String itemId) throws Exception;
+    List<ItemsSpec> queryItemSpecList(String itemId) throws Exception;
+
 
     /**
      * 根据商品id查询商品参数
@@ -91,6 +92,15 @@ public interface ItemService {
      * @throws Exception
      */
     List<ShopcartVO> queryItemsBySpecIds(String specIds)throws Exception;
+
+    /**
+     * 修改库存
+     * @param userId
+     * @param buyCount
+     * @throws Exception
+     */
+    void updateItemsSpecStock(String userId,Integer buyCount)throws Exception;
+
 
 
 }

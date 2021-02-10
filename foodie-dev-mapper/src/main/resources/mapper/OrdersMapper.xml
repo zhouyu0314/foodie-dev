@@ -87,10 +87,10 @@
                 <if test="isDelete != null and isDelete!=''">
                     and is_delete=#{isDelete}
                 </if>
-                <if test="createdTime != null and createdTime!=''">
+                <if test="createdTime != null ">
                     and created_time=#{createdTime}
                 </if>
-                <if test="updatedTime != null and updatedTime!=''">
+                <if test="updatedTime != null ">
                     and updated_time=#{updatedTime}
                 </if>
         </trim>
@@ -152,6 +152,7 @@
 
     <insert id="insertOrders" parameterType="com.zy.pojo.Orders">
         insert into orders(
+        id,
                         user_id,
                         receiver_name,
                         receiver_mobile,
@@ -167,6 +168,7 @@
                         created_time,
                         updated_time)
         values(
+                     #{id},
                      #{userId},
                      #{receiverName},
                      #{receiverMobile},
@@ -222,10 +224,10 @@
                         <if test="isDelete != null and isDelete!=''">
                             is_delete=#{isDelete},
                         </if>
-                        <if test="createdTime != null and createdTime!=''">
+                        <if test="createdTime != null ">
                             created_time=#{createdTime},
                         </if>
-                        <if test="updatedTime != null and updatedTime!=''">
+                        <if test="updatedTime != null ">
                             updated_time=#{updatedTime}
                         </if>
         </trim>

@@ -104,23 +104,23 @@
 
     <select id="queryItemsBySpecIds" resultType="com.zy.pojo.vo.ShopcartVO" parameterType="java.util.List">
         SELECT
-            t_items_spec.item_id as itemId,
-            t_items_spec.id as specId,
-            t_items_spec.`name` as specName,
-            t_items_spec.price_discount as priceDiscount,
-            t_items_spec.price_normal as priceNormal,
-            t_items_img.url as  itemImgUrl,
-             t_items.item_name as  itemName
+        t_items_spec.item_id as itemId,
+        t_items_spec.id as specId,
+        t_items_spec.`name` as specName,
+        t_items_spec.price_discount as priceDiscount,
+        t_items_spec.price_normal as priceNormal,
+        t_items_img.url as itemImgUrl,
+        t_items.item_name as itemName
         FROM
-            items_spec  AS t_items_spec
-            LEFT JOIN items AS t_items ON t_items_spec.item_id = t_items.id
+        items_spec AS t_items_spec
+        LEFT JOIN items AS t_items ON t_items_spec.item_id = t_items.id
         LEFT JOIN items_img AS t_items_img ON t_items_spec.item_id = t_items_img.item_id
         WHERE
-            t_items_img.is_main = 1
-            AND t_items_spec.id IN
-            <foreach collection="paramsList" index="index" item="specId" open="(" close=")" separator=",">
+        t_items_img.is_main = 1
+        AND t_items_spec.id IN
+        <foreach collection="paramsList" index="index" item="specId" open="(" close=")" separator=",">
             #{specId}
-            </foreach>
+        </foreach>
     </select>
 
     <insert id="insertItemsSpec" parameterType="com.zy.pojo.ItemsSpec">
@@ -172,5 +172,13 @@
                 updated_time=#{updatedTime}
             </if>
         </trim>
+    </update>
+
+    <update id="updateItemsSpecStock" parameterType="java.util.Map">
+    UPDATE items_spec
+    SET stock = stock - #{buyCount}
+    WHERE
+	id = #{specId}
+	and stock >= #{buyCount}
     </update>
 </mapper>

@@ -2,11 +2,13 @@ package com.zy.controller;
 
 import com.zy.enums.PayMethod;
 import com.zy.pojo.bo.SubmitOrderBO;
+import com.zy.service.OrderService;
 import com.zy.utils.IMOOCJSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("orders")
 public class OrderController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
+    @Autowired
+    private OrderService orderService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
 
     @ApiOperation(value = "用户下单", notes = "用户下单", httpMethod = "POST")
     @PostMapping("/create")
@@ -31,12 +35,14 @@ public class OrderController {
                     && submitOrderBO.getPayMethod() != PayMethod.ALIPAY.type ) {
                 return IMOOCJSONResult.errorMsg("支付方式不支持！");
             }
+
+            orderService.createOrder(submitOrderBO);
             System.out.println(submitOrderBO);
             return IMOOCJSONResult.ok();
         } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
-            return IMOOCJSONResult.errorMsg("服务异常！");
+            return IMOOCJSONResult.errorMsg(e.getMessage());
         }
     }
 
