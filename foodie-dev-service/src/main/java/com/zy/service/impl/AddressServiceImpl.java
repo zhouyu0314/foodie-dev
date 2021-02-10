@@ -41,7 +41,7 @@ public class AddressServiceImpl implements AddressService {
         userAddress.setId(Sid.nextShort());
         userAddress.setCreatedTime(new Date());
         userAddress.setUpdatedTime(new Date());
-
+        userAddress.setIsDelete(YesOrNo.NO.type);
         /*
         1.判断是否存在地址，没有则新增默认地址
         2.入库
