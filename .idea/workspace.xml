@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ce57700-00bf-4fc1-a5f1-4ec7f3a97558" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/AddressController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-mapper/src/main/resources/mapper/UserAddressMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-mapper/src/main/resources/mapper/UserAddressMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-pojo/src/main/java/com/zy/pojo/UserAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-pojo/src/main/java/com/zy/pojo/UserAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-service/src/main/java/com/zy/service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-service/src/main/java/com/zy/service/AddressService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-service/src/main/java/com/zy/service/impl/AddressServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-service/src/main/java/com/zy/service/impl/AddressServiceImpl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -170,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612778018419</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="删除收货地址">
+      <created>1612924883373</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1612924883373</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,6 +195,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="获取所有轮播图" />
     <MESSAGE value="关键字搜索商品" />
-    <option name="LAST_COMMIT_MESSAGE" value="关键字搜索商品" />
+    <MESSAGE value="删除收货地址" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除收货地址" />
   </component>
 </project>

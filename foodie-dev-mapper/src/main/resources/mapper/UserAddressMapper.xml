@@ -78,7 +78,7 @@
                 <if test="updatedTime != null and updatedTime!=''">
                     and updated_time=#{updatedTime}
                 </if>
-            <if test="isDelete != null">
+            <if test="isDelete != null and isDelete!=''">
                 and is_delete=#{isDelete}
             </if>
         </trim>

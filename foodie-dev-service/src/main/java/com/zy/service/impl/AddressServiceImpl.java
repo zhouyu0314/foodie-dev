@@ -1,5 +1,6 @@
 package com.zy.service.impl;
 
+import com.zy.enums.YesOrNo;
 import com.zy.idworker.Sid;
 import com.zy.mapper.UserAddressMapper;
 import com.zy.pojo.UserAddress;
@@ -27,7 +28,7 @@ public class AddressServiceImpl implements AddressService {
     public List<UserAddress> queryAll(String userId) throws Exception {
         Map<String,Object> param = new HashMap<>();
         param.put("userId",userId);
-        param.put("isDelete",0);
+        param.put("isDelete", YesOrNo.NO.type);
         return userAddressMapper.getUserAddressListByMap(param);
     }
 
@@ -40,16 +41,16 @@ public class AddressServiceImpl implements AddressService {
         userAddress.setId(Sid.nextShort());
         userAddress.setCreatedTime(new Date());
         userAddress.setUpdatedTime(new Date());
-        userAddress.setIsDefault(0);
+
         /*
         1.判断是否存在地址，没有则新增默认地址
         2.入库
          */
         List<UserAddress> list = this.queryAll(addressBO.getUserId());
         if (list == null || list.size()==0) {
-            userAddress.setIsDefault(1);
+            userAddress.setIsDefault(YesOrNo.YES.type);
         }
-        userAddress.setIsDefault(0);
+        userAddress.setIsDefault(YesOrNo.NO.type);
         userAddressMapper.insertUserAddress(userAddress);
     }
 
@@ -70,7 +71,7 @@ public class AddressServiceImpl implements AddressService {
         UserAddress userAddress = new UserAddress();
         userAddress.setId(addressId);
         userAddress.setUserId(userId);
-        userAddress.setIsDelete(1);
+        userAddress.setIsDelete( YesOrNo.YES.type);
         userAddressMapper.updateUserAddress(userAddress);
     }
 }
