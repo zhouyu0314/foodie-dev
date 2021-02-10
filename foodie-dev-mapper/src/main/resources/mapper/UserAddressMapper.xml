@@ -6,18 +6,18 @@
 
     <select id="getUserAddressById" resultType="com.zy.pojo.UserAddress">
         select
-                id as id,
-                user_id as userId,
-                receiver as receiver,
-                mobile as mobile,
-                province as province,
-                city as city,
-                district as district,
-                detail as detail,
-                extand as extand,
-                is_default as isDefault,
-                created_time as createdTime,
-                updated_time as updatedTime
+        id as id,
+        user_id as userId,
+        receiver as receiver,
+        mobile as mobile,
+        province as province,
+        city as city,
+        district as district,
+        detail as detail,
+        extand as extand,
+        is_default as isDefault,
+        created_time as createdTime,
+        updated_time as updatedTime
         from user_address
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -28,56 +28,56 @@
 
     <select id="getUserAddressListByMap" resultType="com.zy.pojo.UserAddress" parameterType="java.util.Map">
         select
-                id as id,
-                user_id as userId,
-                receiver as receiver,
-                mobile as mobile,
-                province as province,
-                city as city,
-                district as district,
-                detail as detail,
-                extand as extand,
-                is_default as isDefault,
-                created_time as createdTime,
-                updated_time as updatedTime
+        id as id,
+        user_id as userId,
+        receiver as receiver,
+        mobile as mobile,
+        province as province,
+        city as city,
+        district as district,
+        detail as detail,
+        extand as extand,
+        is_default as isDefault,
+        created_time as createdTime,
+        updated_time as updatedTime
         from user_address
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="id != null and id!=''">
-                    and id=#{id}
-                </if>
-                <if test="userId != null and userId!=''">
-                    and user_id=#{userId}
-                </if>
-                <if test="receiver != null and receiver!=''">
-                    and receiver=#{receiver}
-                </if>
-                <if test="mobile != null and mobile!=''">
-                    and mobile=#{mobile}
-                </if>
-                <if test="province != null and province!=''">
-                    and province=#{province}
-                </if>
-                <if test="city != null and city!=''">
-                    and city=#{city}
-                </if>
-                <if test="district != null and district!=''">
-                    and district=#{district}
-                </if>
-                <if test="detail != null and detail!=''">
-                    and detail=#{detail}
-                </if>
-                <if test="extand != null and extand!=''">
-                    and extand=#{extand}
-                </if>
-                <if test="isDefault != null and isDefault!=''">
-                    and is_default=#{isDefault}
-                </if>
-                <if test="createdTime != null and createdTime!=''">
-                    and created_time=#{createdTime}
-                </if>
-                <if test="updatedTime != null and updatedTime!=''">
-                    and updated_time=#{updatedTime}
-                </if>
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="userId != null and userId!=''">
+                and user_id=#{userId}
+            </if>
+            <if test="receiver != null and receiver!=''">
+                and receiver=#{receiver}
+            </if>
+            <if test="mobile != null and mobile!=''">
+                and mobile=#{mobile}
+            </if>
+            <if test="province != null and province!=''">
+                and province=#{province}
+            </if>
+            <if test="city != null and city!=''">
+                and city=#{city}
+            </if>
+            <if test="district != null and district!=''">
+                and district=#{district}
+            </if>
+            <if test="detail != null and detail!=''">
+                and detail=#{detail}
+            </if>
+            <if test="extand != null and extand!=''">
+                and extand=#{extand}
+            </if>
+            <if test="isDefault != null and isDefault!=''">
+                and is_default=#{isDefault}
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                and created_time=#{createdTime}
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                and updated_time=#{updatedTime}
+            </if>
             <if test="isDelete != null and isDelete!=''">
                 and is_delete=#{isDelete}
             </if>
@@ -87,45 +87,45 @@
         </if>
     </select>
 
-    <select id="getUserAddressCountByMap" resultType="Integer"  parameterType="java.util.Map">
+    <select id="getUserAddressCountByMap" resultType="Integer" parameterType="java.util.Map">
         select count(*) from user_address
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="id != null and id!=''">
-                    and id=#{id}
-                </if>
-                <if test="userId != null and userId!=''">
-                    and user_id=#{userId}
-                </if>
-                <if test="receiver != null and receiver!=''">
-                    and receiver=#{receiver}
-                </if>
-                <if test="mobile != null and mobile!=''">
-                    and mobile=#{mobile}
-                </if>
-                <if test="province != null and province!=''">
-                    and province=#{province}
-                </if>
-                <if test="city != null and city!=''">
-                    and city=#{city}
-                </if>
-                <if test="district != null and district!=''">
-                    and district=#{district}
-                </if>
-                <if test="detail != null and detail!=''">
-                    and detail=#{detail}
-                </if>
-                <if test="extand != null and extand!=''">
-                    and extand=#{extand}
-                </if>
-                <if test="isDefault != null and isDefault!=''">
-                    and is_default=#{isDefault}
-                </if>
-                <if test="createdTime != null and createdTime!=''">
-                    and created_time=#{createdTime}
-                </if>
-                <if test="updatedTime != null and updatedTime!=''">
-                    and updated_time=#{updatedTime}
-                </if>
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="userId != null and userId!=''">
+                and user_id=#{userId}
+            </if>
+            <if test="receiver != null and receiver!=''">
+                and receiver=#{receiver}
+            </if>
+            <if test="mobile != null and mobile!=''">
+                and mobile=#{mobile}
+            </if>
+            <if test="province != null and province!=''">
+                and province=#{province}
+            </if>
+            <if test="city != null and city!=''">
+                and city=#{city}
+            </if>
+            <if test="district != null and district!=''">
+                and district=#{district}
+            </if>
+            <if test="detail != null and detail!=''">
+                and detail=#{detail}
+            </if>
+            <if test="extand != null and extand!=''">
+                and extand=#{extand}
+            </if>
+            <if test="isDefault != null and isDefault!=''">
+                and is_default=#{isDefault}
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                and created_time=#{createdTime}
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                and updated_time=#{updatedTime}
+            </if>
         </trim>
     </select>
 
@@ -164,39 +164,42 @@
     <update id="updateUserAddress" parameterType="com.zy.pojo.UserAddress">
         update user_address
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                        <if test="userId != null and userId!=''">
-                            user_id=#{userId},
-                        </if>
-                        <if test="receiver != null and receiver!=''">
-                            receiver=#{receiver},
-                        </if>
-                        <if test="mobile != null and mobile!=''">
-                            mobile=#{mobile},
-                        </if>
-                        <if test="province != null and province!=''">
-                            province=#{province},
-                        </if>
-                        <if test="city != null and city!=''">
-                            city=#{city},
-                        </if>
-                        <if test="district != null and district!=''">
-                            district=#{district},
-                        </if>
-                        <if test="detail != null and detail!=''">
-                            detail=#{detail},
-                        </if>
-                        <if test="extand != null and extand!=''">
-                            extand=#{extand},
-                        </if>
-                        <if test="isDefault != null and isDefault!=''">
-                            is_default=#{isDefault},
-                        </if>
-                        <if test="createdTime != null">
-                            created_time=#{createdTime},
-                        </if>
-                        <if test="updatedTime != null">
-                            updated_time=#{updatedTime}
-                        </if>
+            <if test="userId != null and userId!=''">
+                user_id=#{userId},
+            </if>
+            <if test="receiver != null and receiver!=''">
+                receiver=#{receiver},
+            </if>
+            <if test="mobile != null and mobile!=''">
+                mobile=#{mobile},
+            </if>
+            <if test="province != null and province!=''">
+                province=#{province},
+            </if>
+            <if test="city != null and city!=''">
+                city=#{city},
+            </if>
+            <if test="district != null and district!=''">
+                district=#{district},
+            </if>
+            <if test="detail != null and detail!=''">
+                detail=#{detail},
+            </if>
+            <if test="extand != null and extand!=''">
+                extand=#{extand},
+            </if>
+            <if test="isDefault != null and isDefault!=''">
+                is_default=#{isDefault},
+            </if>
+            <if test="createdTime != null">
+                created_time=#{createdTime},
+            </if>
+            <if test="updatedTime != null">
+                updated_time=#{updatedTime},
+            </if>
+            <if test="isDelete != null">
+                is_delete=#{isDelete}
+            </if>
         </trim>
     </update>
 </mapper>
