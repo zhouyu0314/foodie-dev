@@ -182,13 +182,13 @@
             <if test="sex != null and sex!=''">
                 sex=#{sex},
             </if>
-            <if test="birthday != null and birthday!=''">
+            <if test="birthday != null">
                 birthday=#{birthday},
             </if>
-            <if test="createdTime != null and createdTime!=''">
+            <if test="createdTime != null">
                 created_time=#{createdTime},
             </if>
-            <if test="updatedTime != null and updatedTime!=''">
+            <if test="updatedTime != null">
                 updated_time=#{updatedTime}
             </if>
         </trim>

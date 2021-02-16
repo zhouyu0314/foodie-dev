@@ -23,7 +23,7 @@ import java.util.List;
 
 @Api(value = "首页",tags = {"首页展示的相关接口"})
 @RestController
-@RequestMapping("index")
+@RequestMapping("/index")
 public class IndexController {
     private static final Logger LOGGER =  LoggerFactory.getLogger(IndexController.class);
     @Autowired

@@ -23,7 +23,7 @@ import java.util.List;
 
 @Api(value = "商品接口", tags = {"商品信息展示的相关接口"})
 @RestController
-@RequestMapping("items")
+@RequestMapping("/items")
 public class ItemController extends BaseController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ItemController.class);
     @Autowired

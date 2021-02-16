@@ -6,9 +6,11 @@ import com.zy.idworker.Sid;
 import com.zy.mapper.*;
 import com.zy.pojo.*;
 import com.zy.pojo.bo.SubmitOrderBO;
+import com.zy.pojo.vo.MerchantOrdersVO;
 import com.zy.pojo.vo.OrderVO;
 import com.zy.service.ItemService;
 import com.zy.service.OrderService;
+import com.zy.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,19 +23,19 @@ import java.util.Map;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    @Autowired
+    @Autowired(required = false)
     private UserAddressMapper userAddressMapper;
-    @Autowired
+    @Autowired(required = false)
     private ItemsSpecMapper itemsSpecMapper;
-    @Autowired
+    @Autowired(required = false)
     private OrdersMapper ordersMapper;
-    @Autowired
+    @Autowired(required = false)
     private OrderItemsMapper orderItemsMapper;
-    @Autowired
+    @Autowired(required = false)
     private OrderStatusMapper orderStatusMapper;
-    @Autowired
+    @Autowired(required = false)
     private ItemsImgMapper itemsImgMapper;
-    @Autowired
+    @Autowired(required = false)
     private ItemService itemService;
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -44,8 +46,8 @@ public class OrderServiceImpl implements OrderService {
         String itemSpecIds = submitOrderBO.getItemSpecIds();
         Integer payMethod = submitOrderBO.getPayMethod();
         String leftMsg = submitOrderBO.getLeftMsg();
-        Map<String,Object> param = new HashMap<>();
-        param.put("isMain",YesOrNo.YES.type);
+        Map<String, Object> param = new HashMap<>();
+        param.put("isMain", YesOrNo.YES.type);
         //订单id
         String orderId = Sid.nextShort();
         //包邮
@@ -60,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
         for (String specId : specIds) {
             OrderItems orderItems = new OrderItems();
             ItemsSpec itemsSpec = itemsSpecMapper.getItemsSpecById(specId);
-            param.put("itemId",itemsSpec.getItemId());
+            param.put("itemId", itemsSpec.getItemId());
             List<ItemsImg> itemsImgList = itemsImgMapper.getItemsImgListByMap(param);
             if (itemsImgList != null || itemsImgList.size() != 0) {
                 orderItems.setItemImg(itemsImgList.get(0).getUrl());
@@ -81,7 +83,7 @@ public class OrderServiceImpl implements OrderService {
             orderItemsMapper.insertOrderItems(orderItems);
 
             //提交订单之后规格表需要扣除相应的库存
-            itemService.updateItemsSpecStock(specId,buyCount);
+            itemService.updateItemsSpecStock(specId, buyCount);
         }
 
         UserAddress userAddress = userAddressMapper.getUserAddressById(addressId);
@@ -112,22 +114,63 @@ public class OrderServiceImpl implements OrderService {
         orderStatus.setCreatedTime(orders.getCreatedTime());
         orderStatusMapper.insertOrderStatus(orderStatus);
 
+        // 4. 构建商户订单，用于传给支付中心
+        MerchantOrdersVO merchantOrdersVO = new MerchantOrdersVO();
+        merchantOrdersVO.setMerchantOrderId(orderId);
+        merchantOrdersVO.setMerchantUserId(userId);
+        merchantOrdersVO.setAmount(realPayAmount + postAmount);
+        merchantOrdersVO.setPayMethod(payMethod);
+        // 5. 构建自定义订单vo
+        OrderVO orderVO = new OrderVO();
+        orderVO.setOrderId(orderId);
+        orderVO.setMerchantOrdersVO(merchantOrdersVO);
 
-        return null;
+        return orderVO;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void updateOrderStatus(String orderId, Integer orderStatus) {
-
+    public void updateOrderStatus(String orderId, Integer orderStatus) throws Exception {
+        OrderStatus order = new OrderStatus();
+        order.setOrderId(orderId);
+        order.setPayTime(new Date());
+        order.setOrderStatus(orderStatus);
+        orderStatusMapper.updateOrderStatus(order);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public OrderStatus queryOrderStatusInfo(String orderId) {
-        return null;
+    public OrderStatus queryOrderStatusInfo(String orderId) throws Exception {
+        return orderStatusMapper.getOrderStatusById(orderId);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void closeOrder() {
-
+    public void closeOrder() throws Exception {
+        // 查询所有未付款订单，判断时间是否超时（1天），超时则关闭交易
+        Map<String, Object> param = new HashMap<>();
+        param.put("orderStatus", OrderStatusEnum.WAIT_PAY.type);
+        List<OrderStatus> orderStatus = orderStatusMapper.getOrderStatusListByMap(param);
+        if (orderStatus != null) {
+            for (OrderStatus status : orderStatus) {
+                //获取订单时间，并与当前时间做对比
+                Date createdTime = status.getCreatedTime();
+                int days = DateUtil.daysBetween(createdTime, new Date());
+                if (days >= 1) {
+                    //订单超过一天则关闭订单
+                    this.doCloseOrder(status.getOrderId());
+                }
+            }
+        }
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    void doCloseOrder(String orderId) throws Exception {
+        OrderStatus close = new OrderStatus();
+        close.setOrderId(orderId);
+        close.setOrderStatus(OrderStatusEnum.CLOSE.type);
+        close.setCloseTime(new Date());
+        orderStatusMapper.updateOrderStatus(close);
+    }
+
 }

@@ -16,19 +16,6 @@
             <groupId>com.zy</groupId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-        <!--支持常规的测试依赖，包括JUnit、Hamcrest、Mockito以及spring-test模块-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
 
 </project>

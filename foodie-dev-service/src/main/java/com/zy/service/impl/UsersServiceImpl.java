@@ -42,6 +42,7 @@ public class UsersServiceImpl implements UsersService {
     public Users register(String username, String pwd) throws Exception {
         Users user = new Users();
         user.setUsername(username);
+        user.setNickname(username);
         user.setPassword(MD5Utils.getMD5Str(pwd));
         user.setCreatedTime(new Date());
         user.setBirthday(DateUtil.stringToDate("1900-01-01"));
@@ -50,7 +51,6 @@ public class UsersServiceImpl implements UsersService {
         user.setUpdatedTime(new Date());
         user.setFace(USER_FACE);
         usersMapper.insertUsers(user);
-        user = this.setNull(user);
         return user;
     }
 
@@ -62,8 +62,6 @@ public class UsersServiceImpl implements UsersService {
             throw new Exception("用户名或密码错误！");
         }
         Users result = users.get(0);
-        result = this.setNull(result);
-
         return result;
     }
 
@@ -75,13 +73,5 @@ public class UsersServiceImpl implements UsersService {
         return  usersMapper.getUsersListByMap(param);
 
     }
-    private Users setNull(Users result){
-        result.setPassword(null);
-        result.setBirthday(null);
-        result.setCreatedTime(null);
-        result.setUpdatedTime(null);
-        result.setMobile(null);
-        result.setRealname(null);
-        return result;
-    }
+
 }

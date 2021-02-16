@@ -18,7 +18,7 @@ import java.util.List;
 
 @Api(value = "地址相关", tags = {"地址相关的api接口"})
 @RestController
-@RequestMapping("address")
+@RequestMapping("/address")
 public class AddressController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddressController.class);
 

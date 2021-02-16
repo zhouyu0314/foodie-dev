@@ -75,6 +75,7 @@ public class PassportController {
             }
 
             Users result = usersService.register(username, password);
+            result = this.setNull(result);
             CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密
             return IMOOCJSONResult.ok();
         } catch (Exception e) {
@@ -97,6 +98,7 @@ public class PassportController {
                 return IMOOCJSONResult.errorMsg("用户名或密码不能为空");
             }
             Users result = usersService.login(username, password);
+            result = this.setNull(result);
             CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密
             // TODO: 2021/2/9 生成用户token，存入redis会话
             // TODO: 2021/2/9 同步购物车数据
@@ -117,5 +119,15 @@ public class PassportController {
         // TODO: 2021/2/9  用户退出登录，需要清空购物车
         // TODO: 2021/2/9  分布式会话中需要清除用户数据
         return IMOOCJSONResult.ok();
+    }
+
+    private Users setNull(Users result){
+        result.setPassword(null);
+        result.setBirthday(null);
+        result.setCreatedTime(null);
+        result.setUpdatedTime(null);
+        result.setMobile(null);
+        result.setRealname(null);
+        return result;
     }
 }

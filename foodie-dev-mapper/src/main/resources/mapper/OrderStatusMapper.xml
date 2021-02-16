@@ -16,8 +16,8 @@
                 comment_time as commentTime
         from order_status
         <trim prefix="where" prefixOverrides="and | or">
-            <if test="id != null">
-                and id=#{id}
+            <if test="orderId != null">
+                and order_id=#{orderId}
             </if>
         </trim>
     </select>
@@ -117,29 +117,26 @@
 
     <update id="updateOrderStatus" parameterType="com.zy.pojo.OrderStatus">
         update order_status
-        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                        <if test="orderId != null and orderId!=''">
-                            order_id=#{orderId},
-                        </if>
+        <trim prefix="set" suffixOverrides="," suffix="where order_id=#{orderId}">
                         <if test="orderStatus != null and orderStatus!=''">
                             order_status=#{orderStatus},
                         </if>
-                        <if test="createdTime != null and createdTime!=''">
+                        <if test="createdTime != null">
                             created_time=#{createdTime},
                         </if>
-                        <if test="payTime != null and payTime!=''">
+                        <if test="payTime != null">
                             pay_time=#{payTime},
                         </if>
-                        <if test="deliverTime != null and deliverTime!=''">
+                        <if test="deliverTime != null">
                             deliver_time=#{deliverTime},
                         </if>
-                        <if test="successTime != null and successTime!=''">
+                        <if test="successTime != null">
                             success_time=#{successTime},
                         </if>
-                        <if test="closeTime != null and closeTime!=''">
+                        <if test="closeTime != null">
                             close_time=#{closeTime},
                         </if>
-                        <if test="commentTime != null and commentTime!=''">
+                        <if test="commentTime != null">
                             comment_time=#{commentTime}
                         </if>
         </trim>

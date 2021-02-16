@@ -10,7 +10,7 @@ public interface OrderService {
      *
      * @param submitOrderBO
      */
-    public OrderVO createOrder(SubmitOrderBO submitOrderBO) throws Exception;
+    OrderVO createOrder(SubmitOrderBO submitOrderBO) throws Exception;
 
     /**
      * 修改订单状态
@@ -18,7 +18,7 @@ public interface OrderService {
      * @param orderId
      * @param orderStatus
      */
-    public void updateOrderStatus(String orderId, Integer orderStatus) throws Exception;
+    void updateOrderStatus(String orderId, Integer orderStatus) throws Exception;
 
     /**
      * 查询订单状态
@@ -26,11 +26,14 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    public OrderStatus queryOrderStatusInfo(String orderId) throws Exception;
+    OrderStatus queryOrderStatusInfo(String orderId) throws Exception;
 
     /**
      * 关闭超时未支付订单
      */
     public void closeOrder() throws Exception;
+
+
+
 
 }

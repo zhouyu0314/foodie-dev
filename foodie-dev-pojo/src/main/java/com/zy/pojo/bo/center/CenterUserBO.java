@@ -18,8 +18,9 @@ public class CenterUserBO {
     private String confirmPassword;
 
 
-    @NotBlank(message = "用户昵称不能为空")
-    @Length(max = 12, message = "用户昵称不能超过12位")
+    //使用spring自带的Hibernate验证 如果发生错误提示message里面的小修
+    @NotBlank(message = "用户昵称不能为空")//不可为空
+    @Length(max = 12, message = "用户昵称不能超过12位")//如果超过12 报错相应的message
     @ApiModelProperty(value="用户昵称", name="nickname", example="杰森", required = false)
     private String nickname;
 
@@ -31,13 +32,13 @@ public class CenterUserBO {
     @ApiModelProperty(value="手机号", name="mobile", example="13999999999", required = false)
     private String mobile;
 
-    @Email
+    @Email//开启验证，具体规则后端已提供
     @ApiModelProperty(value="邮箱地址", name="email", example="imooc@imooc.com", required = false)
     private String email;
 
-    @Min(value = 0, message = "性别选择不正确")
-    @Max(value = 2, message = "性别选择不正确")
-    @ApiModelProperty(value="性别", name="sex", example="0:女 1:男 2:保密", required = false)
+    @Min(value = 1, message = "性别选择不正确")
+    @Max(value = 3, message = "性别选择不正确")
+    @ApiModelProperty(value="性别", name="sex", example=" 1:男 2:女 3:保密", required = false)
     private Integer sex;
     @ApiModelProperty(value="生日", name="birthday", example="1900-01-01", required = false)
     private Date birthday;
