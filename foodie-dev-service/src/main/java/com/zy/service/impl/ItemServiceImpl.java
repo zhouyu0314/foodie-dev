@@ -1,7 +1,6 @@
 package com.zy.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.zy.enums.CommentLevel;
 import com.zy.mapper.*;
 import com.zy.pojo.Items;
@@ -13,6 +12,7 @@ import com.zy.pojo.vo.ItemCommentVO;
 import com.zy.pojo.vo.SearchItemsVO;
 import com.zy.pojo.vo.ShopcartVO;
 import com.zy.service.ItemService;
+import com.zy.service.base.BaseServiceImpl;
 import com.zy.utils.DesensitizationUtil;
 import com.zy.utils.PagedGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 @Service
-public class ItemServiceImpl implements ItemService {
+public class ItemServiceImpl extends BaseServiceImpl implements ItemService {
     @Autowired(required = false)
     private ItemsMapper itemsMapper;
 
@@ -182,13 +182,4 @@ public class ItemServiceImpl implements ItemService {
         return itemsCommentsMapper.getItemsCommentsCountByMap(param);
     }
 
-    private PagedGridResult setterPagedGrid(List<?> list, Integer page) {
-        PageInfo<?> pageList = new PageInfo<>(list);
-        PagedGridResult grid = new PagedGridResult();
-        grid.setPage(page);
-        grid.setRows(list);
-        grid.setTotal(pageList.getPages());
-        grid.setRecords(pageList.getTotal());
-        return grid;
-    }
 }

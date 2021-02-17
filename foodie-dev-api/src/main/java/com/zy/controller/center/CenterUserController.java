@@ -65,7 +65,6 @@ public class CenterUserController extends BaseController {
             // TODO: 2021/2/16 后续增加token 整合到redis 分布式会话 
             return IMOOCJSONResult.ok();
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("修改用户信息失败！");
         }
@@ -83,7 +82,7 @@ public class CenterUserController extends BaseController {
         //String fileSpace = IMAGE_USER_FACE_LOCATION;
         String fileSpace = fileUpload.getImageUserFaceLocation();
         //在路径上为每一个用户增加一个userId，用于区分不同用户上传
-        String uploadPathPrefix = File.separator + userId + File.separator;
+        String uploadPathPrefix = "/" + userId + "/";
         FileOutputStream fileOutputStream = null;
         InputStream inputStream = null;
         try {
@@ -96,6 +95,12 @@ public class CenterUserController extends BaseController {
                     String[] fileNameArr = fileName.split("\\.");
                     //获取后缀
                     String suffix = fileNameArr[fileNameArr.length - 1];
+                    //判断后缀
+                    if (!suffix.equalsIgnoreCase("png") &&
+                            !suffix.equalsIgnoreCase("jpg") &&
+                            !suffix.equalsIgnoreCase("jpeg")) {
+                        return IMOOCJSONResult.errorMsg("图片格式不正确！");
+                    }
                     //文件名称重组(覆盖式，若要增量式，则需要不重名)
                     String newFileName = "face-" + userId + "-" + System.currentTimeMillis() + "." + suffix;
 
@@ -114,7 +119,14 @@ public class CenterUserController extends BaseController {
                     inputStream = file.getInputStream();
                     //将输入流中的信息拷贝到输入流
                     IOUtils.copy(inputStream, fileOutputStream);
-                    return IMOOCJSONResult.ok();
+                    //更新用户头像到数据库
+                    Users result = centerUserService.updateUserFace(userId, fileUpload.getImageServerUrl() + uploadPathPrefix + newFileName);
+                    result = this.setNull(result);
+
+                    //更新cookie
+                    CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密);
+                    // TODO: 2021/2/16 后续增加token 整合到redis 分布式会话
+                    return IMOOCJSONResult.ok(result);
                 } else {
                     return IMOOCJSONResult.errorMsg("上传文件的名字不可为空！");
                 }
@@ -122,7 +134,6 @@ public class CenterUserController extends BaseController {
                 return IMOOCJSONResult.errorMsg("上传文件不能为空！");
             }
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("头像上传异常！");
         } finally {
@@ -132,7 +143,7 @@ public class CenterUserController extends BaseController {
                     fileOutputStream.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage());
             }
         }
     }

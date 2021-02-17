@@ -1,9 +1,11 @@
 package com.zy.mapper;
 import com.zy.pojo.Orders;
+import com.zy.pojo.vo.MyOrdersVO;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
-import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface OrdersMapper {
@@ -17,6 +19,8 @@ public interface OrdersMapper {
 	public Integer insertOrders(Orders orders)throws Exception;
 
 	public Integer updateOrders(Orders orders)throws Exception;
+
+	List<MyOrdersVO> queryMyOrders(Map<String,Object> param)throws Exception;
 
 
 }

@@ -5,10 +5,12 @@ com\zy\resource\FileUpload.class
 com\zy\controller\PassportController.class
 com\zy\controller\center\CenterUserController.class
 com\zy\controller\center\CenterController.class
+com\zy\exception\CustomExceptionHandler.class
 META-INF\spring-configuration-metadata.json
 com\zy\controller\HelloController.class
 com\zy\controller\OrderController.class
 com\zy\controller\ShopCartController.class
+com\zy\controller\center\MyOrdersController.class
 com\zy\Application.class
 com\zy\config\Swagger2.class
 com\zy\controller\BaseController.class

@@ -29,7 +29,6 @@ public class CenterController {
             Users users = centerUserService.queryUserInfo(userId);
             return IMOOCJSONResult.ok(users);
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("用户信息查询异常");
         }

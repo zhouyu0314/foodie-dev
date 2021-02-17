@@ -51,7 +51,6 @@ public class ItemController extends BaseController {
             }
             return IMOOCJSONResult.ok(itemInfoVO);
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("服务异常！");
         }
@@ -67,7 +66,6 @@ public class ItemController extends BaseController {
             CommentLevelCountsVO commentLevelCountsVO = itemService.queryCommentCounts(itemId);
             return IMOOCJSONResult.ok(commentLevelCountsVO);
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("服务异常！");
         }
@@ -92,7 +90,6 @@ public class ItemController extends BaseController {
             PagedGridResult result = itemService.queryPagedComments(itemId, level, page, pageSize);
             return IMOOCJSONResult.ok(result);
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("服务异常！");
         }
@@ -119,7 +116,6 @@ public class ItemController extends BaseController {
             PagedGridResult result = itemService.searchItems(keywords, sort, page, pageSize);
             return IMOOCJSONResult.ok(result);
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("服务异常！");
         }
@@ -146,7 +142,6 @@ public class ItemController extends BaseController {
             PagedGridResult result = itemService.searchItemsByThirdCat(catId, sort, page, pageSize);
             return IMOOCJSONResult.ok(result);
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("服务异常！");
         }
@@ -164,7 +159,6 @@ public class ItemController extends BaseController {
             List<ShopcartVO> list = itemService.queryItemsBySpecIds(itemSpecIds);
             return IMOOCJSONResult.ok(list);
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("服务异常！");
         }

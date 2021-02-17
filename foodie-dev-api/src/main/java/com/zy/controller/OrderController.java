@@ -73,7 +73,6 @@ public class OrderController extends BaseController {
             }
             return IMOOCJSONResult.ok(orderId);
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg(e.getMessage());
         }
@@ -86,7 +85,6 @@ public class OrderController extends BaseController {
             orderService.updateOrderStatus(merchantOrderId, OrderStatusEnum.WAIT_DELIVER.type);
             return HttpStatus.OK.value();
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return HttpStatus.INTERNAL_SERVER_ERROR.value();
         }
@@ -99,7 +97,6 @@ public class OrderController extends BaseController {
             OrderStatus orderStatus = orderService.queryOrderStatusInfo(orderId);
             return IMOOCJSONResult.ok(orderStatus);
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg(e.getMessage());
         }

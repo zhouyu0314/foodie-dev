@@ -23,4 +23,7 @@ public interface CenterUserService {
      * @throws Exception
      */
     Users updateUserInfo(String userId, CenterUserBO centerUserBO) throws Exception;
+
+
+    Users updateUserFace(String userId, String faceUrl) throws Exception;
 }

@@ -89,7 +89,6 @@ public class AddressServiceImpl implements AddressService {
                 try {
                     userAddressMapper.updateUserAddress(node);
                 } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
         });

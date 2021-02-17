@@ -35,4 +35,15 @@ public class CenterUserServiceImpl implements CenterUserService {
         usersMapper.updateUsers(user);
         return this.queryUserInfo(userId);
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public Users updateUserFace(String userId, String faceUrl) throws Exception {
+        Users user = new Users();
+        user.setId(userId);
+        user.setFace(faceUrl);
+        user.setUpdatedTime(new Date());
+        usersMapper.updateUsers(user);
+        return this.queryUserInfo(userId);
+    }
 }

@@ -93,7 +93,6 @@ public class IndexController {
             List<NewItemsVO> sixNewItems = categoryService.getSixNewItemsLazy(rootCatId);
             return IMOOCJSONResult.ok(sixNewItems);
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("服务异常！");
         }

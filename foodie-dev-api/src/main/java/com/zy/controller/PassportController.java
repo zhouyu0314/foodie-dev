@@ -43,7 +43,7 @@ public class PassportController {
 
             return IMOOCJSONResult.ok();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("服务异常！");
         }
 
@@ -79,7 +79,7 @@ public class PassportController {
             CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密
             return IMOOCJSONResult.ok();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("服务异常！");
         }
 
@@ -104,7 +104,7 @@ public class PassportController {
             // TODO: 2021/2/9 同步购物车数据
             return IMOOCJSONResult.ok(result);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg(e.getMessage());
         }
 

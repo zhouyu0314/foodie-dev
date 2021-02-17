@@ -33,7 +33,6 @@ public class OrderJob {
         try {
             orderService.closeOrder();
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error(e.getMessage());
         }
     }

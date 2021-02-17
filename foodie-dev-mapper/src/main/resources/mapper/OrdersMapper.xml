@@ -6,21 +6,21 @@
 
     <select id="getOrdersById" resultType="com.zy.pojo.Orders">
         select
-                id as id,
-                user_id as userId,
-                receiver_name as receiverName,
-                receiver_mobile as receiverMobile,
-                receiver_address as receiverAddress,
-                total_amount as totalAmount,
-                real_pay_amount as realPayAmount,
-                post_amount as postAmount,
-                pay_method as payMethod,
-                left_msg as leftMsg,
-                extand as extand,
-                is_comment as isComment,
-                is_delete as isDelete,
-                created_time as createdTime,
-                updated_time as updatedTime
+        id as id,
+        user_id as userId,
+        receiver_name as receiverName,
+        receiver_mobile as receiverMobile,
+        receiver_address as receiverAddress,
+        total_amount as totalAmount,
+        real_pay_amount as realPayAmount,
+        post_amount as postAmount,
+        pay_method as payMethod,
+        left_msg as leftMsg,
+        extand as extand,
+        is_comment as isComment,
+        is_delete as isDelete,
+        created_time as createdTime,
+        updated_time as updatedTime
         from orders
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -31,205 +31,296 @@
 
     <select id="getOrdersListByMap" resultType="com.zy.pojo.Orders" parameterType="java.util.Map">
         select
-                id as id,
-                user_id as userId,
-                receiver_name as receiverName,
-                receiver_mobile as receiverMobile,
-                receiver_address as receiverAddress,
-                total_amount as totalAmount,
-                real_pay_amount as realPayAmount,
-                post_amount as postAmount,
-                pay_method as payMethod,
-                left_msg as leftMsg,
-                extand as extand,
-                is_comment as isComment,
-                is_delete as isDelete,
-                created_time as createdTime,
-                updated_time as updatedTime
+        id as id,
+        user_id as userId,
+        receiver_name as receiverName,
+        receiver_mobile as receiverMobile,
+        receiver_address as receiverAddress,
+        total_amount as totalAmount,
+        real_pay_amount as realPayAmount,
+        post_amount as postAmount,
+        pay_method as payMethod,
+        left_msg as leftMsg,
+        extand as extand,
+        is_comment as isComment,
+        is_delete as isDelete,
+        created_time as createdTime,
+        updated_time as updatedTime
         from orders
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="id != null and id!=''">
-                    and id=#{id}
-                </if>
-                <if test="userId != null and userId!=''">
-                    and user_id=#{userId}
-                </if>
-                <if test="receiverName != null and receiverName!=''">
-                    and receiver_name=#{receiverName}
-                </if>
-                <if test="receiverMobile != null and receiverMobile!=''">
-                    and receiver_mobile=#{receiverMobile}
-                </if>
-                <if test="receiverAddress != null and receiverAddress!=''">
-                    and receiver_address=#{receiverAddress}
-                </if>
-                <if test="totalAmount != null and totalAmount!=''">
-                    and total_amount=#{totalAmount}
-                </if>
-                <if test="realPayAmount != null and realPayAmount!=''">
-                    and real_pay_amount=#{realPayAmount}
-                </if>
-                <if test="postAmount != null and postAmount!=''">
-                    and post_amount=#{postAmount}
-                </if>
-                <if test="payMethod != null and payMethod!=''">
-                    and pay_method=#{payMethod}
-                </if>
-                <if test="leftMsg != null and leftMsg!=''">
-                    and left_msg=#{leftMsg}
-                </if>
-                <if test="extand != null and extand!=''">
-                    and extand=#{extand}
-                </if>
-                <if test="isComment != null and isComment!=''">
-                    and is_comment=#{isComment}
-                </if>
-                <if test="isDelete != null and isDelete!=''">
-                    and is_delete=#{isDelete}
-                </if>
-                <if test="createdTime != null ">
-                    and created_time=#{createdTime}
-                </if>
-                <if test="updatedTime != null ">
-                    and updated_time=#{updatedTime}
-                </if>
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="userId != null and userId!=''">
+                and user_id=#{userId}
+            </if>
+            <if test="receiverName != null and receiverName!=''">
+                and receiver_name=#{receiverName}
+            </if>
+            <if test="receiverMobile != null and receiverMobile!=''">
+                and receiver_mobile=#{receiverMobile}
+            </if>
+            <if test="receiverAddress != null and receiverAddress!=''">
+                and receiver_address=#{receiverAddress}
+            </if>
+            <if test="totalAmount != null and totalAmount!=''">
+                and total_amount=#{totalAmount}
+            </if>
+            <if test="realPayAmount != null and realPayAmount!=''">
+                and real_pay_amount=#{realPayAmount}
+            </if>
+            <if test="postAmount != null and postAmount!=''">
+                and post_amount=#{postAmount}
+            </if>
+            <if test="payMethod != null and payMethod!=''">
+                and pay_method=#{payMethod}
+            </if>
+            <if test="leftMsg != null and leftMsg!=''">
+                and left_msg=#{leftMsg}
+            </if>
+            <if test="extand != null and extand!=''">
+                and extand=#{extand}
+            </if>
+            <if test="isComment != null and isComment!=''">
+                and is_comment=#{isComment}
+            </if>
+            <if test="isDelete != null and isDelete!=''">
+                and is_delete=#{isDelete}
+            </if>
+            <if test="createdTime != null ">
+                and created_time=#{createdTime}
+            </if>
+            <if test="updatedTime != null ">
+                and updated_time=#{updatedTime}
+            </if>
         </trim>
         <if test="beginPos != null and pageSize != null ">
             limit #{beginPos},#{pageSize}
         </if>
     </select>
 
-    <select id="getOrdersCountByMap" resultType="Integer"  parameterType="java.util.Map">
+    <select id="getOrdersCountByMap" resultType="Integer" parameterType="java.util.Map">
         select count(*) from orders
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="id != null and id!=''">
-                    and id=#{id}
-                </if>
-                <if test="userId != null and userId!=''">
-                    and user_id=#{userId}
-                </if>
-                <if test="receiverName != null and receiverName!=''">
-                    and receiver_name=#{receiverName}
-                </if>
-                <if test="receiverMobile != null and receiverMobile!=''">
-                    and receiver_mobile=#{receiverMobile}
-                </if>
-                <if test="receiverAddress != null and receiverAddress!=''">
-                    and receiver_address=#{receiverAddress}
-                </if>
-                <if test="totalAmount != null and totalAmount!=''">
-                    and total_amount=#{totalAmount}
-                </if>
-                <if test="realPayAmount != null and realPayAmount!=''">
-                    and real_pay_amount=#{realPayAmount}
-                </if>
-                <if test="postAmount != null and postAmount!=''">
-                    and post_amount=#{postAmount}
-                </if>
-                <if test="payMethod != null and payMethod!=''">
-                    and pay_method=#{payMethod}
-                </if>
-                <if test="leftMsg != null and leftMsg!=''">
-                    and left_msg=#{leftMsg}
-                </if>
-                <if test="extand != null and extand!=''">
-                    and extand=#{extand}
-                </if>
-                <if test="isComment != null and isComment!=''">
-                    and is_comment=#{isComment}
-                </if>
-                <if test="isDelete != null and isDelete!=''">
-                    and is_delete=#{isDelete}
-                </if>
-                <if test="createdTime != null and createdTime!=''">
-                    and created_time=#{createdTime}
-                </if>
-                <if test="updatedTime != null and updatedTime!=''">
-                    and updated_time=#{updatedTime}
-                </if>
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="userId != null and userId!=''">
+                and user_id=#{userId}
+            </if>
+            <if test="receiverName != null and receiverName!=''">
+                and receiver_name=#{receiverName}
+            </if>
+            <if test="receiverMobile != null and receiverMobile!=''">
+                and receiver_mobile=#{receiverMobile}
+            </if>
+            <if test="receiverAddress != null and receiverAddress!=''">
+                and receiver_address=#{receiverAddress}
+            </if>
+            <if test="totalAmount != null and totalAmount!=''">
+                and total_amount=#{totalAmount}
+            </if>
+            <if test="realPayAmount != null and realPayAmount!=''">
+                and real_pay_amount=#{realPayAmount}
+            </if>
+            <if test="postAmount != null and postAmount!=''">
+                and post_amount=#{postAmount}
+            </if>
+            <if test="payMethod != null and payMethod!=''">
+                and pay_method=#{payMethod}
+            </if>
+            <if test="leftMsg != null and leftMsg!=''">
+                and left_msg=#{leftMsg}
+            </if>
+            <if test="extand != null and extand!=''">
+                and extand=#{extand}
+            </if>
+            <if test="isComment != null and isComment!=''">
+                and is_comment=#{isComment}
+            </if>
+            <if test="isDelete != null and isDelete!=''">
+                and is_delete=#{isDelete}
+            </if>
+            <if test="createdTime != null and createdTime!=''">
+                and created_time=#{createdTime}
+            </if>
+            <if test="updatedTime != null and updatedTime!=''">
+                and updated_time=#{updatedTime}
+            </if>
         </trim>
     </select>
 
+
+    <resultMap id="MyOrdersVO" type="com.zy.pojo.vo.MyOrdersVO">
+        <id property="orderId" column="orderId"/>
+        <result property="createdTime" column="createdTime"/>
+        <result property="payMethod" column="payMethod"/>
+        <result property="realPayAmount" column="realPayAmount"/>
+        <result property="postAmount" column="postAmount"/>
+        <result property="isComment" column="isComment"/>
+        <result property="orderStatus" column="orderStatus"/>
+        <!--
+          collection 标签：用于定义关联的list集合类型的封装规则
+          property：对应三级分类的list属性名
+          ofType：集合的类型，三级分类的vo
+        -->
+        <!--
+        由于前端需要展示10条订单信息，但是我们从数据库查询的会精确到订单里的每一条商品，所以分页是以商品为准而不是以订单为准
+        此处select相当于是子查询，在主SQL语句中查询出10条然后依据查询的10条信息里面的 column="orderId" 作为参数 传到
+        getSubItems这个SQL里面
+        select="getSubItems" column="orderId" 新增
+        -->
+        <collection property="subOrderItemList"
+                    select="getSubItems"
+                    column="orderId"
+                    ofType="com.zy.pojo.vo.MySubOrderItemVO">
+            <result property="itemId" column="itemId"/>
+            <result property="itemImg" column="itemImg"/>
+            <result property="itemName" column="itemName"/>
+            <result property="itemSpecName" column="itemSpecName"/>
+            <result property="buyCounts" column="buyCounts"/>
+            <result property="price" column="price"/>
+        </collection>
+    </resultMap>
+    <select id="queryMyOrders" resultMap="MyOrdersVO" parameterType="java.util.Map">
+        SELECT
+        od.id AS orderId,
+        od.created_time AS createdTime,
+        od.pay_method AS payMethod,
+        od.real_pay_amount AS realPayAmount,
+        od.post_amount AS postAmount,
+        os.order_status AS orderStatus
+        FROM
+        orders AS od
+        LEFT JOIN order_status AS os ON od.id = os.order_id
+        WHERE
+        od.user_id = #{userId}
+        AND od.is_delete =- 1
+        <if test="orderStatus !=null and orderStatus!=''">
+            AND os.order_status = #{orderStatus}
+        </if>
+        ORDER BY
+        od.updated_time ASC
+    </select>
+
+    <select id="getSubItems" parameterType="java.lang.String" resultType="com.zy.pojo.vo.MySubOrderItemVO">
+        select oi.item_id        AS itemId,
+               oi.item_name      AS itemName,
+               oi.item_img       AS itemImg,
+               oi.item_spec_id   AS itemSpecId,
+               oi.item_spec_name AS itemSpecName,
+               oi.buy_counts     AS buyCounts,
+               oi.price          AS price
+        from order_items AS oi
+        where oi.order_id = #{orderId}
+    </select>
+    <!--    <select id="queryMyOrders" resultMap="MyOrdersVO" parameterType="java.util.Map">-->
+    <!--        SELECT-->
+    <!--        od.id AS orderId,-->
+    <!--        od.created_time AS createdTime,-->
+    <!--        od.pay_method AS payMethod,-->
+    <!--        od.real_pay_amount AS realPayAmount,-->
+    <!--        od.post_amount AS postAmount,-->
+    <!--        os.order_status AS orderStatus,-->
+    <!--        oi.item_id AS itemId,-->
+    <!--        oi.item_name AS itemName,-->
+    <!--        oi.item_img AS itemImg,-->
+    <!--        oi.item_spec_id AS itemSpecId,-->
+    <!--        oi.item_spec_name itemSpecName,-->
+    <!--        oi.buy_counts AS buyCounts,-->
+    <!--        oi.price AS price-->
+    <!--        FROM-->
+    <!--        orders AS od-->
+    <!--        LEFT JOIN order_status AS os ON od.id = os.order_id-->
+    <!--        LEFT JOIN order_items AS oi ON od.id = oi.order_id-->
+    <!--        WHERE-->
+    <!--        od.user_id = #{userId}-->
+    <!--        AND od.is_delete =- 1-->
+    <!--        <if test="orderStatus !=null and orderStatus!=''">-->
+    <!--            AND os.order_status = #{orderStatus}-->
+    <!--        </if>-->
+    <!--        ORDER BY-->
+    <!--        od.updated_time ASC-->
+    <!--    </select>-->
+
     <insert id="insertOrders" parameterType="com.zy.pojo.Orders">
-        insert into orders(
-        id,
-                        user_id,
-                        receiver_name,
-                        receiver_mobile,
-                        receiver_address,
-                        total_amount,
-                        real_pay_amount,
-                        post_amount,
-                        pay_method,
-                        left_msg,
-                        extand,
-                        is_comment,
-                        is_delete,
-                        created_time,
-                        updated_time)
-        values(
-                     #{id},
-                     #{userId},
-                     #{receiverName},
-                     #{receiverMobile},
-                     #{receiverAddress},
-                     #{totalAmount},
-                     #{realPayAmount},
-                     #{postAmount},
-                     #{payMethod},
-                     #{leftMsg},
-                     #{extand},
-                     #{isComment},
-                     #{isDelete},
-                     #{createdTime},
-                    #{updatedTime})
+        insert into orders(id,
+                           user_id,
+                           receiver_name,
+                           receiver_mobile,
+                           receiver_address,
+                           total_amount,
+                           real_pay_amount,
+                           post_amount,
+                           pay_method,
+                           left_msg,
+                           extand,
+                           is_comment,
+                           is_delete,
+                           created_time,
+                           updated_time)
+        values (#{id},
+                #{userId},
+                #{receiverName},
+                #{receiverMobile},
+                #{receiverAddress},
+                #{totalAmount},
+                #{realPayAmount},
+                #{postAmount},
+                #{payMethod},
+                #{leftMsg},
+                #{extand},
+                #{isComment},
+                #{isDelete},
+                #{createdTime},
+                #{updatedTime})
     </insert>
 
     <update id="updateOrders" parameterType="com.zy.pojo.Orders">
         update orders
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                        <if test="userId != null and userId!=''">
-                            user_id=#{userId},
-                        </if>
-                        <if test="receiverName != null and receiverName!=''">
-                            receiver_name=#{receiverName},
-                        </if>
-                        <if test="receiverMobile != null and receiverMobile!=''">
-                            receiver_mobile=#{receiverMobile},
-                        </if>
-                        <if test="receiverAddress != null and receiverAddress!=''">
-                            receiver_address=#{receiverAddress},
-                        </if>
-                        <if test="totalAmount != null and totalAmount!=''">
-                            total_amount=#{totalAmount},
-                        </if>
-                        <if test="realPayAmount != null and realPayAmount!=''">
-                            real_pay_amount=#{realPayAmount},
-                        </if>
-                        <if test="postAmount != null and postAmount!=''">
-                            post_amount=#{postAmount},
-                        </if>
-                        <if test="payMethod != null and payMethod!=''">
-                            pay_method=#{payMethod},
-                        </if>
-                        <if test="leftMsg != null and leftMsg!=''">
-                            left_msg=#{leftMsg},
-                        </if>
-                        <if test="extand != null and extand!=''">
-                            extand=#{extand},
-                        </if>
-                        <if test="isComment != null and isComment!=''">
-                            is_comment=#{isComment},
-                        </if>
-                        <if test="isDelete != null and isDelete!=''">
-                            is_delete=#{isDelete},
-                        </if>
-                        <if test="createdTime != null ">
-                            created_time=#{createdTime},
-                        </if>
-                        <if test="updatedTime != null ">
-                            updated_time=#{updatedTime}
-                        </if>
+            <if test="userId != null and userId!=''">
+                user_id=#{userId},
+            </if>
+            <if test="receiverName != null and receiverName!=''">
+                receiver_name=#{receiverName},
+            </if>
+            <if test="receiverMobile != null and receiverMobile!=''">
+                receiver_mobile=#{receiverMobile},
+            </if>
+            <if test="receiverAddress != null and receiverAddress!=''">
+                receiver_address=#{receiverAddress},
+            </if>
+            <if test="totalAmount != null and totalAmount!=''">
+                total_amount=#{totalAmount},
+            </if>
+            <if test="realPayAmount != null and realPayAmount!=''">
+                real_pay_amount=#{realPayAmount},
+            </if>
+            <if test="postAmount != null and postAmount!=''">
+                post_amount=#{postAmount},
+            </if>
+            <if test="payMethod != null and payMethod!=''">
+                pay_method=#{payMethod},
+            </if>
+            <if test="leftMsg != null and leftMsg!=''">
+                left_msg=#{leftMsg},
+            </if>
+            <if test="extand != null and extand!=''">
+                extand=#{extand},
+            </if>
+            <if test="isComment != null and isComment!=''">
+                is_comment=#{isComment},
+            </if>
+            <if test="isDelete != null and isDelete!=''">
+                is_delete=#{isDelete},
+            </if>
+            <if test="createdTime != null ">
+                created_time=#{createdTime},
+            </if>
+            <if test="updatedTime != null ">
+                updated_time=#{updatedTime}
+            </if>
         </trim>
     </update>
 </mapper>
