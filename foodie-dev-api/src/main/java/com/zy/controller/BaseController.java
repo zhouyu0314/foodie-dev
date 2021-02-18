@@ -1,6 +1,10 @@
 package com.zy.controller;
 
 
+import com.zy.pojo.Orders;
+import com.zy.service.center.MyOrdersService;
+import com.zy.utils.IMOOCJSONResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -27,18 +31,18 @@ public class BaseController {
 //    public static final String IMAGE_USER_FACE_LOCATION = "C:/workspaces/images/foodie/faces";
 
 //
-//    @Autowired
-//    public MyOrdersService myOrdersService;
-//
-//    /**
-//     * 用于验证用户和订单是否有关联关系，避免非法用户调用
-//     * @return
-//     */
-//    public IMOOCJSONResult checkUserOrder(String userId, String orderId) {
-//        Orders order = myOrdersService.queryMyOrder(userId, orderId);
-//        if (order == null) {
-//            return IMOOCJSONResult.errorMsg("订单不存在！");
-//        }
-//        return IMOOCJSONResult.ok(order);
-//    }
+    @Autowired
+    private MyOrdersService myOrdersService;
+    /**
+     * 用于验证用户和订单是否有关联关系，避免用户恶意调用
+     *
+     * @return
+     */
+    protected IMOOCJSONResult checkOrder(String userId, String orderId) throws Exception {
+        Orders order = myOrdersService.queryMyOrder(userId, orderId);
+        if (order == null) {
+            return IMOOCJSONResult.errorMsg("订单不存在！");
+        }
+        return IMOOCJSONResult.ok(order);
+    }
 }

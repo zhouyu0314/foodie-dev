@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 用户中心，我的订单列表VO
+ * 用户中心，我的订单列表VOisComment
  */
 public class MyOrdersVO implements Serializable {
 

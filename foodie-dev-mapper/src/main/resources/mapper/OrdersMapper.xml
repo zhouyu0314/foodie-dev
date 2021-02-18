@@ -189,6 +189,7 @@
         od.pay_method AS payMethod,
         od.real_pay_amount AS realPayAmount,
         od.post_amount AS postAmount,
+        od.is_comment AS isComment,
         os.order_status AS orderStatus
         FROM
         orders AS od
