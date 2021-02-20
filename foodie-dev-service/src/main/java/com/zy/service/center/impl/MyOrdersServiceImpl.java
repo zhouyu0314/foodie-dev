@@ -8,6 +8,7 @@ import com.zy.mapper.OrdersMapper;
 import com.zy.pojo.OrderStatus;
 import com.zy.pojo.Orders;
 import com.zy.pojo.vo.MyOrdersVO;
+import com.zy.pojo.vo.OrderStatusCountsVO;
 import com.zy.service.base.BaseServiceImpl;
 import com.zy.service.center.MyOrdersService;
 import com.zy.utils.PagedGridResult;
@@ -97,6 +98,46 @@ public class MyOrdersServiceImpl extends BaseServiceImpl implements MyOrdersServ
             return false;
         }
         return true;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public OrderStatusCountsVO getMyOrderStatusCounts(String userId) throws Exception {
+        Map<String, Object> param = new HashMap<>();
+
+        param.put("userId", userId);
+        param.put("orderStatus", OrderStatusEnum.WAIT_PAY.type);
+        int waitPayCounts = ordersMapper.getMyOrderStatusCounts(param);
+
+        param.put("orderStatus", OrderStatusEnum.WAIT_DELIVER.type);
+        int waitDeliverCounts = ordersMapper.getMyOrderStatusCounts(param);
+
+        param.put("orderStatus", OrderStatusEnum.WAIT_RECEIVE.type);
+        int waitReceiveCounts = ordersMapper.getMyOrderStatusCounts(param);
+
+        param.put("orderStatus", OrderStatusEnum.SUCCESS.type);
+        param.put("isComment", YesOrNo.NO.type);
+        int waitSuccessCounts = ordersMapper.getMyOrderStatusCounts(param);
+
+        return new OrderStatusCountsVO(waitPayCounts,
+                waitDeliverCounts,
+                waitReceiveCounts,
+                waitSuccessCounts);
+
+
+    }
+
+    @Transactional(propagation=Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult getOrdersTrend(String userId, Integer page, Integer pageSize) throws Exception{
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+
+        PageHelper.startPage(page, pageSize);
+        List<OrderStatus> list = ordersMapper.getMyOrderTrend(map);
+
+        return setterPagedGrid(list, page);
     }
 
 
