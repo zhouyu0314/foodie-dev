@@ -127,32 +127,30 @@
     </select>
 
     <insert id="insertUsers" parameterType="com.zy.pojo.Users">
-        insert into users(
-        id,
-                        username,
-                        password,
-                        nickname,
-                        realname,
-                        face,
-                        mobile,
-                        email,
-                        sex,
-                        birthday,
-                        created_time,
-                        updated_time)
-        values(
-                     #{id},
-                     #{username},
-                     #{password},
-                     #{nickname},
-                     #{realname},
-                     #{face},
-                     #{mobile},
-                     #{email},
-                     #{sex},
-                     #{birthday},
-                     #{createdTime},
-                    #{updatedTime})
+        insert into users(id,
+                          username,
+                          password,
+                          nickname,
+                          realname,
+                          face,
+                          mobile,
+                          email,
+                          sex,
+                          birthday,
+                          created_time,
+                          updated_time)
+        values (#{id},
+                #{username},
+                #{password},
+                #{nickname},
+                #{realname},
+                #{face},
+                #{mobile},
+                #{email},
+                #{sex},
+                #{birthday},
+                #{createdTime},
+                #{updatedTime})
     </insert>
 
     <update id="updateUsers" parameterType="com.zy.pojo.Users">
@@ -193,4 +191,11 @@
             </if>
         </trim>
     </update>
+
+    <update id="updateUsersTest" parameterType="com.zy.pojo.Users">
+        update users
+        set nickname = 'asd123321'
+        where id = #{id}
+    </update>
+
 </mapper>

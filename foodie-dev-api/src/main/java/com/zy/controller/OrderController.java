@@ -6,6 +6,7 @@ import com.zy.pojo.OrderStatus;
 import com.zy.pojo.bo.SubmitOrderBO;
 import com.zy.pojo.vo.MerchantOrdersVO;
 import com.zy.pojo.vo.OrderVO;
+import com.zy.resource.Urls;
 import com.zy.service.OrderService;
 import com.zy.utils.IMOOCJSONResult;
 import io.swagger.annotations.Api;
@@ -24,6 +25,9 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/orders")
 public class OrderController extends BaseController {
+    @Autowired
+    Urls urls;
+
     @Autowired
     private OrderService orderService;
 
@@ -47,7 +51,7 @@ public class OrderController extends BaseController {
             OrderVO orderVO = orderService.createOrder(submitOrderBO);
             String orderId = orderVO.getOrderId();
             MerchantOrdersVO merchantOrdersVO = orderVO.getMerchantOrdersVO();
-            merchantOrdersVO.setReturnUrl(payReturnUrl);
+            merchantOrdersVO.setReturnUrl(urls.getPayReturnUrl());
             // 2. 创建订单以后，移除购物车中已结算（已提交）的商品
             /**
              * 1001
@@ -66,7 +70,7 @@ public class OrderController extends BaseController {
 
             HttpEntity<MerchantOrdersVO> entity = new HttpEntity<>(merchantOrdersVO,headers);
             //调用支付中心，支付中心会保存当前订单的信息然后返回200
-            ResponseEntity<IMOOCJSONResult> result = restTemplate.postForEntity(paymentUrl, entity, IMOOCJSONResult.class);
+            ResponseEntity<IMOOCJSONResult> result = restTemplate.postForEntity(urls.getPaymentUrl(), entity, IMOOCJSONResult.class);
             IMOOCJSONResult paymentResult = result.getBody();
             if (paymentResult.getStatus() != 200) {
                 return IMOOCJSONResult.errorMsg("支付中心顶大你创建失败，请练习管理员！");

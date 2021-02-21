@@ -19,6 +19,10 @@ public class CorsConfig {
         corsConfiguration.addAllowedOrigin("http://153.36.170.3:38080");
         corsConfiguration.addAllowedOrigin("http://153.36.170.3:38088");
 
+        corsConfiguration.addAllowedOrigin("http://153.36.170.3:48089");
+        corsConfiguration.addAllowedOrigin("http://153.36.170.3:48080");
+        corsConfiguration.addAllowedOrigin("http://153.36.170.3:48088");
+
         //设置是否放cookie信息
         corsConfiguration.setAllowCredentials(true);
 

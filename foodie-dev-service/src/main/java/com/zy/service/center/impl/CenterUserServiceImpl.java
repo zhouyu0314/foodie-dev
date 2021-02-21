@@ -32,11 +32,13 @@ public class CenterUserServiceImpl implements CenterUserService {
         BeanUtils.copyProperties(centerUserBO,user);
         user.setId(userId);
         user.setUpdatedTime(new Date());
+        usersMapper.updateUsersTest(user);//nickname = 'asd123321'
         usersMapper.updateUsers(user);
-        return this.queryUserInfo(userId);
+        //Users users = this.queryUserInfo(userId);
+        return user;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    //@Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Users updateUserFace(String userId, String faceUrl) throws Exception {
         Users user = new Users();
@@ -44,6 +46,7 @@ public class CenterUserServiceImpl implements CenterUserService {
         user.setFace(faceUrl);
         user.setUpdatedTime(new Date());
         usersMapper.updateUsers(user);
-        return this.queryUserInfo(userId);
+        Users users = this.queryUserInfo(userId);
+        return users;
     }
 }
