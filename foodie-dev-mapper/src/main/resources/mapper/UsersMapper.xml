@@ -192,10 +192,5 @@
         </trim>
     </update>
 
-    <update id="updateUsersTest" parameterType="com.zy.pojo.Users">
-        update users
-        set nickname = 'asd123321'
-        where id = #{id}
-    </update>
 
 </mapper>

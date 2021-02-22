@@ -18,7 +18,6 @@ public interface UsersMapper {
 	public Integer insertUsers(Users users)throws Exception;
 
 	public Integer updateUsers(Users users)throws Exception;
-	public Integer updateUsersTest(Users users)throws Exception;
 
 
 }
