@@ -5,7 +5,3 @@ spring:
   datasource: # 数据源的相关配置
     url: jdbc:mysql://192.168.2.112:3306/foodie-shop-prod?useUnicode=true&characterEncoding=UTF-8&autoReconnect
     password: ok
-
-mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #sql语句在控制台打印

@@ -15,13 +15,14 @@ public class CorsConfig {
     public CorsFilter corsFilter(){
         //1.添加cors配置信息
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://153.36.170.3:38089");
-        corsConfiguration.addAllowedOrigin("http://153.36.170.3:38080");
-        corsConfiguration.addAllowedOrigin("http://153.36.170.3:38088");
-
-        corsConfiguration.addAllowedOrigin("http://153.36.170.3:48089");
-        corsConfiguration.addAllowedOrigin("http://153.36.170.3:48080");
-        corsConfiguration.addAllowedOrigin("http://153.36.170.3:48088");
+//        corsConfiguration.addAllowedOrigin("http://153.36.170.3:38089");
+//        corsConfiguration.addAllowedOrigin("http://153.36.170.3:38080");
+//        corsConfiguration.addAllowedOrigin("http://153.36.170.3:38088");
+//
+//        corsConfiguration.addAllowedOrigin("http://153.36.170.3:48089");
+//        corsConfiguration.addAllowedOrigin("http://153.36.170.3:48080");
+//        corsConfiguration.addAllowedOrigin("http://153.36.170.3:48088");
+        corsConfiguration.addAllowedOrigin("*");
 
         //设置是否放cookie信息
         corsConfiguration.setAllowCredentials(true);
