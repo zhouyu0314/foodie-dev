@@ -2,6 +2,7 @@ package com.zy.controller;
 
 import com.zy.pojo.Users;
 import com.zy.pojo.bo.UserBO;
+import com.zy.resource.FileUpload;
 import com.zy.service.UsersService;
 import com.zy.utils.CookieUtils;
 import com.zy.utils.IMOOCJSONResult;
@@ -25,6 +26,9 @@ public class PassportController {
     private static final Logger LOGGER =  LoggerFactory.getLogger(PassportController.class);
     @Autowired
     private UsersService usersService;
+
+    @Autowired
+    private FileUpload fileUpload;
 
     @ApiOperation(value = "查询用户名是否存在", notes = "存在返回true；不存在返回false", httpMethod = "GET")
     @GetMapping("/usernameIsExist")
@@ -99,6 +103,7 @@ public class PassportController {
             }
             Users result = usersService.login(username, password);
             result = this.setNull(result);
+            result.setFace(fileUpload.getFtpHttpPath() + ":" + fileUpload.getFtpHttpPort() + result.getFace());
             CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密
             // TODO: 2021/2/9 生成用户token，存入redis会话
             // TODO: 2021/2/9 同步购物车数据

@@ -8,10 +8,10 @@ import com.zy.service.center.CenterUserService;
 import com.zy.utils.CookieUtils;
 import com.zy.utils.IMOOCJSONResult;
 import com.zy.utils.JsonUtils;
+import com.zy.utils.SFTPUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +39,7 @@ public class CenterUserController extends BaseController {
     private CenterUserService centerUserService;
     @Autowired
     private FileUpload fileUpload;
+
 
     @ApiOperation(value = "修改用户信息", notes = "修改用户信息", httpMethod = "POST")
     @PostMapping("/update")
@@ -78,14 +76,22 @@ public class CenterUserController extends BaseController {
                                               MultipartFile file,
                                       HttpServletRequest request,
                                       HttpServletResponse response) {
+
         //定义头像保存的地址
         //String fileSpace = IMAGE_USER_FACE_LOCATION;
         String fileSpace = fileUpload.getImageUserFaceLocation();
         //在路径上为每一个用户增加一个userId，用于区分不同用户上传
         String uploadPathPrefix = "/" + userId + "/";
-        FileOutputStream fileOutputStream = null;
+        //FileOutputStream fileOutputStream = null;
         InputStream inputStream = null;
+        SFTPUtil sftpUtil = null;
         try {
+            sftpUtil = new SFTPUtil(fileUpload.getFtpIp(), fileUpload.getSftpPort(),
+                    fileUpload.getSftpUsername(), fileUpload.getSftpPassword());
+
+            if (!sftpUtil.login()) {
+                return IMOOCJSONResult.errorMsg("FTP连接失败！");
+            }
             //开始文件上传
             if (file != null) {
                 //获得文件上传的文件原始名称
@@ -105,23 +111,25 @@ public class CenterUserController extends BaseController {
                     String newFileName = "face-" + userId + "-" + System.currentTimeMillis() + "." + suffix;
 
                     //上传的头像最终保存的位置  C:/workspaces/images/foodie/faces/userId/face-userId.png
-                    String finalFacePath = fileSpace + uploadPathPrefix + newFileName;
+                    String finalFacePath = fileSpace + uploadPathPrefix;
 
-                    File outFile = new File(finalFacePath);
-
-                    //C:/workspaces/images/foodie/faces/userId 不为空
-                    if (outFile.getParentFile() != null) {
-                        //吹昂见文件夹
-                        outFile.getParentFile().mkdirs();
-                    }
-                    //文件输出保存到目录
-                    fileOutputStream = new FileOutputStream(outFile);
+//                    File outFile = new File(finalFacePath);
+//
+//                    //C:/workspaces/images/foodie/faces/userId 不为空
+//                    if (outFile.getParentFile() != null) {
+//                        //吹昂见文件夹
+//                        outFile.getParentFile().mkdirs();
+//                    }
+//                    //文件输出保存到目录
+//                    fileOutputStream = new FileOutputStream(outFile);
                     inputStream = file.getInputStream();
-                    //将输入流中的信息拷贝到输入流
-                    IOUtils.copy(inputStream, fileOutputStream);
+//                    //将输入流中的信息拷贝到输入流
+//                    IOUtils.copy(inputStream, fileOutputStream);
+                    sftpUtil.upload(fileUpload.getSftpBasePath(), finalFacePath, newFileName, inputStream);
                     //更新用户头像到数据库
-                    Users result = centerUserService.updateUserFace(userId, fileUpload.getImageServerUrl() + uploadPathPrefix + newFileName);
+                    Users result = centerUserService.updateUserFace(userId, finalFacePath + newFileName);
                     result = this.setNull(result);
+                    result.setFace(fileUpload.getFtpHttpPath() + ":" + fileUpload.getFtpHttpPort() + result.getFace());
 
                     //更新cookie
                     CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密);
@@ -137,14 +145,15 @@ public class CenterUserController extends BaseController {
             LOGGER.error(e.getMessage());
             return IMOOCJSONResult.errorMsg("头像上传异常！");
         } finally {
-            try {
-                if (fileOutputStream != null) {
-                    fileOutputStream.flush();
-                    fileOutputStream.close();
-                }
-            } catch (IOException e) {
-                LOGGER.error(e.getMessage());
-            }
+            sftpUtil.logout();
+//            try {
+//                if (fileOutputStream != null) {
+//                    fileOutputStream.flush();
+//                    fileOutputStream.close();
+//                }
+//            } catch (IOException e) {
+//                LOGGER.error(e.getMessage());
+//            }
         }
     }
 
