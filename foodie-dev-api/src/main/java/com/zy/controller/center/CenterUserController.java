@@ -57,7 +57,7 @@ public class CenterUserController extends BaseController {
             }
             Users result = centerUserService.updateUserInfo(userId, centerUserBO);
             result = this.setNull(result);
-
+            result.setFace(fileUpload.getFtpHttpPath() + ":" + fileUpload.getFtpHttpPort() + result.getFace());
             //更新cookie
             CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密);
             // TODO: 2021/2/16 后续增加token 整合到redis 分布式会话 
