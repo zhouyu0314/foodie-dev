@@ -1,16 +1,20 @@
 package com.zy.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.zy.enums.YesOrNo;
 import com.zy.pojo.Carousel;
 import com.zy.pojo.Category;
-import com.zy.enums.YesOrNo;
 import com.zy.pojo.vo.CategoryVO;
 import com.zy.pojo.vo.NewItemsVO;
 import com.zy.service.CarouseService;
 import com.zy.service.CategoryService;
 import com.zy.utils.IMOOCJSONResult;
+import com.zy.utils.RedisOperator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +25,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Api(value = "首页",tags = {"首页展示的相关接口"})
+@Api(value = "首页", tags = {"首页展示的相关接口"})
 @RestController
 @RequestMapping("/index")
 public class IndexController {
-    private static final Logger LOGGER =  LoggerFactory.getLogger(IndexController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
     @Autowired
     private CarouseService carouseService;
 
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private RedisOperator redisOperator;
+
     @ApiOperation(value = "获取首页轮播图列表", notes = "获取首页轮播图列表", httpMethod = "GET")
     @GetMapping("/carousel")
     public IMOOCJSONResult carousel() {
         try {
-            List<Carousel> carousels = carouseService.queryAll(YesOrNo.YES.type);
+            List<Carousel> carousels = null;
+            //从redis中查询轮播图，如果redis没有则去db
+            String redisResult = redisOperator.get("carousel");
+
+            if (StringUtils.isBlank(redisResult)) {
+                carousels = carouseService.queryAll(YesOrNo.YES.type);
+                redisOperator.set("carousel", JSON.toJSONString(carousels));
+            } else {
+                carousels = JSONObject.parseArray(redisResult, Carousel.class);
+            }
+
+
+            //将轮播图放入redis
             return IMOOCJSONResult.ok(carousels);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
@@ -53,7 +72,14 @@ public class IndexController {
     @GetMapping("/cats")
     public IMOOCJSONResult cats() {
         try {
-            List<Category> cats = categoryService.queryAllRootLevelCat();
+            List<Category> cats = null;
+            String redisResult = redisOperator.get("cats");
+            if (StringUtils.isBlank(redisResult)) {
+                cats = categoryService.queryAllRootLevelCat();
+                redisOperator.set("cats", JSON.toJSONString(cats));
+            }else{
+                cats = JSONObject.parseArray(redisResult, Category.class);
+            }
             return IMOOCJSONResult.ok(cats);
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,13 +92,21 @@ public class IndexController {
     @ApiOperation(value = "获取商品子分类", notes = "获取商品子分类", httpMethod = "GET")
     @GetMapping("/subCat/{rootCatId}")
     public IMOOCJSONResult cats(
-            @ApiParam(name="rootCatId",value = "一级分类id",required = true)
+            @ApiParam(name = "rootCatId", value = "一级分类id", required = true)
             @PathVariable Integer rootCatId) {
         try {
             if (rootCatId == null) {
                 return IMOOCJSONResult.errorMsg("分类不存在！");
             }
-            List<CategoryVO> subCats = categoryService.getSubCatList(rootCatId);
+            List<CategoryVO> subCats = null;
+            String redisResult = redisOperator.get("subCats:" + rootCatId);
+            if (StringUtils.isBlank(redisResult)) {
+                subCats = categoryService.getSubCatList(rootCatId);
+                redisOperator.set("subCats:"+ rootCatId, JSON.toJSONString(subCats));
+            }else{
+                subCats = JSONObject.parseArray(redisResult, CategoryVO.class);
+            }
+
             return IMOOCJSONResult.ok(subCats);
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,7 +118,7 @@ public class IndexController {
     @ApiOperation(value = "查询每个一级分类下的最新6条商品数据", notes = "查询每个一级分类下的最新6条商品数据", httpMethod = "GET")
     @GetMapping("/sixNewItems/{rootCatId}")
     public IMOOCJSONResult sixNewItems(
-            @ApiParam(name="rootCatId",value = "一级分类id",required = true)
+            @ApiParam(name = "rootCatId", value = "一级分类id", required = true)
             @PathVariable Integer rootCatId) {
         try {
             if (rootCatId == null) {

@@ -5,33 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ce57700-00bf-4fc1-a5f1-4ec7f3a97558" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/WarStartApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/resource/Urls.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/url-dev.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/url-prod.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/config/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/config/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/ShopCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/controller/ShopCartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/resource/FileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/java/com/zy/resource/FileUpload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/application-prod.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/file-upload-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/file-upload-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/file-upload-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/file-upload-prod.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/file-upload-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/file-upload-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/src/main/resources/file-upload.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-api/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/target/foodie-dev-api-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-common/src/main/java/com/zy/utils/MD5Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-common/src/main/java/com/zy/utils/MD5Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-common/src/main/java/com/zy/utils/RedisOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-common/src/main/java/com/zy/utils/RedisOperator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-common/target/foodie-dev-common-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-common/target/foodie-dev-common-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-mapper/src/main/java/com/zy/mapper/UsersMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-mapper/src/main/java/com/zy/mapper/UsersMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-mapper/src/main/resources/mapper/UsersMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-mapper/src/main/resources/mapper/UsersMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-mapper/target/foodie-dev-mapper-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-mapper/target/foodie-dev-mapper-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-pojo/target/foodie-dev-pojo-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-pojo/target/foodie-dev-pojo-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-service/src/main/java/com/zy/service/center/impl/CenterUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-service/src/main/java/com/zy/service/center/impl/CenterUserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-service/target/foodie-dev-service-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-service/target/foodie-dev-service-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
@@ -107,8 +95,8 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="com.obroom.plugin.mybatislog.indexNum" value="1078" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/foodie-dev-api/src/main/resources" />
+    <property name="com.obroom.plugin.mybatislog.indexNum" value="1156" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JSD1808_SE" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -155,6 +143,32 @@
     </treeState>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 8.0.50">
+    <configuration name="FtpUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zy.utils.FtpUtil" />
+      <module name="foodie-dev-common" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zy.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SFTPUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zy.utils.SFTPUtil" />
+      <module name="foodie-dev-common" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zy.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TransTest.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="foodie-dev-api" />
       <extension name="coverage">
@@ -183,19 +197,6 @@
       <option name="MAIN_CLASS_NAME" value="com.test.TransTest" />
       <option name="METHOD_NAME" value="test101" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="foodie-payment" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.zy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zy.Application" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -303,18 +304,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.FtpUtil" />
+      <item itemvalue="Application.SFTPUtil" />
       <item itemvalue="JUnit.TransTest.test01" />
       <item itemvalue="JUnit.TransTest.test101" />
       <item itemvalue="Spring Boot.Application" />
-      <item itemvalue="Spring Boot.Application (1)" />
       <item itemvalue="Tomcat Server.Tomcat 8.0.50" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SFTPUtil" />
+        <item itemvalue="Application.FtpUtil" />
         <item itemvalue="Spring Boot.Application" />
         <item itemvalue="JUnit.TransTest.test01" />
         <item itemvalue="JUnit.TransTest.test101" />
-        <item itemvalue="Spring Boot.Application (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -356,6 +359,14 @@
       <workItem from="1613800859430" duration="4799000" />
       <workItem from="1613807817857" duration="12801000" />
       <workItem from="1613872723107" duration="2834000" />
+      <workItem from="1613908858642" duration="69000" />
+      <workItem from="1613959890455" duration="629000" />
+      <workItem from="1614310239371" duration="5051000" />
+      <workItem from="1614341543577" duration="4603000" />
+      <workItem from="1614346532424" duration="3966000" />
+      <workItem from="1614393856064" duration="907000" />
+      <workItem from="1614606643385" duration="899000" />
+      <workItem from="1614858361787" duration="7290000" />
     </task>
     <task id="LOCAL-00001" summary="获取所有轮播图">
       <created>1612619377867</created>
@@ -455,7 +466,35 @@
       <option name="project" value="LOCAL" />
       <updated>1613803503271</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="2-21">
+      <created>1613908893000</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1613908893000</updated>
+    </task>
+    <task id="LOCAL-00016" summary="2-26">
+      <created>1614310478376</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1614310478376</updated>
+    </task>
+    <task id="LOCAL-00017" summary="使用sftp">
+      <created>1614350831504</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1614350831504</updated>
+    </task>
+    <task id="LOCAL-00018" summary="redis">
+      <created>1614608721696</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1614608721696</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,18 +527,11 @@
     <MESSAGE value="订单中心完结" />
     <MESSAGE value="2-19" />
     <MESSAGE value="配置dev 和pord" />
-    <option name="LAST_COMMIT_MESSAGE" value="配置dev 和pord" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/foodie-dev-service/src/main/java/com/zy/service/center/impl/CenterUserServiceImpl.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="2-21" />
+    <MESSAGE value="2-26" />
+    <MESSAGE value="使用sftp" />
+    <MESSAGE value="redis" />
+    <option name="LAST_COMMIT_MESSAGE" value="redis" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

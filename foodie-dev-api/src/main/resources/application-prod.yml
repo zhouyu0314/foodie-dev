@@ -6,7 +6,7 @@ spring:
     url: jdbc:mysql://192.168.2.112:3306/foodie-shop-prod?useUnicode=true&characterEncoding=UTF-8&autoReconnect
     password: ok
   redis:
-    database: 0
+    database: 1
     host: 192.168.2.112
     port: 6379
     password: ok

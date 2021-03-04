@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @Title: Redis 工具类
- * @author 慕课网
+ * @author zy
  */
 @Component
 public class RedisOperator {

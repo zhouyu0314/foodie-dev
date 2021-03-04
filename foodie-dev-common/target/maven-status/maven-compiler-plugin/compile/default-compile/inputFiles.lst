@@ -10,7 +10,9 @@ C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\idworker\Inval
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\utils\DateUtil.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\enums\Sex.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\idworker\utils\Utils.java
+C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\utils\FtpUtil.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\utils\MD5Utils.java
+C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\utils\SFTPUtil.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\enums\YesOrNo.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\idworker\strategy\DefaultRandomCodeStrategy.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\idworker\IdWorker.java
