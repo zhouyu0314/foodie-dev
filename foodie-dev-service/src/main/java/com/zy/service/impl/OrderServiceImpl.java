@@ -5,6 +5,7 @@ import com.zy.enums.YesOrNo;
 import com.zy.idworker.Sid;
 import com.zy.mapper.*;
 import com.zy.pojo.*;
+import com.zy.pojo.bo.ShopcartBO;
 import com.zy.pojo.bo.SubmitOrderBO;
 import com.zy.pojo.vo.MerchantOrdersVO;
 import com.zy.pojo.vo.OrderVO;
@@ -16,10 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -38,9 +36,10 @@ public class OrderServiceImpl implements OrderService {
     @Autowired(required = false)
     private ItemService itemService;
 
+
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public OrderVO createOrder(SubmitOrderBO submitOrderBO) throws Exception {
+    public OrderVO createOrder(List<ShopcartBO> shopCartList, SubmitOrderBO submitOrderBO) throws Exception {
         String userId = submitOrderBO.getUserId();
         String addressId = submitOrderBO.getAddressId();
         String itemSpecIds = submitOrderBO.getItemSpecIds();
@@ -56,10 +55,17 @@ public class OrderServiceImpl implements OrderService {
         int totalAmount = 0;
         //实际支付总价格
         int realPayAmount = 0;
-        int buyCount = 1;
+
         //根据规格ids获取商品信息
         String[] specIds = itemSpecIds.split(",");
+        List<ShopcartBO> toBeRemovedShopcastList = new ArrayList<>();
         for (String specId : specIds) {
+            ShopcartBO cartItem = this.getCount(shopCartList, specId);
+            if (cartItem == null) {
+                continue;
+            }
+            toBeRemovedShopcastList.add(cartItem);
+            int buyCount = cartItem.getBuyCounts();
             OrderItems orderItems = new OrderItems();
             ItemsSpec itemsSpec = itemsSpecMapper.getItemsSpecById(specId);
             param.put("itemId", itemsSpec.getItemId());
@@ -69,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
             }
             totalAmount += (itemsSpec.getPriceNormal() * buyCount);
             realPayAmount += (itemsSpec.getPriceDiscount() * buyCount);
-            // TODO: 2021/2/10 整合redis后商品购买的数量从新从redis购物车中获取 目前先写死
+            // 整合redis后商品购买的数量从新从redis购物车中获取 目前先写死
             //构建订单商品关联对象
             orderItems.setId(Sid.nextShort());
             orderItems.setOrderId(orderId);
@@ -124,8 +130,17 @@ public class OrderServiceImpl implements OrderService {
         OrderVO orderVO = new OrderVO();
         orderVO.setOrderId(orderId);
         orderVO.setMerchantOrdersVO(merchantOrdersVO);
-
+        orderVO.setToBeRemovedShopcastList(toBeRemovedShopcastList);
         return orderVO;
+    }
+
+    private ShopcartBO getCount(List<ShopcartBO> shopCartList,String specId){
+        for (ShopcartBO shopcartBO : shopCartList) {
+            if (shopcartBO.getSpecId().equals(specId)) {
+                return shopcartBO;
+            }
+        }
+        return null;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

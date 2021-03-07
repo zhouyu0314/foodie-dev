@@ -1,8 +1,11 @@
 package com.zy.service;
 
 import com.zy.pojo.OrderStatus;
+import com.zy.pojo.bo.ShopcartBO;
 import com.zy.pojo.bo.SubmitOrderBO;
 import com.zy.pojo.vo.OrderVO;
+
+import java.util.List;
 
 public interface OrderService {
     /**
@@ -10,7 +13,7 @@ public interface OrderService {
      *
      * @param submitOrderBO
      */
-    OrderVO createOrder(SubmitOrderBO submitOrderBO) throws Exception;
+    OrderVO createOrder(List<ShopcartBO> shopCartList, SubmitOrderBO submitOrderBO) throws Exception;
 
     /**
      * 修改订单状态

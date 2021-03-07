@@ -69,7 +69,7 @@ public class ShopCartController extends BaseController {
             return IMOOCJSONResult.errorMsg("参数不能为空！");
         }
 
-        // TODO: 2021/2/9  用户在页面删除购物车中的商品数据，如果此时用户已经登录，则需要同步删除后端购物车中的商品
+        //用户在页面删除购物车中的商品数据，如果此时用户已经登录，则需要同步删除后端购物车中的商品
         List<ShopcartBO> shopcartList = null;
         String shopCartJson = redisOperator.get(FOODIE_SHOPCART + ":" + userId);
         if (!StringUtils.isBlank(shopCartJson)) {

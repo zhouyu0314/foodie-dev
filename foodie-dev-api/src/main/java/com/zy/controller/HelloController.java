@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 
 @ApiIgnore//加了此注解之后，此类在swagger2 就不显示了
 @RestController
@@ -22,5 +25,13 @@ public class HelloController {
         LOGGER.warn("warn: hello");
         LOGGER.error("error hello");
         return "Hello World!";
+    }
+
+    @GetMapping("/setSession")
+    public Object setSession(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("userInfo","new user");
+        session.setMaxInactiveInterval(3600);
+        return "ok!";
     }
 }

@@ -2,21 +2,31 @@ package com.zy.controller;
 
 
 import com.zy.pojo.Orders;
+import com.zy.pojo.Users;
+import com.zy.pojo.vo.UsersVO;
 import com.zy.service.center.MyOrdersService;
 import com.zy.utils.IMOOCJSONResult;
+import com.zy.utils.RedisOperator;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import java.util.UUID;
 
 @Controller
 public class BaseController {
 
     @Autowired
     private MyOrdersService myOrdersService;
+    @Autowired
+    private RedisOperator redisOperator;
 
     public static final String FOODIE_SHOPCART = "shopcart";
 
     public static final Integer COMMON_PAGE_SIZE = 10;
     public static final Integer PAGE_SIZE = 20;
+
+    public static final String REDIS_USER_TOKEN = "redis_user_token";
 
     // 支付中心的调用地址
 //    String paymentUrl = urls.getPaymentUrl();
@@ -50,6 +60,21 @@ public class BaseController {
             return IMOOCJSONResult.errorMsg("订单不存在！");
         }
         return IMOOCJSONResult.ok(order);
+    }
+
+    /**
+     * 将用户信息存入redis
+     * @param result
+     * @return
+     */
+    protected UsersVO conventUsersVO(Users result) {
+        //实现用户的redis会话
+        String uniqueToken = UUID.randomUUID().toString().trim();
+        redisOperator.set(REDIS_USER_TOKEN + ":" + result.getId(), uniqueToken);
+        UsersVO usersVO = new UsersVO();
+        BeanUtils.copyProperties(result, usersVO);
+        usersVO.setUserUniqueToken(uniqueToken);
+        return usersVO;
     }
 
 

@@ -3,12 +3,10 @@ package com.zy.controller.center;
 import com.zy.controller.BaseController;
 import com.zy.pojo.Users;
 import com.zy.pojo.bo.center.CenterUserBO;
+import com.zy.pojo.vo.UsersVO;
 import com.zy.resource.FileUpload;
 import com.zy.service.center.CenterUserService;
-import com.zy.utils.CookieUtils;
-import com.zy.utils.IMOOCJSONResult;
-import com.zy.utils.JsonUtils;
-import com.zy.utils.SFTPUtil;
+import com.zy.utils.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -39,6 +37,8 @@ public class CenterUserController extends BaseController {
     private CenterUserService centerUserService;
     @Autowired
     private FileUpload fileUpload;
+    @Autowired
+    private RedisOperator redisOperator;
 
 
     @ApiOperation(value = "修改用户信息", notes = "修改用户信息", httpMethod = "POST")
@@ -56,10 +56,11 @@ public class CenterUserController extends BaseController {
                 return IMOOCJSONResult.errorMap(errors);
             }
             Users result = centerUserService.updateUserInfo(userId, centerUserBO);
-            result = this.setNull(result);
-            result.setFace(fileUpload.getFtpHttpPath() + ":" + fileUpload.getFtpHttpPort() + result.getFace());
+            UsersVO usersVO = this.conventUsersVO(result);
+            usersVO.setFace(fileUpload.getFtpHttpPath() + ":" + fileUpload.getFtpHttpPort() + result.getFace());
+
             //更新cookie
-            CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密);
+            CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(usersVO), true);//是否加密);
             // TODO: 2021/2/16 后续增加token 整合到redis 分布式会话 
             return IMOOCJSONResult.ok();
         } catch (Exception e) {
@@ -68,7 +69,7 @@ public class CenterUserController extends BaseController {
         }
     }
 
-    @ApiOperation(value = "修改用户信息", notes = "修改用户信息", httpMethod = "POST")
+    @ApiOperation(value = "修改用户头像", notes = "修改用户头像", httpMethod = "POST")
     @PostMapping("/uploadFace")
     public IMOOCJSONResult uploadFace(@ApiParam(name = "userId", value = "用户id", required = true)
                                       @RequestParam String userId,
@@ -128,13 +129,12 @@ public class CenterUserController extends BaseController {
                     sftpUtil.upload(fileUpload.getSftpBasePath(), finalFacePath, newFileName, inputStream);
                     //更新用户头像到数据库
                     Users result = centerUserService.updateUserFace(userId, finalFacePath + newFileName);
-                    result = this.setNull(result);
-                    result.setFace(fileUpload.getFtpHttpPath() + ":" + fileUpload.getFtpHttpPort() + result.getFace());
+                    UsersVO usersVO = this.conventUsersVO(result);
+                    usersVO.setFace(fileUpload.getFtpHttpPath() + ":" + fileUpload.getFtpHttpPort() + result.getFace());
 
                     //更新cookie
-                    CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(result), true);//是否加密);
-                    // TODO: 2021/2/16 后续增加token 整合到redis 分布式会话
-                    return IMOOCJSONResult.ok(result);
+                    CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(usersVO), true);//是否加密);
+                    return IMOOCJSONResult.ok();
                 } else {
                     return IMOOCJSONResult.errorMsg("上传文件的名字不可为空！");
                 }
