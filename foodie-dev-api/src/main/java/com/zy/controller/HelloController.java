@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @RestController
 @CrossOrigin
 public class HelloController {
-
+1
      private static final Logger LOGGER =  LoggerFactory.getLogger(HelloController.class);
 
     @GetMapping("/hello")
