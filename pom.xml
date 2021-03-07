@@ -13,6 +13,7 @@
         <module>foodie-dev-mapper</module>
         <module>foodie-dev-service</module>
         <module>foodie-dev-api</module>
+        <module>foodie-dev-sso</module>
     </modules>
 
     <!--api -> service -> mapper -> polo -> common-->
@@ -43,13 +44,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!--移除自带的内置tomcat 打包2-->
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-            </exclusions>
+            <!--移除自带的内置tomcat 打包2 因为SSO项目必须用自带的tomcat启动-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
         <!--支持常规的测试依赖，包括JUnit、Hamcrest、Mockito以及spring-test模块-->
         <dependency>
