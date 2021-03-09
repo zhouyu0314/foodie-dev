@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author 慕课网 - 风间影月
  * @version V1.0
  */
-public class IMOOCJSONResult {
+public class IMOOCJSONResult<E> {
 
     // 定义jackson对象
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -34,7 +34,7 @@ public class IMOOCJSONResult {
     private String msg;
 
     // 响应中的数据
-    private Object data;
+    private E data;
     
     @JsonIgnore
     private String ok;	// 不使用
@@ -79,20 +79,20 @@ public class IMOOCJSONResult {
 
     }
 
-    public IMOOCJSONResult(Integer status, String msg, Object data) {
+    public IMOOCJSONResult(Integer status, String msg, E data) {
         this.status = status;
         this.msg = msg;
         this.data = data;
     }
     
-    public IMOOCJSONResult(Integer status, String msg, Object data, String ok) {
+    public IMOOCJSONResult(Integer status, String msg, E data, String ok) {
         this.status = status;
         this.msg = msg;
         this.data = data;
         this.ok = ok;
     }
 
-    public IMOOCJSONResult(Object data) {
+    public IMOOCJSONResult(E data) {
         this.status = 200;
         this.msg = "OK";
         this.data = data;
@@ -122,7 +122,7 @@ public class IMOOCJSONResult {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(E data) {
         this.data = data;
     }
 

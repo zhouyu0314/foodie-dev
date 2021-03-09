@@ -34,6 +34,7 @@ public class PassportController extends BaseController {
 
     @Autowired
     private FileUpload fileUpload;
+
     @Autowired
     private RedisOperator redisOperator;
 
@@ -113,7 +114,10 @@ public class PassportController extends BaseController {
                     StringUtils.isBlank(password)) {
                 return IMOOCJSONResult.errorMsg("用户名或密码不能为空");
             }
-            Users result = usersService.login(username, password);
+            IMOOCJSONResult imoocjsonResult = usersService.login(username, password);
+
+            Users result = (Users)imoocjsonResult.getData();
+
             result.setFace(fileUpload.getFtpHttpPath() + ":" + fileUpload.getFtpHttpPort() + result.getFace());
             //生成用户token，存入redis会话
             UsersVO usersVO = this.conventUsersVO(result);

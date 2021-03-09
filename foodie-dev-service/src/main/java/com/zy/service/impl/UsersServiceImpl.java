@@ -1,11 +1,12 @@
 package com.zy.service.impl;
 
-import com.zy.pojo.Users;
 import com.zy.enums.Sex;
 import com.zy.idworker.Sid;
 import com.zy.mapper.UsersMapper;
+import com.zy.pojo.Users;
 import com.zy.service.UsersService;
 import com.zy.utils.DateUtil;
+import com.zy.utils.IMOOCJSONResult;
 import com.zy.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,13 +57,13 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public Users login(String username, String pwd) throws Exception {
+    public IMOOCJSONResult login(String username, String pwd) throws Exception {
         List<Users> users = this.findUserByUsername(username);
         if (users == null || users.size() == 0 || !users.get(0).getPassword().equals(MD5Utils.getMD5Str(pwd))) {
-            throw new Exception("用户名或密码错误！");
+            return IMOOCJSONResult.errorMsg("用户名或密码错误！");
         }
         Users result = users.get(0);
-        return result;
+        return IMOOCJSONResult.ok(result);
     }
 
 

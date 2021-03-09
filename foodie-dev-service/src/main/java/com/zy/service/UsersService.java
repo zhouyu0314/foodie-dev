@@ -1,6 +1,7 @@
 package com.zy.service;
 
 import com.zy.pojo.Users;
+import com.zy.utils.IMOOCJSONResult;
 
 public interface UsersService {
     /**
@@ -25,6 +26,6 @@ public interface UsersService {
      * @param pwd 密码
      * @throws Exception
      */
-    Users login(String username, String pwd)throws Exception;
+    IMOOCJSONResult login(String username, String pwd)throws Exception;
 
 }
