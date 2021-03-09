@@ -4,14 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ce57700-00bf-4fc1-a5f1-4ec7f3a97558" name="Default Changelist" comment="">
+    <list default="true" id="8ce57700-00bf-4fc1-a5f1-4ec7f3a97558" name="Default Changelist" comment="cas-2">
+      <change afterPath="$PROJECT_DIR$/foodie-dev-sso/foodie-dev-sso.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-api/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-api/target/classes/com/zy/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/target/classes/com/zy/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-api/target/classes/com/zy/controller/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/target/classes/com/zy/controller/HelloController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-common/target/foodie-dev-common-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-common/target/foodie-dev-common-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-mapper/target/foodie-dev-mapper-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-mapper/target/foodie-dev-mapper-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-pojo/target/foodie-dev-pojo-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-pojo/target/foodie-dev-pojo-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodie-dev-pojo/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-pojo/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foodie-dev-service/target/foodie-dev-service-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-service/target/foodie-dev-service-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodie-dev-sso/src/main/java/com/zy/controller/SSOController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodie-dev-sso/src/main/java/com/zy/controller/SSOController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +36,7 @@
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -70,6 +80,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="MyBatisLogPluginindexNum" value="135" />
     <property name="MyBatisLogPluginparameters" value="Parameters:" />
     <property name="MyBatisLogPluginpreparing" value="Preparing:" />
@@ -85,10 +96,10 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="com.obroom.plugin.mybatislog.indexNum" value="1288" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/foodie-dev-pojo/src/main/java/com/zy/pojo/vo" />
+    <property name="com.obroom.plugin.mybatislog.indexNum" value="1358" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/foodie-dev-common/src/main/resources" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
@@ -98,11 +109,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\project\java\foodie-dev\foodie-dev-common\src\main\resources" />
+      <recent name="C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy" />
+      <recent name="C:\project\java\foodie-dev\foodie-dev-sso\src\main\resources\templates" />
+      <recent name="C:\project\java\foodie-dev\foodiv-dev-sso\src\main\resources" />
       <recent name="C:\project\java\foodie-dev\foodie-dev-pojo\src\main\java\com\zy\pojo\vo" />
-      <recent name="C:\project\java\foodie-dev\foodie-dev-api\src\main\resources" />
-      <recent name="C:\project\java\foodie-dev\foodie-dev-pojo\src\main\java\com\zy\pojo\bo" />
-      <recent name="C:\project\java\foodie-dev\foodie-payment\src\main\resources\mapper" />
-      <recent name="C:\project\java\foodie-dev\foodie-payment\src\main\java\com\zy\pojo" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -111,11 +122,11 @@
       <recent name="com.zy.service.impl" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zy.config" />
+      <recent name="com.zy.controller" />
       <recent name="com.zy.pojo.bo" />
       <recent name="com.zy.interceptor" />
-      <recent name="com.zy.config" />
       <recent name="com.zy.pojo.vo" />
-      <recent name="com.zy.service" />
     </key>
   </component>
   <component name="RestServicesNavigator">
@@ -132,8 +143,8 @@
       <select />
     </treeState>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 8.0.50">
-    <configuration name="FtpUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.SSOApplication">
+    <configuration name="FtpUtil" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zy.utils.FtpUtil" />
       <module name="foodie-dev-common" />
       <extension name="coverage">
@@ -159,6 +170,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TransTest.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="foodie-dev-api" />
       <extension name="coverage">
@@ -170,22 +192,6 @@
       <option name="PACKAGE_NAME" value="com.test" />
       <option name="MAIN_CLASS_NAME" value="com.test.TransTest" />
       <option name="METHOD_NAME" value="test01" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TransTest.test101" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="foodie-dev-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.test" />
-      <option name="MAIN_CLASS_NAME" value="com.test.TransTest" />
-      <option name="METHOD_NAME" value="test101" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -205,7 +211,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 8.0.50" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.50" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="SSOApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="foodie-dev-sso" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zy.SSOApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="api" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.50" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="foodie-dev-api:war">
@@ -293,21 +312,110 @@
         </option>
       </method>
     </configuration>
+    <configuration name="sso" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.50" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="foodie-dev-sso:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="3e5f7615-bf49-4d4e-b545-fea73f7a4269" />
+        <option name="HTTP_PORT" value="8090" />
+        <option name="JNDI_PORT" value="1100" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="57164" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="foodie-dev-sso:war" />
+        </option>
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.FtpUtil" />
       <item itemvalue="Application.SFTPUtil" />
       <item itemvalue="JUnit.TransTest.test01" />
-      <item itemvalue="JUnit.TransTest.test101" />
       <item itemvalue="Spring Boot.Application" />
-      <item itemvalue="Tomcat Server.Tomcat 8.0.50" />
+      <item itemvalue="Spring Boot.SSOApplication" />
+      <item itemvalue="Tomcat Server.sso" />
+      <item itemvalue="Tomcat Server.api" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.SFTPUtil" />
-        <item itemvalue="Application.FtpUtil" />
+        <item itemvalue="Spring Boot.SSOApplication" />
         <item itemvalue="Spring Boot.Application" />
+        <item itemvalue="Application.SFTPUtil" />
         <item itemvalue="JUnit.TransTest.test01" />
-        <item itemvalue="JUnit.TransTest.test101" />
       </list>
     </recent_temporary>
   </component>
@@ -359,7 +467,10 @@
       <workItem from="1614858361787" duration="7612000" />
       <workItem from="1614910355946" duration="1914000" />
       <workItem from="1614924267433" duration="12840000" />
-      <workItem from="1615080857838" duration="409000" />
+      <workItem from="1615080857838" duration="12654000" />
+      <workItem from="1615172428878" duration="9352000" />
+      <workItem from="1615187974937" duration="1847000" />
+      <workItem from="1615252637430" duration="5847000" />
     </task>
     <task id="LOCAL-00001" summary="获取所有轮播图">
       <created>1612619377867</created>
@@ -515,7 +626,49 @@
       <option name="project" value="LOCAL" />
       <updated>1615081080056</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="单点登录">
+      <created>1615081305099</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1615081305099</updated>
+    </task>
+    <task id="LOCAL-00024" summary="单点登录">
+      <created>1615081320099</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1615081320099</updated>
+    </task>
+    <task id="LOCAL-00025" summary="单点登录">
+      <created>1615081339748</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1615081339748</updated>
+    </task>
+    <task id="LOCAL-00026" summary="asdasd">
+      <created>1615081634172</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1615081634172</updated>
+    </task>
+    <task id="LOCAL-00027" summary="cas">
+      <created>1615123659472</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1615123659472</updated>
+    </task>
+    <task id="LOCAL-00028" summary="cas-2">
+      <created>1615252732750</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1615252732750</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +708,20 @@
     <MESSAGE value="redis集成到购物车2-7" />
     <MESSAGE value="test" />
     <MESSAGE value="单点登录" />
-    <option name="LAST_COMMIT_MESSAGE" value="单点登录" />
+    <MESSAGE value="asdasd" />
+    <MESSAGE value="cas" />
+    <MESSAGE value="cas-2" />
+    <option name="LAST_COMMIT_MESSAGE" value="cas-2" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint type="java-exception">
+          <properties class="org.springframework.context.ApplicationContextException" package="org.springframework.context" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

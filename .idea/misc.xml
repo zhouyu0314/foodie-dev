@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/foodie-dev-api" />
+    <file type="web" url="file://$PROJECT_DIR$/foodie-dev-sso" />
     <file type="web" url="file://$PROJECT_DIR$/foodie-payment" />
   </component>
   <component name="JavaScriptSettings">

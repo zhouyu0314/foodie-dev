@@ -6,6 +6,7 @@ C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\idworker\Test.
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\utils\CookieUtils.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\enums\OrderStatusEnum.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\utils\DesensitizationUtil.java
+C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\resource\Urls.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\idworker\InvalidSystemClock.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\utils\DateUtil.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\enums\Sex.java
@@ -32,6 +33,7 @@ C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\idworker\Code.
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\utils\MobileEmailUtils.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\enums\PaymentStatus.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\idworker\Sid.java
+C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\resource\FileUpload.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\enums\CommentLevel.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\utils\PagedGridResult.java
 C:\project\java\foodie-dev\foodie-dev-common\src\main\java\com\zy\idworker\strategy\FileLock.java

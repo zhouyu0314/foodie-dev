@@ -45,9 +45,14 @@ public class SSOController {
                         HttpServletRequest request,
                         HttpServletResponse response) {
         model.addAttribute("returnUrl", returnUrl);
-        // TODO: 2021/3/7 后苏完善校验是否登录
-
-        //用户从未登陆过，第一次登录则跳转到CAS的同一登录页面
+        // 1. 获取userTicket门票，如果cookie中能够获取到，证明用户登录过，此时签发一个一次性的临时票据并且回跳
+        String userTicket = getCookie(request, COOKIE_USER_TICKET);
+        boolean isVerified = this.verifyUserTicket(userTicket);
+        if (isVerified) {
+            String tmpTicket = createTmpTicket();
+            return "redirect:" + returnUrl + "?tmpTicket=" + tmpTicket;
+        }
+        // 2. 用户从未登录过，第一次进入则跳转到CAS的统一登录页面
         return "login";
     }
 
@@ -157,10 +162,40 @@ public class SSOController {
         if (StringUtils.isBlank(userRedis)) {
             return IMOOCJSONResult.errorMsg("用户票据异常");
         }
-
+        UsersVO usersVO = JSON.parseObject(userRedis, UsersVO.class);
         // 验证成功，返回OK，携带用户会话
-        return IMOOCJSONResult.ok(JSON.toJSONString(userRedis));
+        return IMOOCJSONResult.ok(usersVO);
     }
+
+    @PostMapping("/logout")
+    @ResponseBody
+    public IMOOCJSONResult logout(String userId,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response) throws Exception {
+
+        // 0. 获取CAS中的用户门票
+        String userTicket = getCookie(request, COOKIE_USER_TICKET);
+
+        // 1. 清除userTicket票据，redis/cookie
+        deleteCookie(COOKIE_USER_TICKET, response);
+        redisOperator.del(REDIS_USER_TICKET + ":" + userTicket);
+
+        // 2. 清除用户全局会话（分布式会话）
+        redisOperator.del(REDIS_USER_TOKEN + ":" + userId);
+
+        return IMOOCJSONResult.ok();
+    }
+
+    private void deleteCookie(String key,
+                              HttpServletResponse response) {
+
+        Cookie cookie = new Cookie(key, null);
+        cookie.setDomain("153.36.170.3");
+        cookie.setPath("/");
+        cookie.setMaxAge(-1);
+        response.addCookie(cookie);
+    }
+
 
     /**
      * 校验CAS全局用户门票

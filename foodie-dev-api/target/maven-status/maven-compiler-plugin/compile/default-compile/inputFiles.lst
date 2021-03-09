@@ -2,7 +2,6 @@ C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\Addres
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\center\CenterUserController.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\Application.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\config\OrderJob.java
-C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\resource\Urls.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\HelloController.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\ItemController.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\IndexController.java
@@ -10,7 +9,6 @@ C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\Passpo
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\BaseController.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\config\CorsConfig.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\config\Swagger2.java
-C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\resource\FileUpload.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\exception\CustomExceptionHandler.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\aspect\ServiceLogAspect.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\WarStartApplication.java
@@ -20,3 +18,4 @@ C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\ShopCa
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\OrderController.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\center\MyCommentController.java
 C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\center\MyOrdersController.java
+C:\project\java\foodie-dev\foodie-dev-api\src\main\java\com\zy\controller\interceptor\UserTokenInterceptor.java
