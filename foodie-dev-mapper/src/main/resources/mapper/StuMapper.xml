@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.StuMapper">
+
+    <select id="getStuById" resultType="com.zy.pojo.Stu">
+        select
+        id as id,
+        name as name,
+        age as age
+        from stu
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getStuListByMap" resultType="com.zy.pojo.Stu" parameterType="java.util.Map">
+        select
+        id as id,
+        name as name,
+        age as age
+        from stu
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="name != null and name!=''">
+                and name=#{name}
+            </if>
+            <if test="age != null and age!=''">
+                and age=#{age}
+            </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getStuCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from stu
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null and id!=''">
+                and id=#{id}
+            </if>
+            <if test="name != null and name!=''">
+                and name=#{name}
+            </if>
+            <if test="age != null and age!=''">
+                and age=#{age}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="insertStu" parameterType="com.zy.pojo.Stu">
+        insert into stu(
+            id
+                name,
+            age)
+        values(
+                  #{id},
+                  #{name},
+                  #{age})
+    </insert>
+
+    <update id="updateStu" parameterType="com.zy.pojo.Stu">
+        update stu
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+            <if test="name != null and name!=''">
+                name=#{name},
+            </if>
+            <if test="age != null and age!=''">
+                age=#{age}
+            </if>
+        </trim>
+    </update>
+
+
+</mapper>

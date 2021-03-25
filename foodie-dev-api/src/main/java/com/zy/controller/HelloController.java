@@ -1,7 +1,9 @@
 package com.zy.controller;
 
+import com.zy.mapper.StuMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpSession;
 public class HelloController {
      private static final Logger LOGGER =  LoggerFactory.getLogger(HelloController.class);
 
+     @Autowired
+     private StuMapper stuMapper;
     @GetMapping("/hello")
     public Object hello(){
         LOGGER.debug("debug: hello");
@@ -33,4 +37,5 @@ public class HelloController {
         session.setMaxInactiveInterval(3600);
         return "ok!";
     }
+
 }
