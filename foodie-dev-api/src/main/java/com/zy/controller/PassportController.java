@@ -39,6 +39,7 @@ public class PassportController extends BaseController {
     private RedisOperator redisOperator;
 
 
+
     @ApiOperation(value = "查询用户名是否存在", notes = "存在返回true；不存在返回false", httpMethod = "GET")
     @GetMapping("/usernameIsExist")
     public IMOOCJSONResult usernameIsExist(

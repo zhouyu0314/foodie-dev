@@ -16,4 +16,4 @@ spring:
     port: 6379
     password: ok
 server:
-  port: 8105
+  port: 8089

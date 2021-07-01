@@ -77,4 +77,16 @@ public class Stu implements Serializable {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+    @Override
+    public String toString() {
+        return "Stu{" +
+                "stuId=" + stuId +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", money=" + money +
+                ", sign='" + sign + '\'' +
+                ", desc='" + desc + '\'' +
+                '}';
+    }
 }

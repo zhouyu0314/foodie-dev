@@ -188,12 +188,12 @@ import java.util.Vector;
           
         //上传文件测试
         public static void main(String[] args) throws SftpException, IOException {  
-            SFTPUtil sftp = new SFTPUtil( "192.168.2.113", 22,"root", "123456");
+            SFTPUtil sftp = new SFTPUtil( "192.168.1.14", 21,"", "");
             sftp.login();  
-            File file = new File("D:\\temp\\image\\asd.jpg");
+            File file = new File("D:\\sdffgdg.jpg");
             InputStream is = new FileInputStream(file);  
               
-            sftp.upload("/home/ftp","/image", "test_sftp.jpg", is);
+            sftp.upload("D:\\","\\test", "test_sftp.jpg", is);
             sftp.logout();  
         }  
     }
