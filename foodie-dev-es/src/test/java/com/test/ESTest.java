@@ -119,15 +119,16 @@ public class ESTest {
         String postTag = "</font>";
 
         //构建分页  page：第几页 size：每页显示多少条数据
-        Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(0, 2);
         //排序对象 根据money 正序排序
         SortBuilder sortBuilder = new FieldSortBuilder("money")
                 .order(SortOrder.ASC);
 
         SearchQuery query = new NativeSearchQueryBuilder()
-                .withQuery(QueryBuilders.matchQuery("desc", "张三"))//添加搜索条件。在desc字段中搜寻张三
-                .withHighlightFields(new HighlightBuilder.Field("desc").preTags(preTag).postTags(postTag))//高亮
-                .withSort(sortBuilder)//放入排序，如果有多个排序接着写.withSort()
+                .withQuery(QueryBuilders.matchQuery("message", "美国"))//添加搜索条件。在desc字段中搜寻张三
+                .withHighlightFields(new HighlightBuilder.Field("message").preTags(preTag).postTags(postTag))//高亮
+//                .withSort(sortBuilder)//放入排序，如果有多个排序接着写.withSort()
+
                 .withPageable(pageable)//放入分页对象
                 .build();
         AggregatedPage<Stu> pageStu = esTemplate.queryForPage(query, Stu.class,new SearchResultMapper(){
@@ -137,7 +138,7 @@ public class ESTest {
                 //将高亮的内容拿出替换原有的
                 SearchHits hits = response.getHits();
                 for (SearchHit hit : hits) {
-                    HighlightField desc = hit.getHighlightFields().get("desc");
+                    HighlightField desc = hit.getHighlightFields().get("message");
                     //获取高亮的字符串数据
                     String highLightDesc = desc.getFragments()[0].toString();
 
@@ -145,7 +146,7 @@ public class ESTest {
                     Map<String, Object> sourceAsMap = hit.getSourceAsMap();
                     Stu stuHighLight = JSONObject.parseObject(JSONObject.toJSONString(sourceAsMap), Stu.class);
                     //高亮数据赋值给对象的属性
-                    stuHighLight.setDesc(highLightDesc);
+                    stuHighLight.setMessage(highLightDesc);
                     stuListHighLight.add(stuHighLight);
                 }
 
@@ -155,7 +156,6 @@ public class ESTest {
                 return null;
             }
         });
-
         int totalPages = pageStu.getTotalPages();
         System.out.println("检索后的总的分页数:\t" + totalPages);
         List<Stu> content = pageStu.getContent();

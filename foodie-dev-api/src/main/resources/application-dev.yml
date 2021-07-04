@@ -6,9 +6,9 @@ spring:
     url: jdbc:mysql://192.168.2.112:3306/foodie-shop-dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect
   redis:
     database: 0
-    host: 192.168.2.112
+    host: localhost
     port: 6379
-    password: ok
+    password:
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #sql语句在控制台打印

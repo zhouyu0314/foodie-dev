@@ -2,8 +2,8 @@
 spring:
   data:
     elasticsearch:
-      cluster-name: es6 #集群的名字
-      cluster-nodes: 192.168.2.121:9300 #如果有集群可用逗号拼接,java和es是通过9300
+      cluster-name: elasticsearch-application #集群的名字
+      cluster-nodes: 192.168.2.110:9300 #如果有集群可用逗号拼接,java和es是通过9300
   datasource: # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource # 数据源类型：HikariCP
     driver-class-name: com.mysql.jdbc.Driver # mysql驱动
@@ -12,8 +12,8 @@ spring:
     password: ok
   redis:
     database: 0
-    host: 192.168.2.112
+    host: localhost
     port: 6379
-    password: ok
+    password:
 server:
   port: 8089

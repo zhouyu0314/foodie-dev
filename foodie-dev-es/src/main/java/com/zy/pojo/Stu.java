@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * 配合Test使用
  */
-@Document(indexName = "stu" ,type = "_doc") //es7 type可以不写
+@Document(indexName = "user-info-2021.07.04" ,type = "doc") //es7 type可以不写
 public class Stu implements Serializable {
     @Id //此注解的作用是会自动创建一个和stuId相同的文档id
     private Long stuId;
@@ -29,6 +29,39 @@ public class Stu implements Serializable {
 
     @Field(store = true)
     private String desc;
+
+    @Field(store = true)
+    private String message;
+
+    @Field(store = true)
+    private String timestamp;
+
+    @Field(store = true)
+    private String _id;
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public Long getStuId() {
         return stuId;
@@ -87,6 +120,9 @@ public class Stu implements Serializable {
                 ", money=" + money +
                 ", sign='" + sign + '\'' +
                 ", desc='" + desc + '\'' +
+                ", message='" + message + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", _id='" + _id + '\'' +
                 '}';
     }
 }
